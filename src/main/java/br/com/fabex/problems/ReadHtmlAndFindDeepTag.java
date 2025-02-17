@@ -10,8 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-
-
 public class ReadHtmlAndFindDeepTag {
 
     private static int level = 0;
@@ -39,15 +37,15 @@ public class ReadHtmlAndFindDeepTag {
         Tag tagMoreDeep = findTagMoreDeep(rootTag);
         System.out.println("Html: " + response);
         System.out.println("Tag: " + tagMoreDeep.name);
+        System.out.println("Level: " + tagMoreDeep.level);
         System.out.println("Value: " + tagMoreDeep.val);
     }
 
     private static String requestByUrl(String url) {
         String response;
         try {
-            HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
-            con.setRequestMethod("GET");
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(
+                    new URL(url).openConnection().getInputStream()))) {
                 response = br.lines().collect(Collectors.joining());
             }
         } catch (Exception e) {
