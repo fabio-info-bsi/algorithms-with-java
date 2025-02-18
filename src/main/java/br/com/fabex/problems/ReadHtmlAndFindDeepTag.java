@@ -25,7 +25,6 @@ public class ReadHtmlAndFindDeepTag {
             this.level = level;
             this.childrenTag = childrenTag;
         }
-
     }
 
     public static void main(String[] args) {
