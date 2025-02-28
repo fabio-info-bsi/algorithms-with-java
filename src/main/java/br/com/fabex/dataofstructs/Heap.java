@@ -4,7 +4,7 @@ import static br.com.fabex.algorithms.sorting.Utils.printArray;
 
 public class Heap {
 
-    private int heapSize = 10;
+    private int heapSize;
 
     public Heap(int heapSize) {
         this.heapSize = heapSize;
@@ -80,4 +80,14 @@ public class Heap {
             heapInsert(heap, key);
     }
 
+    private int heapExtractMax(int[] heap) {
+        if (heapSize() < 0) {
+            throw new RuntimeException("Heap underflow");
+        }
+        int max = heap[0];
+        heap[0] = heap[heapSize()];
+        heapSize--;
+        heapify(heap, 0);
+        return max;
+    }
 }
