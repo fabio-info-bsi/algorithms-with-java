@@ -2,6 +2,8 @@ package br.com.fabex.algorithms.sorting;
 
 import java.util.Random;
 
+import static br.com.fabex.algorithms.sorting.Utils.printArray;
+
 
 public class QuickSort {
 
@@ -45,5 +47,19 @@ public class QuickSort {
         array[i] = array[endIndex];
         array[endIndex] = temp;
         return partition(array, startIndex, endIndex);
+    }
+
+    public static void main(String[] args) {
+        QuickSort quickSort = new QuickSort();
+        //int[] array = {2, 8, 7, 1, 3, 5, 6, 4};
+        //int[] array = {3, 3, 2, 1, 4, 6, 5, 7};
+        //int[] array = {2, -1, 3, 4};
+        int[] array = {9, 8, 7};
+        //int[] array = {7, 8, 9};
+        //int[] array = {2, 8, 7};
+        //int[] array = {2, 8, 7, 1};
+        //quickSort.sort(array, 0, array.length - 1);
+        quickSort.sortRandomized(array, 0, array.length - 1);
+        printArray(array);
     }
 }
