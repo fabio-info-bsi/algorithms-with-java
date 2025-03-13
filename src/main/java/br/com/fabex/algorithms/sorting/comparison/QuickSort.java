@@ -1,8 +1,8 @@
-package br.com.fabex.algorithms.sorting;
+package br.com.fabex.algorithms.sorting.comparison;
 
 import java.util.Random;
 
-import static br.com.fabex.algorithms.sorting.Utils.printArray;
+import static br.com.fabex.util.ArrayUtil.printArray;
 
 
 public class QuickSort {
