@@ -42,7 +42,7 @@ public class OrderStatistic {
 
     public static void main(String[] args) {
         int[] array;
-        System.out.println("## Select Min Randomized");
+        System.out.println("## Select Randomized");
 
         array = new int[]{2, 8, 7, 1, 3, 5, 6, 4};
         printArray(array);
@@ -71,8 +71,6 @@ public class OrderStatistic {
         System.out.println(selectRandomized(array, 0, array.length - 1, 0));
         printArray(array);
         System.out.println();
-
-        System.out.println("## Select Max Randomized");
 
         System.out.println(" - - - - - - - - - - - - - - - - - ");
         array = new int[]{70, 90, 802, 2, 24, 45, 75, 66, 71};
