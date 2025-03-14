@@ -1,8 +1,8 @@
 package br.com.fabex.algorithms.sorting.linear.nocomparison;
 
 import br.com.fabex.algorithms.sorting.linear.LinearSorting;
+import br.com.fabex.algorithms.statistic.OrderStatistic;
 
-import static br.com.fabex.util.ArrayUtil.maxElement;
 import static br.com.fabex.util.ArrayUtil.printArray;
 
 public class BucketSort {
@@ -12,7 +12,7 @@ public class BucketSort {
     }
 
     public static int[] sort(int[] array, int size) {
-        int max = maxElement(array, array.length), sizeBuckets = (max / 10) + 1, index = 0;
+        int max = OrderStatistic.max(array, array.length), sizeBuckets = (max / 10) + 1, index = 0;
         int[][] buckets = new int[sizeBuckets][size + 1];
         int[] newArray = new int[array.length];
 

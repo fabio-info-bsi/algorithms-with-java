@@ -34,6 +34,22 @@ public class LinearSorting {
         }
     }
 
+    public static void selectionSort(int[] array, int endIndex) {
+        for (int i = 0; i < endIndex; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < endIndex; j++) {
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            if (minIndex != i) { // if need to exchange!
+                int temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
+            }
+        }
+    }
+
     public static void bubbleSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = i; j < array.length; j++) {
@@ -82,18 +98,19 @@ public class LinearSorting {
         insertionSort(array, 2);
         printArray(array);
 
-        ints = new int[]{12,10,11};
+        ints = new int[]{12, 10, 11};
         printArray(ints);
         insertionSort(ints, ints.length);
         printArray(ints);
 
-
-
-//        int[] array1 = new int[7];
-//        insertionSortEnhancement(array1, 31, 26, 36, 38, 12, 1, 2);
-//        printReverseArray(array1);
-//
-//        array1 = new int[7];
-//        insertionSortEnhancement(array1, 4, 5, 6, 3);
+        System.out.println("## Selection Sort");
+        ints = new int[]{12, 10, 11};
+        printArray(ints);
+        selectionSort(ints, ints.length);
+        printArray(ints);
+        ints = new int[]{3, 3, 2, 1, 4, 6, 5, 7, -1};
+        printArray(ints);
+        selectionSort(ints, ints.length);
+        printArray(ints);
     }
 }

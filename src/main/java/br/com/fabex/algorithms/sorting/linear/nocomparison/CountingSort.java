@@ -1,6 +1,7 @@
 package br.com.fabex.algorithms.sorting.linear.nocomparison;
 
-import static br.com.fabex.util.ArrayUtil.maxElement;
+import br.com.fabex.algorithms.statistic.OrderStatistic;
+
 import static br.com.fabex.util.ArrayUtil.printArray;
 
 public class CountingSort {
@@ -10,7 +11,7 @@ public class CountingSort {
     }
 
     public static int[] sort(int[] array, int size) {
-        return sort(array, size, maxElement(array, size));
+        return sort(array, size, OrderStatistic.max(array, size));
     }
 
     public static int[] sort(int[] array, int size, int limit) {
@@ -42,7 +43,7 @@ public class CountingSort {
         //negatives numbers
         //int[] ints = {2, 5, 3, 0, 2, 3, -0, -3};
         printArray(ints);
-        printArray(sort(ints, ints.length, maxElement(ints, ints.length)));
+        printArray(sort(ints, ints.length, OrderStatistic.max(ints, ints.length)));
         printArray(sort(ints, ints.length));
         printArray(sort(ints));
     }

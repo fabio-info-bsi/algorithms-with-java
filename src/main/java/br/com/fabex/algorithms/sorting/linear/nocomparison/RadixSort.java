@@ -1,12 +1,13 @@
 package br.com.fabex.algorithms.sorting.linear.nocomparison;
 
-import static br.com.fabex.util.ArrayUtil.maxElement;
+import br.com.fabex.algorithms.statistic.OrderStatistic;
+
 import static br.com.fabex.util.ArrayUtil.printArray;
 
 public class RadixSort {
 
     public static void sort(int[] array) {
-        int max = maxElement(array, array.length);
+        int max = OrderStatistic.max(array, array.length);
         for (int i = 1; i <= getTotalDigit(max); i++) {
             countingSort(array, i);
         }

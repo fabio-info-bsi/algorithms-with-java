@@ -7,25 +7,29 @@ import static br.com.fabex.util.ArrayUtil.printArray;
 
 public class QuickSort {
 
-    private final Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
-    public void sort(int[] array, int startIndex, int endIndex) {
+    public static void sort(int[] array, int startIndex, int endIndex) {
         if (startIndex < endIndex) {
-            int middleIndex = partition(array, startIndex, endIndex); // Partition array (rearranging)
-            sort(array, startIndex, middleIndex - 1); //Smaller side
-            sort(array, middleIndex + 1, endIndex); //Bigger side
+            // Partition array (rearranging)
+            int pivot = partition(array, startIndex, endIndex);
+
+            sort(array, startIndex, pivot - 1); //Smaller side
+            sort(array, pivot + 1, endIndex); //Bigger side
         }
     }
 
-    public void sortRandomized(int[] array, int startIndex, int endIndex) {
+    public static void sortRandomized(int[] array, int startIndex, int endIndex) {
         if (startIndex < endIndex) {
-            int middleIndex = partitionRandomized(array, startIndex, endIndex); // Partition array (rearranging) randomized
-            sortRandomized(array, startIndex, middleIndex - 1); //Smaller side
-            sortRandomized(array, middleIndex + 1, endIndex); //Bigger side
+            // Partition array (rearranging) randomized
+            int pivot = partitionRandomized(array, startIndex, endIndex);
+
+            sortRandomized(array, startIndex, pivot - 1); //Smaller side
+            sortRandomized(array, pivot + 1, endIndex); //Bigger side
         }
     }
 
-    private int partition(int[] array, int startIndex, int pivotIndex) {
+    private static int partition(int[] array, int startIndex, int pivotIndex) {
         int pivotValue = array[pivotIndex], i = startIndex - 1, temp;
         for (int j = startIndex; j <= pivotIndex - 1; j++) {
             if (array[j] <= pivotValue) {
@@ -41,25 +45,55 @@ public class QuickSort {
         return i + 1;
     }
 
-    private int partitionRandomized(int[] array, int startIndex, int endIndex) {
-        int i = RANDOM.nextInt(endIndex) + 1;
-        int temp = array[i];
-        array[i] = array[endIndex];
+    public static int partitionRandomized(int[] array, int startIndex, int endIndex) {
+        int pivot = RANDOM.nextInt(endIndex - startIndex + 1) + startIndex;
+        int temp = array[pivot];
+        array[pivot] = array[endIndex];
         array[endIndex] = temp;
         return partition(array, startIndex, endIndex);
     }
 
     public static void main(String[] args) {
-        QuickSort quickSort = new QuickSort();
-        //int[] array = {2, 8, 7, 1, 3, 5, 6, 4};
-        //int[] array = {3, 3, 2, 1, 4, 6, 5, 7};
-        //int[] array = {2, -1, 3, 4};
-        int[] array = {9, 8, 7};
-        //int[] array = {7, 8, 9};
-        //int[] array = {2, 8, 7};
-        //int[] array = {2, 8, 7, 1};
-        //quickSort.sort(array, 0, array.length - 1);
-        quickSort.sortRandomized(array, 0, array.length - 1);
+
+        int[] array;
+        System.out.println("## Merge Sort ");
+
+        array = new int[]{2, 8, 7, 1, 3, 5, 6, 4};
         printArray(array);
+        sort(array, 0, array.length - 1);
+        printArray(array);
+
+        array = new int[]{3, 3, 2, 1, 4, 6, 5, 7};
+        printArray(array);
+        sort(array, 0, array.length - 1);
+        printArray(array);
+
+        array = new int[]{2, -1, 3, 4};
+        printArray(array);
+        sort(array, 0, array.length - 1);
+        printArray(array);
+
+        System.out.println("## Merge Sort Randomized");
+
+        array = new int[]{9, 8, 7};
+        printArray(array);
+        sortRandomized(array, 0, array.length - 1);
+        printArray(array);
+
+        array = new int[]{2, 8, 7, 1};
+        printArray(array);
+        sortRandomized(array, 0, array.length - 1);
+        printArray(array);
+
+        array = new int[]{31, 26, 36, -250, 38, 12, 301, 1, 2, 10, 11, 8, 67151};
+        printArray(array);
+        sortRandomized(array, 0, array.length - 1);
+        printArray(array);
+
+        array = new int[]{3, 3, 2, 1, 4, 6, 5, 7};
+        printArray(array);
+        sortRandomized(array, 0, array.length - 1);
+        printArray(array);
+
     }
 }
