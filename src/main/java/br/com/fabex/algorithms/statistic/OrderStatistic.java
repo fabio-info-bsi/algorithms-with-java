@@ -2,7 +2,6 @@ package br.com.fabex.algorithms.statistic;
 
 import br.com.fabex.algorithms.sorting.comparison.QuickSort;
 
-
 import static br.com.fabex.util.ArrayUtil.printArray;
 
 public class OrderStatistic {
