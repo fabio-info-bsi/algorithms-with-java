@@ -102,7 +102,7 @@ public class CountingSort {
                 OrderStatistic.selectRandomized(ints, 0, ints.length - 1, ints.length)));
 
         System.out.println(" - - - - - - - ");
-        ints = new int[]{31, 26, 36, 38, 12, 1, 2, 10, 11, 8};
+        ints = new int[]{31, 26, 36, 38, 12, 1, 2, -10, 11, 8};
         printArray(ints);
         printArray(sort(ints));
 
