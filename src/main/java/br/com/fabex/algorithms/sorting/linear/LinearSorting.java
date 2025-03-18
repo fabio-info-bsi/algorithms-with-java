@@ -1,6 +1,7 @@
 package br.com.fabex.algorithms.sorting.linear;
 
 import java.util.Arrays;
+import java.util.function.UnaryOperator;
 
 
 import static br.com.fabex.util.ArrayUtil.printArray;
@@ -22,6 +23,12 @@ public class LinearSorting {
         }
     }
 
+    /**
+     * This algorithm is stable.
+     *
+     * @param array
+     * @param endIndex
+     */
     public static void insertionSort(int[] array, int endIndex) {
         for (int i = 1; i < endIndex; i++) {
             int key = array[i];
@@ -34,6 +41,32 @@ public class LinearSorting {
         }
     }
 
+    /**
+     * This algorithm is stable.
+     *
+     * @param array
+     * @param endIndex
+     * @param operator
+     */
+    public static void insertionSort(int[] array, int endIndex, UnaryOperator<Integer> operator) {
+        for (int i = 1; i < endIndex; i++) {
+            int key = operator.apply(array[i]);
+            int value = array[i];
+            int j = i - 1;
+            while (j >= 0 && operator.apply(array[j]) > key) {
+                array[j + 1] = array[j];
+                j = j - 1;
+            }
+            array[j + 1] = value;
+        }
+    }
+
+    /**
+     * This algorithm isn't stable.
+     *
+     * @param array
+     * @param endIndex
+     */
     public static void selectionSort(int[] array, int endIndex) {
         for (int i = 0; i < endIndex; i++) {
             int minIndex = i;
@@ -50,7 +83,35 @@ public class LinearSorting {
         }
     }
 
-    public static void bubbleSort(int[] array) {
+    /**
+     * This algorithm isn't stable.
+     *
+     * @param array
+     * @param endIndex
+     * @param operator
+     */
+    public static void selectionSort(int[] array, int endIndex, UnaryOperator<Integer> operator) {
+        for (int i = 0; i < endIndex; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < endIndex; j++) {
+                if (operator.apply(array[j]) < operator.apply(array[minIndex])) {
+                    minIndex = j;
+                }
+            }
+            if (minIndex != i) { // if need to exchange!
+                int temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
+            }
+        }
+    }
+
+    /**
+     * This algorithm isn't stable.
+     *
+     * @param array
+     */
+    public static void bubbleSortNotStable(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = i; j < array.length; j++) {
                 if (array[i] > array[j]) {
@@ -62,10 +123,63 @@ public class LinearSorting {
         }
     }
 
+    /**
+     * This algorithm isn't stable.
+     *
+     * @param array
+     * @param operator
+     */
+    public static void bubbleSortNotStable(int[] array, UnaryOperator<Integer> operator) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i; j < array.length; j++) {
+                if (operator.apply(array[i]) > operator.apply(array[j])) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+
+    /**
+     * This algorithm is stable.
+     *
+     * @param array
+     */
+    public static void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    /**
+     * This algorithm is stable.
+     *
+     * @param array
+     * @param operator
+     */
+    public static void bubbleSort(int[] array, UnaryOperator<Integer> operator) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (operator.apply(array[j]) > operator.apply(array[j + 1])) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+    }
+
     public static void main(String[] args) {
+        int[] ints;
         System.out.println("## Sort");
 
-        int[] ints = new int[]{1, 2, 3, 4};
+        ints = new int[]{1, 2, 3, 4};
         bubbleSort(ints);
         System.out.println(Arrays.toString(ints));
         ints = new int[]{4, 3, 1, 2};
@@ -108,9 +222,22 @@ public class LinearSorting {
         printArray(ints);
         selectionSort(ints, ints.length);
         printArray(ints);
+
         ints = new int[]{3, 3, 2, 1, 4, 6, 5, 7, -1};
         printArray(ints);
         selectionSort(ints, ints.length);
         printArray(ints);
+
+        ints = new int[]{7, 75, 26, -36, -250, -38, 12, -301, 1, 2, -10, 11, -8, 85697};
+        printArray(ints);
+        selectionSort(ints, ints.length);
+        printArray(ints);
+
+        ints = new int[]{7, 75, 26, -36, -250, -38, 12, -301, 1, 2, -10, 11, -8, 85697};
+        printArray(ints);
+        bubbleSort(ints);
+        printArray(ints);
+
+
     }
 }

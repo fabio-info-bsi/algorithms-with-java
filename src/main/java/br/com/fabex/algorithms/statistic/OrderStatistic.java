@@ -13,7 +13,7 @@ public class OrderStatistic {
         // Math.max -> only positive > 0 to Random
         int pivot = QuickSort.partitionRandomized(array, startIndex, Math.max(endIndex, 1));
 
-        // count number of elements [startIndex ~ pivot] + 1 (pivot position)
+        // Count number of elements [startIndex ~ pivot] + 1 (pivot position)
         int countSubarrayElements = pivot - startIndex + 1;
 
         if (orderStatisticIth == countSubarrayElements) {
@@ -37,6 +37,19 @@ public class OrderStatistic {
             }
         }
         return max;
+    }
+
+    public static int min(int[] array, int size) {
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Array empty");
+        }
+        int min = array[0];
+        for (int i = 1; i < size; i++) {
+            if (min > array[i]) {
+                min = array[i];
+            }
+        }
+        return min;
     }
 
     public static void main(String[] args) {
