@@ -4,11 +4,11 @@ import static br.com.fabex.util.ArrayUtil.printArray;
 
 public class MergeSort {
 
-    public int[] mergeSort(int[] array) {
+    public static int[] mergeSort(int[] array) {
         return mergeSort(array, 0, array.length - 1);
     }
 
-    public int[] mergeSort(int[] array, int start, int end) {
+    public static int[] mergeSort(int[] array, int start, int end) {
         if (start < end) {
             int middle = (end + start) / 2;
             return merge(mergeSort(array, start, middle), mergeSort(array, middle + 1, end));
@@ -16,7 +16,7 @@ public class MergeSort {
         return new int[]{array[start]};
     }
 
-    private int[] merge(int[] array1, int[] array2) {
+    private static int[] merge(int[] array1, int[] array2) {
         int[] merge = new int[array1.length + array2.length];
         int index = 0, i = 0, j = 0;
 
@@ -39,21 +39,20 @@ public class MergeSort {
 
     public static void main(String[] args) {
         int[] ints;
-        MergeSort mergeSort = new MergeSort();
 
-        ints = mergeSort.mergeSort(new int[]{10});
+        ints = mergeSort(new int[]{10});
         printArray(ints);
-        ints = mergeSort.mergeSort(new int[]{4, 3, 1, 2}, 0, 3);
+        ints = mergeSort(new int[]{4, 3, 1, 2}, 0, 3);
         printArray(ints);
-        ints = mergeSort.mergeSort(new int[]{4, 3, 1, 2, 6}, 0, 4);
+        ints = mergeSort(new int[]{4, 3, 1, 2, 6}, 0, 4);
         printArray(ints);
-        ints = mergeSort.mergeSort(new int[]{4, 3, 1}, 0, 2);
+        ints = mergeSort(new int[]{4, 3, 1}, 0, 2);
         printArray(ints);
-        ints = mergeSort.mergeSort(new int[]{4, 3, 2}, 0, 2);
+        ints = mergeSort(new int[]{4, 3, 2}, 0, 2);
         printArray(ints);
-        ints = mergeSort.mergeSort(new int[]{4, 3, 5});
+        ints = mergeSort(new int[]{4, 3, 5});
         printArray(ints);
-        ints = mergeSort.mergeSort(new int[]{4, 3, 1, 2, 6, 5});
+        ints = mergeSort(new int[]{4, 3, 1, 2, 6, 5});
         printArray(ints);
     }
 }

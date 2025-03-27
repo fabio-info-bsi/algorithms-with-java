@@ -29,7 +29,7 @@ public class QuickSort {
         }
     }
 
-    private static int partition(int[] array, int startIndex, int pivotIndex) {
+    public static int partition(int[] array, int startIndex, int pivotIndex) {
         int pivotValue = array[pivotIndex], i = startIndex - 1, temp;
         for (int j = startIndex; j <= pivotIndex - 1; j++) {
             if (array[j] <= pivotValue) {
