@@ -27,6 +27,15 @@ public class LinearSorting {
      * This algorithm is stable.
      *
      * @param array
+     */
+    public static void insertionSort(int[] array) {
+        insertionSort(array, 0, array.length);
+    }
+
+    /**
+     * This algorithm is stable.
+     *
+     * @param array
      * @param endIndex
      */
     public static void insertionSort(int[] array, int endIndex) {
@@ -37,6 +46,7 @@ public class LinearSorting {
      * This algorithm is stable.
      *
      * @param array
+     * @param startIndex
      * @param endIndex
      */
     public static void insertionSort(int[] array, int startIndex, int endIndex) {
@@ -75,6 +85,15 @@ public class LinearSorting {
      * This algorithm isn't stable.
      *
      * @param array
+     */
+    public static void selectionSort(int[] array) {
+        selectionSort(array, array.length);
+    }
+
+    /**
+     * This algorithm isn't stable.
+     *
+     * @param array
      * @param endIndex
      */
     public static void selectionSort(int[] array, int endIndex) {
@@ -85,6 +104,7 @@ public class LinearSorting {
      * This algorithm isn't stable.
      *
      * @param array
+     * @param startIndex
      * @param endIndex
      */
     public static void selectionSort(int[] array, int startIndex, int endIndex) {
@@ -167,8 +187,29 @@ public class LinearSorting {
      * @param array
      */
     public static void bubbleSort(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
+        bubbleSort(array, 0, array.length);
+    }
+
+    /**
+     * This algorithm is stable.
+     *
+     * @param array
+     * @param endIndex
+     */
+    public static void bubbleSort(int[] array, int endIndex) {
+        bubbleSort(array, 0, endIndex);
+    }
+
+    /**
+     * This algorithm is stable.
+     *
+     * @param array
+     * @param startIndex
+     * @param endIndex
+     */
+    public static void bubbleSort(int[] array, int startIndex, int endIndex) {
+        for (int i = startIndex; i < endIndex - 1; i++) {
+            for (int j = startIndex; j < startIndex - (i - endIndex) - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     int temp = array[j];
                     array[j] = array[j + 1];
@@ -196,83 +237,25 @@ public class LinearSorting {
     }
 
     public static void main(String[] args) {
-        int[] ints;
-//        System.out.println("## Sort");
-//
-//        ints = new int[]{1, 2, 3, 4};
-//        bubbleSort(ints);
-//        System.out.println(Arrays.toString(ints));
-//        ints = new int[]{4, 3, 1, 2};
-//        bubbleSort(ints);
-//        System.out.println(Arrays.toString(ints));
-//        ints = new int[]{7, 5, 1, 8, 11, -1};
-//        bubbleSort(ints);
-//        System.out.println(Arrays.toString(ints));
+        /* Initialize Array */
+        int[] array = new int[10];
+        Arrays.fill(array, Integer.MAX_VALUE);
 
+        System.out.println("## Insert and Sort");
 
-//        /* Initialize Array */
-//        int[] array = new int[10];
-//        for (int i = 0; i < array.length; i++)
-//            array[i] = Integer.MAX_VALUE;
-//
-//        System.out.println("## Insertion Sort");
-//
-//        insertAndSort(array, 1, 31);
-//        printArray(array);
-//        insertAndSort(array, 2, 26);
-//        printArray(array);
-//        insertAndSort(array, 3, 36);
-//        printArray(array);
-//        insertAndSort(array, 4, 38);
-//        printArray(array);
-//        insertAndSort(array, 5, 12);
-//        printArray(array);
-//        insertionSort(array, 1);
-//        printArray(array);
-//        insertionSort(array, 2);
-//        printArray(array);
-
-        ints = new int[]{12, 10, 11};
-        printArray(ints);
-        insertionSort(ints, ints.length);
-        printArray(ints);
-
-        ints = new int[]{3, 3, 2, 1, 4, 6, 5, 7, -1};
-        printArray(ints);
-        insertionSort(ints, 1, ints.length);
-        printArray(ints);
-
-        ints = new int[]{70, 90, 1, -802, 2, 24, 45, 33, 66, 71};
-        printArray(ints);
-        //insertionSort(ints, 2, 8);
-        selectionSort(ints, 2, 7);
-        printArray(ints);
-        ints = new int[]{70, 90, 1, -802, 2, 24, 45, 33, 66, 71};
-        Arrays.sort(ints, 2, 8);
-        printArray(ints);
-
-
-        System.out.println("## Selection Sort");
-        ints = new int[]{12, 10, 11};
-        printArray(ints);
-        selectionSort(ints, ints.length);
-        printArray(ints);
-
-        ints = new int[]{3, 3, 2, 1, 4, 6, 5, 7, -1};
-        printArray(ints);
-        selectionSort(ints, ints.length);
-        printArray(ints);
-//
-//        ints = new int[]{7, 75, 26, -36, -250, -38, 12, -301, 1, 2, -10, 11, -8, 85697};
-//        printArray(ints);
-//        selectionSort(ints, ints.length);
-//        printArray(ints);
-//
-//        ints = new int[]{7, 75, 26, -36, -250, -38, 12, -301, 1, 2, -10, 11, -8, 85697};
-//        printArray(ints);
-//        bubbleSort(ints);
-//        printArray(ints);
-
-
+        insertAndSort(array, 1, 31);
+        printArray(array);
+        insertAndSort(array, 2, 26);
+        printArray(array);
+        insertAndSort(array, 3, 36);
+        printArray(array);
+        insertAndSort(array, 4, 38);
+        printArray(array);
+        insertAndSort(array, 5, 12);
+        printArray(array);
+        insertionSort(array, 1);
+        printArray(array);
+        insertionSort(array, 2);
+        printArray(array);
     }
 }
