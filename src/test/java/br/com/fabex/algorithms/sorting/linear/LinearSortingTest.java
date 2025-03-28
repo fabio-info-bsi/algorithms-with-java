@@ -52,7 +52,7 @@ class LinearSortingTest {
 
     @Test
     @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo selectionSort")
-    void test3() {
+    public void test3() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 20);
 
@@ -92,7 +92,7 @@ class LinearSortingTest {
 
     @Test
     @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo insertionSort")
-    void test6() {
+    public void test6() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 60);
 
@@ -131,7 +131,7 @@ class LinearSortingTest {
 
     @Test
     @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo bubbleSort(stable)")
-    void test9() {
+    public void test9() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 33);
 
@@ -157,7 +157,7 @@ class LinearSortingTest {
 
     @Test
     @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo selectionSort (UnaryOperator)")
-    void test11() {
+    public void test11() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 77);
 
@@ -171,7 +171,7 @@ class LinearSortingTest {
 
     @Test
     @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo (UnaryOperator)")
-    void test12() {
+    public void test12() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 88);
 
@@ -185,7 +185,7 @@ class LinearSortingTest {
 
     @Test
     @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array completo com algoritmo bubbleSort(stable) (UnaryOperator)")
-    void test13() {
+    public void test13() {
 
         //Arrange
         Arrays.sort(arrayCopy);
