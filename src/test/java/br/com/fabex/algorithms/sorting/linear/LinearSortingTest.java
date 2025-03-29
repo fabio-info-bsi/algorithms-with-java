@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.function.UnaryOperator;
 
-class LinearSortingTest {
+public class LinearSortingTest {
 
     private final Random RANDOM = new Random();
     private int[] array, arrayCopy;
@@ -24,7 +24,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array completo com algoritmo selectionSort")
+    @DisplayName("Given a arrange of integer randomized, when call `selectionSort(int[])` method, must order all elements of arrange.")
     public void test1() {
         //Arrange
         Arrays.sort(arrayCopy);
@@ -38,7 +38,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array de acordo com os índices de início e fim com algoritmo selectionSort")
+    @DisplayName("Given a arrange of integer randomized, when call `selectionSort(int[], int, int)` method, must order the elements of arrange in between  `startIndex` e `endIndex` indexes.")
     public void test2() {
         //Arrange
         Arrays.sort(arrayCopy, 5, 11);
@@ -51,7 +51,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo selectionSort")
+    @DisplayName("Given a arrange of integer randomized, when call `selectionSort(int[], int)` method, must order the elements of until the `endIndex` index.")
     public void test3() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 20);
@@ -64,7 +64,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array completo com algoritmo insertionSort")
+    @DisplayName("Given a arrange of integer randomized, when call `insertionSort(int[])` method, must order all elements of arrange.")
     public void test4() {
         //Arrange
         Arrays.sort(arrayCopy);
@@ -78,7 +78,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array de acordo com os índices de início e fim com algoritmo insertionSort")
+    @DisplayName("Given a arrange of integer randomized, when call `insertionSort(int[], int, int)` method, must order the elements of arrange in between  `startIndex` e `endIndex` indexes.")
     public void test5() {
         //Arrange
         Arrays.sort(arrayCopy, 25, 50);
@@ -91,7 +91,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo insertionSort")
+    @DisplayName("Given a arrange of integer randomized, when call `insertionSort(int[], int)` method, must order the elements of until the `endIndex` index.")
     public void test6() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 60);
@@ -104,7 +104,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array completo com algoritmo bubbleSort(stable)")
+    @DisplayName("Given a arrange of integer randomized, when call `bubbleSort(int[])` method - stable version, must order all elements of arrange.")
     public void test7() {
         //Arrange
         Arrays.sort(arrayCopy);
@@ -117,7 +117,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array de acordo com os índices de início e fim com algoritmo bubbleSort(stable)")
+    @DisplayName("Given a arrange of integer randomized, when call `bubbleSort(int[], int, int)` method - stable version, must order the elements of arrange in between  `startIndex` e `endIndex` indexes.")
     public void test8() {
         //Arrange
         Arrays.sort(arrayCopy, 10, 35);
@@ -130,7 +130,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo bubbleSort(stable)")
+    @DisplayName("Given a arrange of integer randomized, when call `bubbleSort(int[], int)` method - stable version, must order the elements of until the `endIndex` index.")
     public void test9() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 33);
@@ -143,7 +143,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array completo com algoritmo bubbleSortNotStable")
+    @DisplayName("Given a arrange of integer randomized, when call `bubbleSortNotStable(int[])` method - not stable version, must order all elements of arrange.")
     public void test10() {
         //Arrange
         Arrays.sort(arrayCopy);
@@ -156,7 +156,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo selectionSort (UnaryOperator)")
+    @DisplayName("Given a arrange of integer randomized, when call `selectionSort(int[], int, UnaryOperator)` method, must order the elements of until the `endIndex` index.")
     public void test11() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 77);
@@ -170,7 +170,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array até o índice de fim com algoritmo (UnaryOperator)")
+    @DisplayName("Given a arrange of integer randomized, when call `insertionSort(int[], int, UnaryOperator)` method, must order the elements of until the `endIndex` index.")
     public void test12() {
         //Arrange
         Arrays.sort(arrayCopy, 0, 88);
@@ -184,7 +184,7 @@ class LinearSortingTest {
     }
 
     @Test
-    @DisplayName("Dado um conjunto de elementos em um array randomized, deve ordenar array completo com algoritmo bubbleSort(stable) (UnaryOperator)")
+    @DisplayName("Given a arrange of integer randomized, when call `bubbleSort(int[], UnaryOperator)` method - stable version, must order all elements of arrange.")
     public void test13() {
 
         //Arrange
