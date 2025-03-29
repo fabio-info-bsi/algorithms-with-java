@@ -3,10 +3,6 @@ package br.com.fabex.algorithms.statistic;
 import br.com.fabex.algorithms.sorting.comparison.QuickSort;
 import br.com.fabex.algorithms.sorting.linear.LinearSorting;
 
-import java.util.Arrays;
-
-import static br.com.fabex.util.ArrayUtil.printArray;
-
 public class OrderStatistic {
 
     public static int select(int[] array, int startIndex, int endIndex, int iThOrderStatistic) {
@@ -107,78 +103,5 @@ public class OrderStatistic {
             }
         }
         return min;
-    }
-
-    public static void main(String[] args) {
-        int[] array;
-//        System.out.println("## Select Order Statistic Randomized ");
-//
-//        array = new int[]{2, 8, 7, 1, 3, 5, 6, 4};
-//        printArray(array);
-//        //5th order statistic
-//        System.out.println(selectRandomized(array, 0, array.length - 1, 5));
-//        printArray(array);
-//
-//        System.out.println(" - - - - - - - - - - - - - - - - - ");
-//        array = new int[]{9, 8, 7, 0};
-//        printArray(array);
-//        //3rd order statistic
-//        System.out.println(selectRandomized(array, 0, array.length - 1, 3));
-//        printArray(array);
-//
-//        System.out.println(" - - - - - - - - - - - - - - - - - ");
-//        array = new int[]{3, 3, 2, 1, 4, 6, 5, 7};
-//        printArray(array);
-//        //1st order statistic (or 0st order statistic)
-//        System.out.println(selectRandomized(array, 0, array.length - 1, 0));
-//        printArray(array);
-//
-//        System.out.println(" - - - - - - - - - - - - - - - - - ");
-//        array = new int[]{31, 26, 36, 250, 38, 12, 301, 1, 2, 10, 11, 8, 67151};
-//        printArray(array);
-//        //1st order statistic (or 0st order statistic)
-//        System.out.println(selectRandomized(array, 0, array.length - 1, 0));
-//        printArray(array);
-//        System.out.println();
-//
-//        System.out.println(" - - - - - - - - - - - - - - - - - ");
-//        array = new int[]{70, 90, 802, 2, 24, 45, 75, 66, 71};
-//        printArray(array);
-//        //n th order statistic (or maximum)
-//        System.out.println(selectRandomized(array, 0, array.length - 1, array.length));
-//        printArray(array);
-//        System.out.println(" - - - - - - - - - - - - - - - - - ");
-//        array = new int[]{31, 26, 36, 250, 38, 12, 301, 1, 2, 10, 11, 8, 67151};
-//        printArray(array);
-//        //n th order statistic (or maximum)
-//        System.out.println(selectRandomized(array, 0, array.length - 1, array.length));
-//        printArray(array);
-//
-//        System.out.println();
-        System.out.println("## Select Order Statistic");
-        //array = new int[]{31, 26, 36, 250, 38, 12, 301, 1, 2, 10, 11, 8, -67151};
-        //array = new int[]{31, 26, 36, 250, 38, 12, 301, 1, 2, 10, 11, 8, -67151, -14};
-        //array = new int[]{70, 90, -802, 2, 24, 45, 75, 66, 71};
-        //array = new int[]{-523, -756, 809, 210, -391, 587, 936, 843, -9, 386, -95, 828, 353, 715, -145, 609, -767, -585, 850, -429, 675, 9, 484, -647, -862, -857, -265, -525, -72, 919, 755, -395, -816, 805, -813, -578, 455, -180, 242, 325, 1000, 629, -361, 935, -851, 23, 887, 648, 132, -618, -358, -521, -598, 772, -269, -159, 287, 477, 83, -568, 507, -258, 337, 394, 90, 534, -395, 465, 693, -367, 321, -631, -83, -7, 280, 127, 716, 371, 435, 229, 248, 497, 759, -31, -710, -227, -71, 556, 835, 380, -372, 643, -571, 274, 489, 141, -53, 926, -545, 504, -256, 708, 663, 849, 911, -347, -107, 110, 542, -105, -349, 954, -693, -180, -292, 524, -907, -933, 697, -272, -883, -753, -413, -526, 801, 831, 929, 520, 945, 784, -946, 953, -567, -860, -141, 914, 29, -9, -496, -633, -726, -954, -654, 708, 307, 264, -92, -289, 765, 103, -975, -456, 863, -73, -997, 959, -226, -890, -816, 755, -7, 300, 213, -634, 830, 588, 654, -707, -857, -464, 435, 388, 321, -871, -295, 668, -825, 617, -275, 293, 492, 961, 211, -764, 885, -720, 530, -459, 910, -706, 409, -415, -430, -643, 272, -211, 242, -375, 4, -210};
-        array = new int[]{-10001, 2, 3, 5, 8, 7, -523, -756, 809, 210, -391, 587, 936, 843, -9, 386, -95, 828, 353, 715, -145, 609, -767, -585, 850, -429, 675, 9, 484, -647, -862, -857, -265, -525, -72, 919, 755, -395, -816, 805, -813, -578, 455, -180, 242, 325, 1000, 629, -361, 935, -851, 23, 887, 648, 132, -618, -358, -521, -598, 772, -269, -159, 287, 477, 83, -568, 507, -258, 337, 394, 90, 534, -395, 465, 693, -367, 321, -631, -83, -7, 280, 127, 716, 371, 435, 229, 248, 497, 759, -31, -710, -227, -71, 556, 835, 380, -372, 643, -571, 274, 489, 141, -53, 926, -545, 504, -256, 708, 663, 849, 911, -347, -107, 110, 542, -105, -349, 954, -693, -180, -292, 524, -907, -933, 697, -272, -883, -753, -413, -526, 801, 831, 929, 520, 945, 784, -946, 953, -567, -860, -141, 914, 29, -9, -496, -633, -726, -954, -654, 708, 307, 264, -92, -289, 765, 103, -975, -456, 863, -73, -997, 959, -226, -890, -816, 755, -7, 300, 213, -634, 830, 588, 654, -707, -857, -464, 435, 388, 321, -871, -295, 668, -825, 617, -275, 293, 492, 961, 211, -764, 885, -720, 530, -459, 910, -706, 409, -415, -430, -643, 272, -211, 242, -375, 4, -210, 1};
-        printArray(array);
-        int iThOrderStatistic = array.length;///2;
-        int result = select(array, 0, array.length - 1, iThOrderStatistic);
-        int result2 = selectRandomized(array, 0, array.length - 1, iThOrderStatistic);
-        System.out.println("select: " + result);
-        System.out.println("selectRandomized: " + result2);
-        System.out.println(Arrays.stream(array).min());
-        System.out.println(Arrays.stream(array).max());
-        printArray(array);
-        int[] copy = new int[array.length];
-        System.arraycopy(array, 0, copy, 0, array.length);
-        Arrays.sort(copy);
-        printArray(copy);
-        System.out.println(result == copy[iThOrderStatistic - 1]);
-        //System.out.println(Arrays.equals(array, copy));
-
-        System.out.println();
-
-        System.out.println(" - - - - - - - - - - - - - - - - - ");
     }
 }
