@@ -11,10 +11,30 @@ public class SortBaseTest {
 
     @BeforeEach
     public void initialize() {
-        int arraySize = 100;
-        array = RANDOM.ints(arraySize, -1_000_000, 1_000_000).toArray();
+        int arraySize = getSizeArray();
+        array = getArrayRandomized(arraySize, getRandomNumberLowerBound(), getRandomNumberUpperBound());
         arrayCopy = new int[arraySize];
-        System.arraycopy(array, 0, arrayCopy, 0, array.length);
+        copyArrayOriginToTarget(array, arrayCopy);
+    }
+
+    protected int[] getArrayRandomized(int size, int lowerBound, int upperBound) {
+        return RANDOM.ints(size, lowerBound, upperBound).toArray();
+    }
+
+    protected void copyArrayOriginToTarget(int[] origin, int[] target) {
+        System.arraycopy(origin, 0, target, 0, origin.length);
+    }
+
+    protected int getRandomNumberUpperBound() {
+        return 1_000_000;
+    }
+
+    protected int getRandomNumberLowerBound() {
+        return -1_000_000;
+    }
+
+    protected int getSizeArray() {
+        return 100;
     }
 
 }

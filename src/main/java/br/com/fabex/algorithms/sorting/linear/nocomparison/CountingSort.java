@@ -4,8 +4,6 @@ import br.com.fabex.algorithms.statistic.OrderStatistic;
 
 import java.util.function.UnaryOperator;
 
-import static br.com.fabex.util.ArrayUtils.printArray;
-
 public class CountingSort {
 
     public static int[] sort(int[] array) {
@@ -86,57 +84,5 @@ public class CountingSort {
         }
 
         return b;
-    }
-
-    public static void main(String[] args) {
-        int[] ints;
-        System.out.println("## CountingSort Positive Numbers");
-
-        ints = new int[]{2, 8, 7, 1};
-        printArray(ints);
-        printArray(sortPositiveNumbers(ints, ints.length, OrderStatistic.max(ints, ints.length)));
-
-        System.out.println(" - - - - - - - ");
-        ints = new int[]{2, 5, 3, 0, 2, 3, 0, 3};
-        printArray(ints);
-        printArray(sortPositiveNumbers(ints));
-
-        System.out.println(" - - - - - - - ");
-        ints = new int[]{2, 8, 7, 1, 3, 5, 6, 4};
-        printArray(ints);
-        printArray(sortPositiveNumbers(ints, ints.length, OrderStatistic.max(ints, ints.length)));
-
-        System.out.println(" - - - - - - - ");
-        ints = new int[]{16, 4, 10, 14, 7, 9, 3, 2, 8, 1};
-        printArray(ints);
-        printArray(sortPositiveNumbers(ints));
-
-        System.out.println(" - - - - - - - ");
-        ints = new int[]{31, 26, 36, 38, 12, 1, 2, 10, 11, 8};
-        printArray(ints);
-        printArray(sortPositiveNumbers(ints, ints.length));
-
-        System.out.println("## CountingSort Negatives numbers");
-        ints = new int[]{2, 5, 3, 0, 2, 3, -0, -3, -80};
-        printArray(ints);
-        printArray(sort(ints,
-                ints.length,
-                OrderStatistic.selectRandomized(ints, 0, ints.length - 1, 0),
-                OrderStatistic.selectRandomized(ints, 0, ints.length - 1, ints.length)));
-
-        System.out.println(" - - - - - - - ");
-        ints = new int[]{31, 26, 36, 38, 12, 1, 2, -10, 11, 8};
-        printArray(ints);
-        printArray(sort(ints));
-
-        System.out.println(" - - - - - - - ");
-        ints = new int[]{-2, -8, -7, -1};
-        printArray(ints);
-        printArray(sort(ints, ints.length));
-
-        System.out.println(" - - - - - - - ");
-        ints = new int[]{2, 8, 7, 1, 3, -5, 6, 4};
-        printArray(ints);
-        printArray(sort(ints, ints.length));
     }
 }

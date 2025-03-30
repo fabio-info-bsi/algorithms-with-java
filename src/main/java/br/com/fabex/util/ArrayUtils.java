@@ -1,7 +1,5 @@
 package br.com.fabex.util;
 
-import java.util.Arrays;
-
 public class ArrayUtils {
 
     public static void printArray(int[] array) {
