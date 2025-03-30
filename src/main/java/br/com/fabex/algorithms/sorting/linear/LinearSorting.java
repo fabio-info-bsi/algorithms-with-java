@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.function.UnaryOperator;
 
 
-import static br.com.fabex.util.ArrayUtil.printArray;
+import static br.com.fabex.util.ArrayUtils.printArray;
 
 public class LinearSorting {
 

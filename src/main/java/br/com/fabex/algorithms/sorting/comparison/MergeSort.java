@@ -1,6 +1,6 @@
 package br.com.fabex.algorithms.sorting.comparison;
 
-import static br.com.fabex.util.ArrayUtil.printArray;
+import static br.com.fabex.util.ArrayUtils.printArray;
 
 public class MergeSort {
 

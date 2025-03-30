@@ -2,6 +2,7 @@ package br.com.fabex.algorithms.statistic;
 
 import br.com.fabex.algorithms.sorting.comparison.QuickSort;
 import br.com.fabex.algorithms.sorting.linear.LinearSorting;
+import br.com.fabex.util.ArrayUtils;
 
 public class OrderStatistic {
 
@@ -80,9 +81,7 @@ public class OrderStatistic {
     }
 
     public static int max(int[] array, int size) {
-        if (array.length == 0) {
-            throw new IllegalArgumentException("Array empty");
-        }
+        ArrayUtils.checkEmptyArray(array);
         int max = array[0];
         for (int i = 1; i < size; i++) {
             if (max < array[i]) {
@@ -93,9 +92,7 @@ public class OrderStatistic {
     }
 
     public static int min(int[] array, int size) {
-        if (array.length == 0) {
-            throw new IllegalArgumentException("Array empty");
-        }
+        ArrayUtils.checkEmptyArray(array);
         int min = array[0];
         for (int i = 1; i < size; i++) {
             if (min > array[i]) {

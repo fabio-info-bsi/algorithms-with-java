@@ -1,24 +1,13 @@
 package br.com.fabex.algorithms.statistic;
 
+import br.com.fabex.algorithms.sorting.linear.SortBaseTest;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class OrderStatisticTest {
-
-    private final Random RANDOM = new Random();
-    private int[] array, arrayCopy;
-
-    @BeforeEach
-    public void initialize() {
-        int arraySize = 100;
-        array = RANDOM.ints(arraySize, -10_000, 10_000).toArray();
-        arrayCopy = new int[arraySize];
-        System.arraycopy(array, 0, arrayCopy, 0, array.length);
-    }
+public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.select(int[], int, int, int)` method, must return i-th of the statistic order of the arrange.")

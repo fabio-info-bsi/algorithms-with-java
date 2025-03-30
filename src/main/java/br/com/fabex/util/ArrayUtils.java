@@ -1,6 +1,8 @@
 package br.com.fabex.util;
 
-public class ArrayUtil {
+import java.util.Arrays;
+
+public class ArrayUtils {
 
     public static void printArray(int[] array) {
         System.out.print("[ ");
@@ -31,5 +33,12 @@ public class ArrayUtil {
         }
         System.out.print("] \n");
     }
+
+    public static void checkEmptyArray(int[] array) {
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Array empty");
+        }
+    }
+
 
 }

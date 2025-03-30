@@ -3,7 +3,7 @@ package br.com.fabex.algorithms.sorting.linear.nocomparison;
 import br.com.fabex.algorithms.sorting.linear.LinearSorting;
 import br.com.fabex.algorithms.statistic.OrderStatistic;
 
-import static br.com.fabex.util.ArrayUtil.printArray;
+import static br.com.fabex.util.ArrayUtils.printArray;
 
 public class BucketSort {
 

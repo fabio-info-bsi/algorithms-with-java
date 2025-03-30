@@ -2,26 +2,13 @@ package br.com.fabex.algorithms.sorting.linear;
 
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.function.UnaryOperator;
 
-public class LinearSortingTest {
-
-    private final Random RANDOM = new Random();
-    private int[] array, arrayCopy;
-
-    @BeforeEach
-    public void initialize() {
-        int arraySize = 100;
-        array = RANDOM.ints(arraySize, -10_000, 10_000).toArray();
-        arrayCopy = new int[arraySize];
-        System.arraycopy(array, 0, arrayCopy, 0, array.length);
-    }
+public class LinearSortingTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `selectionSort(int[])` method, must order all elements of arrange.")
@@ -34,7 +21,6 @@ public class LinearSortingTest {
 
         //Assert
         Assertions.assertArrayEquals(arrayCopy, array);
-
     }
 
     @Test
@@ -193,6 +179,20 @@ public class LinearSortingTest {
         //Act
         UnaryOperator<Integer> operator = (num) -> num;
         LinearSorting.bubbleSort(array, operator);
+
+        //Assert
+        Assertions.assertArrayEquals(arrayCopy, array);
+    }
+
+    @Test
+    @DisplayName("Given a arrange of integer randomized, when call `bubbleSortNotStable(int[], UnaryOperator)` method - not stable version, must order all elements.")
+    public void test14() {
+        //Arrange
+        Arrays.sort(arrayCopy);
+
+        //Act
+        UnaryOperator<Integer> operator = (num) -> num;
+        LinearSorting.bubbleSortNotStable(array, operator);
 
         //Assert
         Assertions.assertArrayEquals(arrayCopy, array);
