@@ -12,12 +12,18 @@ public class BucketSort {
     }
 
     public static int[] sort(int[] array, int size) {
-        int max = OrderStatistic.max(array, array.length), sizeBuckets = (max / 10) + 1, index = 0;
+        int max = OrderStatistic.max(array, array.length);
+        int min = OrderStatistic.min(array, array.length);
+
+        int offset = Math.max(min, -1 * min);
+        int offsetSize = Math.max(min, -1 * min) + max + 1;
+
+        int sizeBuckets = (offsetSize / 10) + 1, index = 0;
         int[][] buckets = new int[sizeBuckets][size + 1];
         int[] newArray = new int[array.length];
 
         for (int i = 0; i < array.length; i++) {
-            int range = (array[i] / 10);
+            int range = ((array[i] + offset) / 10);
             insertAndSort(buckets[range], array[i]);
         }
 
@@ -35,18 +41,25 @@ public class BucketSort {
         LinearSorting.insertionSort(array, array[array.length - 1]);
     }
 
-    public static void main(String[] args) {
-        int[] ints = new int[]{2, 8, 7, 1, 3, 5, 6, 4};
-        printArray(ints);
-        printArray(sort(ints));
+    public static int[] sortPositiveNumbers(int[] array) {
+        return sortPositiveNumbers(array, array.length);
+    }
 
-        ints = new int[]{70, 90, 802, 2, 24, 45, 75, 66, 71};
-        printArray(ints);
-        printArray(sort(ints));
-        int[] ints2 = {31, 26, 36, 250, 38, 12, 301, 1, 2, 10, 11, 8, 67151};
-        printArray(sort(ints2));
+    public static int[] sortPositiveNumbers(int[] array, int size) {
+        int max = OrderStatistic.max(array, array.length), sizeBuckets = (max / 10) + 1, index = 0;
+        int[][] buckets = new int[sizeBuckets][size + 1];
+        int[] newArray = new int[array.length];
 
-        ints2 = new int[]{7, 5, 1, 8, 11, -1, 7};
-        printArray(sort(ints2));
+        for (int i = 0; i < array.length; i++) {
+            int range = (array[i] / 10);
+            insertAndSort(buckets[range], array[i]);
+        }
+
+        for (int i = 0; i < buckets.length; i++) {
+            for (int j = 0; j < buckets[i][buckets[i].length - 1]; j++) {
+                newArray[index++] = buckets[i][j];
+            }
+        }
+        return newArray;
     }
 }
