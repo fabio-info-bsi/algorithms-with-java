@@ -45,7 +45,6 @@ public class HeapSortTest extends SortBaseTest {
         HeapSort heapSort = new HeapSort(array);
         heapSort.heapInsert(4, 10, 14, 7, 9, 3, 2, 8, 1);
         int [] arraySorted = heapSort.sort();
-        ArrayUtils.printArray(arraySorted);
 
         //Assert
         Assertions.assertArrayEquals(arrayCopy, arraySorted);
@@ -71,7 +70,6 @@ public class HeapSortTest extends SortBaseTest {
         int [] arraySorted = heapSort.sort();
         copyArrayOriginToTarget(arraySorted, arrayCopy);
         Arrays.sort(arrayCopy);
-        ArrayUtils.printArray(arraySorted);
 
         //Assert
         Assertions.assertArrayEquals(arraySorted, arrayCopy);
