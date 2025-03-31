@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class MergeSortTest extends SortBaseTest {
 
     @Test
-    public void sortImplTest() {
+    public void sortTest() {
         //Arrange
         Arrays.sort(arrayCopy);
 
@@ -21,7 +21,7 @@ public class MergeSortTest extends SortBaseTest {
     }
 
     @Test
-    public void sortImplTest2() {
+    public void sortTest2() {
         //Arrange
         Arrays.sort(arrayCopy, 5, 15);
 
