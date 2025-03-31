@@ -40,6 +40,11 @@ public class Stack {
         return top == 0;
     }
 
+    /**
+     * Adding element in stack.
+     *
+     * @param element
+     */
     public void push(int element) {
         if (top == stack.length) {
             throw new RuntimeException("Overflow!");
@@ -48,6 +53,11 @@ public class Stack {
         size++;
     }
 
+    /**
+     * Removing element in stack.
+     *
+     * @return
+     */
     public int pop() {
         if (isEmpty()) {
             throw new RuntimeException("Underflow!");
@@ -56,6 +66,11 @@ public class Stack {
         return stack[--top];
     }
 
+    /**
+     * Return element top in stack.
+     *
+     * @return
+     */
     public int top() {
         if (isEmpty()) {
             throw new RuntimeException("Underflow!");
