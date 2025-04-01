@@ -118,4 +118,34 @@ public class StackTest {
         //Act & Asserts
         Assertions.assertThrows(RuntimeException.class, stack::top);
     }
+
+    @Test
+    public void pushAndPopAndTopTest1() {
+        //Arrange
+        Stack stack = new Stack(2);
+        stack.push(62);
+        stack.push(50);
+        stack.pop();
+        stack.pop();
+        stack.push(30);
+        stack.push(31);//top
+        //Act
+        int resultTop = stack.top();
+
+        //Asserts
+        Assertions.assertEquals(31, resultTop);
+    }
+
+    @Test
+    public void pushAndPopThrowStackUnderflowTest1() {
+        //Arrange
+        Stack stack = new Stack(2);
+        stack.push(62);
+        stack.push(50);
+        stack.pop();
+        stack.pop();
+
+        //Act & Asserts
+        Assertions.assertThrows(RuntimeException.class, stack::top);
+    }
 }

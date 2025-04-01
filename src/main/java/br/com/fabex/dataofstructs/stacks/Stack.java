@@ -2,7 +2,7 @@ package br.com.fabex.dataofstructs.stacks;
 
 public class Stack {
 
-    private int size, top;
+    private int size, indexTop;
     private int[] stack;
 
     public Stack() {
@@ -37,7 +37,7 @@ public class Stack {
      * @return boolean
      */
     public boolean isEmpty() {
-        return top == 0;
+        return indexTop == 0;
     }
 
     /**
@@ -46,10 +46,10 @@ public class Stack {
      * @param element
      */
     public void push(int element) {
-        if (top == stack.length) {
-            throw new RuntimeException("Overflow!");
+        if (indexTop == stack.length) {
+            throw new RuntimeException("Stack Overflow!");
         }
-        stack[top++] = element;
+        stack[indexTop++] = element;
         size++;
     }
 
@@ -60,10 +60,10 @@ public class Stack {
      */
     public int pop() {
         if (isEmpty()) {
-            throw new RuntimeException("Underflow!");
+            throw new RuntimeException("Stack Underflow!");
         }
         size--;
-        return stack[--top];
+        return stack[--indexTop];
     }
 
     /**
@@ -75,6 +75,6 @@ public class Stack {
         if (isEmpty()) {
             throw new RuntimeException("Underflow!");
         }
-        return stack[top - 1];
+        return stack[indexTop - 1];
     }
 }
