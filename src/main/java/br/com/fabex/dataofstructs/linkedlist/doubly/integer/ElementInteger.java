@@ -1,4 +1,4 @@
-package br.com.fabex.dataofstructs.linked.integer;
+package br.com.fabex.dataofstructs.linkedlist.doubly.integer;
 
 public class ElementInteger {
     int key;

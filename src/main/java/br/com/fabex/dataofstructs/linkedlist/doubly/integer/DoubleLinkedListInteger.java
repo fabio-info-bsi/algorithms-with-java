@@ -1,12 +1,12 @@
-package br.com.fabex.dataofstructs.linked.integer;
+package br.com.fabex.dataofstructs.linkedlist.doubly.integer;
 
 public class DoubleLinkedListInteger {
     private ElementInteger head;
     private int countElements;
 
-    public ElementInteger search(ElementInteger element) {
+    public ElementInteger search(ElementInteger elementInteger) {
         ElementInteger found = head;
-        while (found != null && found.key != element.key) {
+        while (found != null && found.key != elementInteger.key) {
             found = found.next;
         }
         return found;
@@ -22,7 +22,7 @@ public class DoubleLinkedListInteger {
         countElements++;
     }
 
-    public void insertFromElement(ElementInteger pointer, ElementInteger newElementInteger) {
+    public void insert(ElementInteger pointer, ElementInteger newElementInteger) {
         newElementInteger.next = pointer.next;
         newElementInteger.prev = pointer;
         if (pointer.next != null) {
@@ -32,15 +32,15 @@ public class DoubleLinkedListInteger {
         countElements++;
     }
 
-    public void delete(ElementInteger element) {
-        if (element.prev != null) {
-            element.prev.next = element.next;
+    public void delete(ElementInteger elementInteger) {
+        if (elementInteger.prev != null) {
+            elementInteger.prev.next = elementInteger.next;
         } else {
-            head = element.next;
+            head = elementInteger.next;
         }
 
-        if (element.next != null) {
-            element.next.prev = element.prev;
+        if (elementInteger.next != null) {
+            elementInteger.next.prev = elementInteger.prev;
         }
         countElements--;
     }
