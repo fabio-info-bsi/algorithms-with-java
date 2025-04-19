@@ -1,10 +1,5 @@
 package br.com.fabex.dataofstructs.linkedlist.doubly.generic;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
 public final class DoubleLinkedListOrdered<T extends Comparable<T>> extends DoubleLinkedList<T> {
 
     @Override
@@ -55,25 +50,5 @@ public final class DoubleLinkedListOrdered<T extends Comparable<T>> extends Doub
             head = element;
         }
         countElements++;
-    }
-
-    public List<Element<T>> toList() {
-        List<Element<T>> elements = new ArrayList<>();
-        Element<T> pointer = head;
-        while (pointer != null) {
-            elements.add(pointer);
-            pointer = pointer.next;
-        }
-        return elements;
-    }
-
-    public Set<Element<T>> toSet() {
-        Set<Element<T>> elements = new LinkedHashSet<>();
-        Element<T> pointer = head;
-        while (pointer != null) {
-            elements.add(pointer);
-            pointer = pointer.next;
-        }
-        return elements;
     }
 }
