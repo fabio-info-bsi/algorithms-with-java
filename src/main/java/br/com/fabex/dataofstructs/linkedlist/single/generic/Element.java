@@ -1,27 +1,22 @@
-package br.com.fabex.dataofstructs.linkedlist.doubly.generic;
+package br.com.fabex.dataofstructs.linkedlist.single.generic;
 
 import java.util.Objects;
 
 public class Element<T> {
     private final T key;
-    Element<T> prev, next;
+    Element<T> next;
 
     public Element(T key) {
         this.key = key;
     }
 
-    public Element(T key, Element<T> prev, Element<T> next) {
+    public Element(T key, Element<T> next) {
         this.key = key;
-        this.prev = prev;
         this.next = next;
     }
 
     public T getKey() {
         return key;
-    }
-
-    public Element<T> getPrev() {
-        return prev;
     }
 
     public Element<T> getNext() {
