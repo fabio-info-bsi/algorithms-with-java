@@ -5,7 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class DoubleLinkedList<T> {
+public class DoublyLinkedList<T> {
     protected Element<T> head;
     protected int countElements;
 

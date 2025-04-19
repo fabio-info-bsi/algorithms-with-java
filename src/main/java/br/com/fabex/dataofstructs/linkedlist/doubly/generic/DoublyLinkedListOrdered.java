@@ -1,6 +1,6 @@
 package br.com.fabex.dataofstructs.linkedlist.doubly.generic;
 
-public final class DoubleLinkedListOrdered<T extends Comparable<T>> extends DoubleLinkedList<T> {
+public final class DoublyLinkedListOrdered<T extends Comparable<T>> extends DoublyLinkedList<T> {
 
     @Override
     public void insert(Element<T> pointer, Element<T> element) {

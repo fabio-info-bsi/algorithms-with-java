@@ -1,6 +1,6 @@
 package br.com.fabex.dataofstructs.linkedlist.doubly.integer;
 
-public class DoubleLinkedListInteger {
+public class DoublyLinkedListInteger {
     private ElementInteger head;
     private int countElements;
 

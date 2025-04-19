@@ -8,14 +8,14 @@ import java.util.Random;
 import java.util.Set;
 
 
-class DoubleLinkedListOrderedTest {
+class DoublyLinkedListOrderedTest {
 
     protected final Random RANDOM = new Random();
 
     @Test
     void prependFirstElementWhenLinkedListIsEmptyTest() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         Element<Integer> newElement = new Element<>(44);
 
         //Act
@@ -30,7 +30,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void prependElementOrderedWhenLinkedListDoesHaveOneElementTest() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         dll.prepend(new Element<>(5));
         Element<Integer> newElement = new Element<>(4);
 
@@ -46,7 +46,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void prependElementOrderedWhenLinkedListDoesHaveMoreOneElementTest() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         List<Integer> sequencedElements = RANDOM.ints(15, -100, 100)
                 .boxed().toList();
         List<Integer> orderedElements = sequencedElements.stream().sorted().toList();
@@ -63,7 +63,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void prependElementOrderedWhenAllElementIsSameTest() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         List<Integer> sequencedElements = List.of(-1, -1, -1, -1, -1, -1);
         List<Integer> orderedElements = sequencedElements.stream().sorted().toList();
         sequencedElements.forEach(i -> dll.prepend(new Element<>(i)));
@@ -79,7 +79,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void insertThrowUnsupportedOperationExceptionTest() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         dll.prepend(new Element<>(5));
 
         // Assert & Act
@@ -89,7 +89,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void toListWhenLinkedListIsEmpty() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
 
         // Act
         List<Element<Integer>> list = dll.toList();
@@ -102,7 +102,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void toListWhenLinkedListIsNotEmpty() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         dll.prepend(new Element<>(15));
         dll.prepend(new Element<>(33));
 
@@ -117,7 +117,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void toSetWhenLinkedListIsEmpty() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
 
         // Act
         Set<Element<Integer>> set = dll.toSet();
@@ -130,7 +130,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void toSetWhenLinkedListIsNotEmpty() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         dll.prepend(new Element<>(15));
         dll.prepend(new Element<>(33));
 
@@ -145,7 +145,7 @@ class DoubleLinkedListOrderedTest {
     @Test
     void toSetWhenLinkedListHasRepeatedElements() {
         //Arrange
-        DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
+        DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
         dll.prepend(new Element<>(3));
         dll.prepend(new Element<>(3));
         dll.prepend(new Element<>(3));

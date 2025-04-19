@@ -3,30 +3,30 @@ package br.com.fabex.dataofstructs.linkedlist.doubly.integer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class DoubleLinkedListIntegerTest {
+public class DoublyLinkedListIntegerTest {
 
 
     @Test
     public void isEmptyTrueWithoutElementsTest() {
         //Act & Asserts
-        Assertions.assertTrue(new DoubleLinkedListInteger().isEmpty());
+        Assertions.assertTrue(new DoublyLinkedListInteger().isEmpty());
     }
 
     @Test
     public void isEmptyFalseWhenPrependElementsTest() {
         //Arrange
-        DoubleLinkedListInteger doubleLinkedListInteger = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger doublyLinkedListInteger = new DoublyLinkedListInteger();
         ElementInteger elementInteger1 = new ElementInteger(1);
-        doubleLinkedListInteger.prepend(elementInteger1);
+        doublyLinkedListInteger.prepend(elementInteger1);
 
         //Act & Asserts
-        Assertions.assertFalse(doubleLinkedListInteger.isEmpty());
+        Assertions.assertFalse(doublyLinkedListInteger.isEmpty());
     }
 
     @Test
     public void prependSuccessWhenAddingElementsTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         dll.prepend(new ElementInteger(1));
         dll.prepend(new ElementInteger(2));
@@ -44,7 +44,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void insertSuccessWhenAddingElementsTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         dll.prepend(new ElementInteger(1));
         ElementInteger elementInteger2 = new ElementInteger(2);
@@ -68,7 +68,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void insertTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
         ElementInteger elementIntegerHead = new ElementInteger(-1);
         dll.prepend(elementIntegerHead);
         ElementInteger newElementInteger = new ElementInteger(10);
@@ -86,7 +86,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void searchElementFoundTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         dll.prepend(new ElementInteger(58));
         ElementInteger searchedElementInteger = new ElementInteger(79);
@@ -108,7 +108,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void searchElementNotFoundWhenLinkedListIsEmptyTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         //Act
         ElementInteger searched = dll.search(new ElementInteger(3));
@@ -121,7 +121,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void searchElementNotFoundWhenLinkedListIsNotEmptyTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         dll.prepend(new ElementInteger(23));
         dll.prepend(new ElementInteger(33));
@@ -140,7 +140,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void searchElementFoundWhenIsFirstHeadTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         dll.prepend(new ElementInteger(5));
         dll.prepend(new ElementInteger(7));
@@ -161,7 +161,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void searchElementFoundWhenIsFirstTailTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         ElementInteger tail = new ElementInteger(99);
         dll.prepend(tail);
@@ -180,7 +180,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void deleteElementWhenListIsEmptyTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         //Act & Asserts
         Assertions.assertDoesNotThrow(() -> dll.delete(new ElementInteger(-1)));
@@ -189,7 +189,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void deleteElementWhenListIsEmptyAndSearchElementIsNullTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
 
         //Act & Asserts
         Assertions.assertThrows(NullPointerException.class, () -> dll.delete(null));
@@ -198,7 +198,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void deleteElementWhenListIsEmptyAndESearchElementIsNotFoundTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
         dll.prepend(new ElementInteger(85));
         dll.prepend(new ElementInteger(62));
 
@@ -209,7 +209,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void deleteElementFoundTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
         dll.prepend(new ElementInteger(99));
         ElementInteger deleting = new ElementInteger(85);
         dll.prepend(deleting);
@@ -227,7 +227,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void deleteElementFoundBySearchElementTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
         dll.prepend(new ElementInteger(99));
         dll.prepend(new ElementInteger(85));
         dll.prepend(new ElementInteger(62));
@@ -245,7 +245,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void deleteWhenElementIsHeadTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
         dll.prepend(new ElementInteger(100));
         ElementInteger startElementIntegerHead = new ElementInteger(101);
         dll.prepend(startElementIntegerHead);
@@ -265,7 +265,7 @@ public class DoubleLinkedListIntegerTest {
     @Test
     public void deleteWhenElementIsTailTest() {
         //Arrange
-        DoubleLinkedListInteger dll = new DoubleLinkedListInteger();
+        DoublyLinkedListInteger dll = new DoublyLinkedListInteger();
         ElementInteger elementIntegerTail = new ElementInteger(101);
         dll.prepend(elementIntegerTail);
         dll.prepend(new ElementInteger(80));
