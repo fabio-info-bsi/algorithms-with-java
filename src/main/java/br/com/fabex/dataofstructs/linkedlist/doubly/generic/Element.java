@@ -10,12 +10,6 @@ public class Element<T> {
         this.key = key;
     }
 
-    public Element(T key, Element<T> prev, Element<T> next) {
-        this.key = key;
-        this.prev = prev;
-        this.next = next;
-    }
-
     public T getKey() {
         return key;
     }

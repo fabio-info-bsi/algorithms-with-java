@@ -10,11 +10,6 @@ public class Element<T> {
         this.key = key;
     }
 
-    public Element(T key, Element<T> next) {
-        this.key = key;
-        this.next = next;
-    }
-
     public T getKey() {
         return key;
     }
