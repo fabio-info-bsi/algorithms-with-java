@@ -36,5 +36,4 @@ public class SortBaseTest {
     protected int getSizeArray() {
         return 100;
     }
-
 }

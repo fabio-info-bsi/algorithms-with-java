@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 
 class DoubleLinkedListOrderedTest {
+
+    protected final Random RANDOM = new Random();
 
     @Test
     void prependFirstElementWhenLinkedListIsEmptyTest() {
@@ -44,7 +47,8 @@ class DoubleLinkedListOrderedTest {
     void prependElementOrderedWhenLinkedListDoesHaveMoreOneElementTest() {
         //Arrange
         DoubleLinkedListOrdered<Integer> dll = new DoubleLinkedListOrdered<>();
-        List<Integer> sequencedElements = List.of(15, 4, 3, 5, -1, 88, 94, 33, 2, 1);
+        List<Integer> sequencedElements = RANDOM.ints(15, -100, 100)
+                .boxed().toList();
         List<Integer> orderedElements = sequencedElements.stream().sorted().toList();
         sequencedElements.forEach(i -> dll.prepend(new Element<>(i)));
 
@@ -137,6 +141,7 @@ class DoubleLinkedListOrderedTest {
         Assertions.assertNotNull(set);
         Assertions.assertEquals(2, set.size());
     }
+
     @Test
     void toSetWhenLinkedListHasRepeatedElements() {
         //Arrange
