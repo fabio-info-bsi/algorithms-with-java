@@ -1,12 +1,12 @@
 package br.com.fabex.dataofstructs.linkedlist.doubly.generic;
 
 public class DoubleLinkedList<T> {
-    private Element<T> head;
-    private int countElements;
+    protected Element<T> head;
+    protected int countElements;
 
     public Element<T> search(Element<T> element) {
         Element<T> found = head;
-        while (found != null && found.key != element.key) {
+        while (found != null && found.getKey() != element.getKey()) {
             found = found.next;
         }
         return found;
@@ -22,6 +22,11 @@ public class DoubleLinkedList<T> {
         countElements++;
     }
 
+    /**
+     * Insert element after pointer.
+     * @param pointer
+     * @param element
+     */
     public void insert(Element<T> pointer, Element<T> element) {
         element.next = pointer.next;
         element.prev = pointer;

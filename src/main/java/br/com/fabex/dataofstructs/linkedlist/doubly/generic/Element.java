@@ -1,7 +1,9 @@
 package br.com.fabex.dataofstructs.linkedlist.doubly.generic;
 
+import java.util.Objects;
+
 public class Element<T> {
-    T key;
+    private T key;
     Element<T> prev, next;
 
     public Element() {
@@ -25,15 +27,23 @@ public class Element<T> {
         return prev;
     }
 
-    public void setPrev(Element<T> prev) {
-        this.prev = prev;
-    }
-
     public Element<T> getNext() {
         return next;
     }
 
-    public void setNext(Element<T> next) {
-        this.next = next;
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Element<?> element)) return false;
+        return Objects.equals(key, element.key);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(key);
+    }
+
+    @Override
+    public String toString() {
+        return "{" + "key=" + key + "}";
     }
 }
