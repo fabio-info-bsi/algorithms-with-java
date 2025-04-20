@@ -34,4 +34,31 @@ public class BucketSortTest extends SortBaseTest {
         //Assert
         Assertions.assertArrayEquals(arrayCopy, arraySorted);
     }
+
+    @Test
+    public void sortByImplSingleLinkedListTest1() {
+        //Arrange
+        Arrays.sort(arrayCopy);
+
+        //Act
+        int[] arraySorted = BucketSort.sortByImplSingleLinkedList(array);
+
+        //Assert
+        Assertions.assertArrayEquals(arrayCopy, arraySorted);
+    }
+
+    @Test
+    public void sortByImplSingleLinkedListCustomArraysTest2() {
+        //Arrange
+        int[] array = getArrayRandomized(10, -20, 20);
+        int[] arrayCopy = new int[10];
+        copyArrayOriginToTarget(array, arrayCopy);
+        Arrays.sort(arrayCopy);
+
+        //Act
+        int[] arraySorted = BucketSort.sortByImplSingleLinkedList(array);
+
+        //Assert
+        Assertions.assertArrayEquals(arrayCopy, arraySorted);
+    }
 }

@@ -67,21 +67,21 @@ public class DoublyLinkedList<T> {
         return countElements;
     }
 
-    public List<Element<T>> toList() {
-        List<Element<T>> elements = new ArrayList<>();
+    public List<T> toList() {
+        List<T> elements = new ArrayList<>();
         Element<T> pointer = head;
         while (pointer != null) {
-            elements.add(pointer);
+            elements.add(pointer.getKey());
             pointer = pointer.next;
         }
         return elements;
     }
 
-    public Set<Element<T>> toSet() {
-        Set<Element<T>> elements = new LinkedHashSet<>();
+    public Set<T> toSet() {
+        Set<T> elements = new LinkedHashSet<>();
         Element<T> pointer = head;
         while (pointer != null) {
-            elements.add(pointer);
+            elements.add(pointer.getKey());
             pointer = pointer.next;
         }
         return elements;

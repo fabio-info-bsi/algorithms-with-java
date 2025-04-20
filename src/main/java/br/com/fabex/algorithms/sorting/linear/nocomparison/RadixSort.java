@@ -29,8 +29,8 @@ public class RadixSort {
         sortByImplInsertSort(array, getTotalDigit(highestDigitNumber));
     }
 
-    public static void sortByImplInsertSort(int[] array, int totalNumerOfDigit) {
-        for (int i = 1; i <= totalNumerOfDigit; i++) {
+    public static void sortByImplInsertSort(int[] array, int totalNumberOfDigit) {
+        for (int i = 1; i <= totalNumberOfDigit; i++) {
             int digit = i;
             UnaryOperator<Integer> operator = (num) -> getDigit(num, digit);
             LinearSorting.insertionSort(array, array.length, operator);

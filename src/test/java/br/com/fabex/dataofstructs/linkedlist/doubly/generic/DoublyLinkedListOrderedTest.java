@@ -53,7 +53,7 @@ class DoublyLinkedListOrderedTest {
         sequencedElements.forEach(i -> dll.prepend(new Element<>(i)));
 
         // Assert & Act
-        List<Integer> sortedLinkedList = dll.toList().stream().map(Element::getKey).sorted().toList();
+        List<Integer> sortedLinkedList = dll.toList();
         Assertions.assertIterableEquals(orderedElements, sortedLinkedList);
         Assertions.assertFalse(dll.isEmpty());
         Assertions.assertEquals(sequencedElements.size(), dll.getCountElements());
@@ -69,7 +69,7 @@ class DoublyLinkedListOrderedTest {
         sequencedElements.forEach(i -> dll.prepend(new Element<>(i)));
 
         // Assert & Act
-        List<Integer> sortedLinkedList = dll.toList().stream().map(Element::getKey).sorted().toList();
+        List<Integer> sortedLinkedList = dll.toList();
         Assertions.assertIterableEquals(orderedElements, sortedLinkedList);
         Assertions.assertFalse(dll.isEmpty());
         Assertions.assertEquals(sequencedElements.size(), dll.getCountElements());
@@ -92,7 +92,7 @@ class DoublyLinkedListOrderedTest {
         DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
 
         // Act
-        List<Element<Integer>> list = dll.toList();
+        List<Integer> list = dll.toList();
 
         // Assert
         Assertions.assertNotNull(list);
@@ -107,7 +107,7 @@ class DoublyLinkedListOrderedTest {
         dll.prepend(new Element<>(33));
 
         // Act
-        List<Element<Integer>> list = dll.toList();
+        List<Integer> list = dll.toList();
 
         // Assert
         Assertions.assertNotNull(list);
@@ -120,7 +120,7 @@ class DoublyLinkedListOrderedTest {
         DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
 
         // Act
-        Set<Element<Integer>> set = dll.toSet();
+        Set<Integer> set = dll.toSet();
 
         // Assert
         Assertions.assertNotNull(set);
@@ -135,7 +135,7 @@ class DoublyLinkedListOrderedTest {
         dll.prepend(new Element<>(33));
 
         // Act
-        Set<Element<Integer>> set = dll.toSet();
+        Set<Integer> set = dll.toSet();
 
         // Assert
         Assertions.assertNotNull(set);
@@ -151,7 +151,7 @@ class DoublyLinkedListOrderedTest {
         dll.prepend(new Element<>(3));
 
         // Act
-        Set<Element<Integer>> set = dll.toSet();
+        Set<Integer> set = dll.toSet();
 
         // Assert
         Assertions.assertNotNull(set);

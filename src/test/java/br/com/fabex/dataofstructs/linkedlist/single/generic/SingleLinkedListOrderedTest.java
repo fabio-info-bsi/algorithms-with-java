@@ -51,9 +51,8 @@ class SingleLinkedListOrderedTest {
         sequencedElements.forEach(i -> dll.prepend(new Element<>(i)));
 
         // Assert & Act
-        List<Integer> sortedLinkedList = dll.toList().stream().map(Element::getKey).sorted().toList();
+        List<Integer> sortedLinkedList = dll.toList();
         Assertions.assertIterableEquals(orderedElements, sortedLinkedList);
-        Assertions.assertFalse(dll.isEmpty());
         Assertions.assertEquals(sequencedElements.size(), dll.getCountElements());
         Assertions.assertEquals(dll.getHead().getKey(), orderedElements.getFirst());
     }
@@ -67,7 +66,7 @@ class SingleLinkedListOrderedTest {
         sequencedElements.forEach(i -> dll.prepend(new Element<>(i)));
 
         // Assert & Act
-        List<Integer> sortedLinkedList = dll.toList().stream().map(Element::getKey).sorted().toList();
+        List<Integer> sortedLinkedList = dll.toList().stream().sorted().toList();
         Assertions.assertIterableEquals(orderedElements, sortedLinkedList);
         Assertions.assertFalse(dll.isEmpty());
         Assertions.assertEquals(sequencedElements.size(), dll.getCountElements());

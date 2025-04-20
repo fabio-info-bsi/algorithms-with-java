@@ -28,12 +28,14 @@ public class SingleLinkedListOrdered<T extends Comparable<T>> extends SingleLink
             pointer = pointer.next;
         }
 
-        if (null == prev) { // Before first element
-            super.prepend(element);
-        } else if (pointer.getKey().compareTo(element.getKey()) < 0) { // After last element
+        if (pointer.getKey().compareTo(element.getKey()) < 0) {
             super.insert(pointer, element);
-        } else { // Between elements
-            super.insert(prev, element);
+        } else {
+            if (null != prev && prev.getKey().compareTo(element.getKey()) < 0) {
+                super.insert(prev, element);
+            } else {
+                super.prepend(element);
+            }
         }
     }
 }
