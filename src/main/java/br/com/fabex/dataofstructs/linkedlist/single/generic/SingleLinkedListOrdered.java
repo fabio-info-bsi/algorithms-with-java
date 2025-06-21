@@ -9,12 +9,11 @@ public class SingleLinkedListOrdered<T extends Comparable<T>> extends SingleLink
 
     /**
      * Ordered insertion.
-     *
      */
     @Override
     public void prepend(Element<T> element) {
-        // First element
-        if (null == head) {
+        // First element or element is smallest
+        if (null == head || element.getKey().compareTo(head.getKey()) <= 0) {
             super.prepend(element);
             return;
         }
@@ -26,14 +25,10 @@ public class SingleLinkedListOrdered<T extends Comparable<T>> extends SingleLink
             pointer = pointer.next;
         }
 
-        if (pointer.getKey().compareTo(element.getKey()) < 0) {
+        if (pointer.getKey().compareTo(element.getKey()) < 0 || prev == null) {
             super.insert(pointer, element);
         } else {
-            if (null != prev && prev.getKey().compareTo(element.getKey()) < 0) {
-                super.insert(prev, element);
-            } else {
-                super.prepend(element);
-            }
+            super.insert(prev, element);
         }
     }
 }
