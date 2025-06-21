@@ -10,18 +10,16 @@ public class SingleLinkedListOrdered<T extends Comparable<T>> extends SingleLink
     /**
      * Ordered insertion.
      *
-     * @param element
      */
     @Override
     public void prepend(Element<T> element) {
-        Element<T> pointer = head;
-
         // First element
-        if (null == pointer) {
+        if (null == head) {
             super.prepend(element);
             return;
         }
 
+        Element<T> pointer = head;
         Element<T> prev = null;
         while (element.getKey().compareTo(pointer.getKey()) > 0 && pointer.next != null) {
             prev = pointer;
