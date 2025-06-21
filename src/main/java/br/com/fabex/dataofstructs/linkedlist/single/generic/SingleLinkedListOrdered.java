@@ -19,16 +19,10 @@ public class SingleLinkedListOrdered<T extends Comparable<T>> extends SingleLink
         }
 
         Element<T> pointer = head;
-        Element<T> prev = null;
-        while (element.getKey().compareTo(pointer.getKey()) > 0 && pointer.next != null) {
-            prev = pointer;
+        while (pointer.next != null && element.getKey().compareTo(pointer.next.getKey()) > 0) {
             pointer = pointer.next;
         }
 
-        if (pointer.getKey().compareTo(element.getKey()) < 0 || prev == null) {
-            super.insert(pointer, element);
-        } else {
-            super.insert(prev, element);
-        }
+        super.insert(pointer, element);
     }
 }
