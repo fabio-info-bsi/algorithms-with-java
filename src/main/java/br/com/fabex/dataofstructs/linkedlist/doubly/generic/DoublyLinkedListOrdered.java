@@ -9,45 +9,22 @@ public final class DoublyLinkedListOrdered<T extends Comparable<T>> extends Doub
 
     /**
      * Ordered insertion.
+     *
      * @param element
      */
     @Override
     public void prepend(Element<T> element) {
-        // First element
-        if (null == head) {
+        // First element or element is smallest
+        if (null == head || element.getKey().compareTo(head.getKey()) <= 0) {
             super.prepend(element);
             return;
         }
 
         Element<T> pointer = head;
-        while (element.getKey().compareTo(pointer.getKey()) > 0 && pointer.next != null) {
+        while (pointer.next != null && element.getKey().compareTo(pointer.next.getKey()) > 0) {
             pointer = pointer.next;
         }
 
-        // When is the last element: largest or smallest (loop condition)
-        if (pointer.getKey().compareTo(element.getKey()) < 0) {
-            super.insert(pointer, element);
-        } else {
-            this.insertInternal(pointer, element);
-        }
-    }
-
-    /**
-     * Insert element before pointer.
-     *
-     * @param pointer
-     * @param element
-     */
-    private void insertInternal(Element<T> pointer, Element<T> element) {
-        element.next = pointer;
-        element.prev = pointer.prev;
-        if (pointer.prev != null) {
-            pointer.prev.next = element;
-        }
-        pointer.prev = element;
-        if (head == pointer) {
-            head = element;
-        }
-        countElements++;
+        super.insert(pointer, element);
     }
 }
