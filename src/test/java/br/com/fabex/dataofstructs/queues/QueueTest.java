@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class QueueTest {
+class QueueTest {
 
     @Test
-    public void isEmptyTest1() {
+    void isEmptyTest1() {
         Assertions.assertTrue(new Queue().isEmpty());
     }
 
     @Test
-    public void enqueueTest1() {
+    void enqueueTest1() {
         //Arrange
         Queue queue = new Queue();
 
@@ -25,7 +25,7 @@ public class QueueTest {
 
 
     @Test
-    public void enqueueTest2() {
+    void enqueueTest2() {
         //Arrange
         Queue queue = new Queue(3);
         queue.enqueue(1);
@@ -37,7 +37,7 @@ public class QueueTest {
     }
 
     @Test
-    public void isFullTest1() {
+    void isFullTest1() {
         //Arrange
         Queue queue = new Queue(2);
         queue.enqueue(2);
@@ -48,13 +48,13 @@ public class QueueTest {
     }
 
     @Test
-    public void isFullTest2() {
+    void isFullTest2() {
         //Act & Asserts
         Assertions.assertFalse(new Queue(2).isFull());
     }
 
     @Test
-    public void dequeueTest1() {
+    void dequeueTest1() {
         //Arrange
         Queue queue = new Queue(3);
         queue.enqueue(7); //head
@@ -71,7 +71,7 @@ public class QueueTest {
     }
 
     @Test
-    public void dequeueTest2() {
+    void dequeueTest2() {
         //Arrange
         Queue queue = new Queue(3);
         queue.enqueue(7);
@@ -90,13 +90,14 @@ public class QueueTest {
     }
 
     @Test
-    public void dequeueTest3() {
+    void dequeueTest3() {
         //Act & Asserts
-        Assertions.assertThrows(RuntimeException.class, () -> new Queue().dequeue());
+        Queue queue = new Queue();
+        Assertions.assertThrows(RuntimeException.class, queue::dequeue);
     }
 
     @Test
-    public void enqueueAndDequeueTest1() {
+    void enqueueAndDequeueTest1() {
         //Arrange
         Queue queue = new Queue(2);
         queue.enqueue(21);
@@ -117,7 +118,7 @@ public class QueueTest {
     }
 
     @Test
-    public void enqueueAndDequeueTest2() {
+    void enqueueAndDequeueTest2() {
         //Arrange
         Queue queue = new Queue(2);
         queue.enqueue(21);

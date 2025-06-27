@@ -41,4 +41,8 @@ public class QueueImprove {
     public boolean isFull() {
         return Math.abs(indexHead - indexTail) == queue.length;
     }
+
+    public int getCountElements() {
+        return Math.abs(indexHead - indexTail);
+    }
 }

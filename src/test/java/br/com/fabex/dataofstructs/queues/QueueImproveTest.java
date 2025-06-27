@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 class QueueImproveTest {
 
     @Test
-    public void isEmptyTest1() {
+    void isEmptyTest1() {
         Assertions.assertTrue(new QueueImprove().isEmpty());
     }
 
     @Test
-    public void enqueueTest1() {
+    void enqueueTest1() {
         //Arrange
         QueueImprove queue = new QueueImprove();
 
@@ -22,11 +22,12 @@ class QueueImproveTest {
         //Asserts
         Assertions.assertFalse(queue.isEmpty());
         Assertions.assertFalse(queue.isFull());
+        Assertions.assertEquals(1, queue.getCountElements());
     }
 
 
     @Test
-    public void enqueueTest2() {
+    void enqueueTest2() {
         //Arrange
         QueueImprove queue = new QueueImprove(3);
         queue.enqueue(1);
@@ -36,10 +37,11 @@ class QueueImproveTest {
         //Act & Asserts
         QueueException queueException = Assertions.assertThrows(QueueException.class, () -> queue.enqueue(4));
         Assertions.assertEquals("Queue Overflow!", queueException.getMessage());
+        Assertions.assertEquals(3, queue.getCountElements());
     }
 
     @Test
-    public void isFullTest1() {
+    void isFullTest1() {
         //Arrange
         QueueImprove queue = new QueueImprove(2);
         queue.enqueue(2);
@@ -47,36 +49,39 @@ class QueueImproveTest {
 
         //Act & Asserts
         Assertions.assertTrue(queue.isFull());
+        Assertions.assertEquals(2, queue.getCountElements());
     }
 
     @Test
-    public void isFullTest2() {
+    void isFullTest2() {
         //Act & Asserts
         Assertions.assertFalse(new QueueImprove(2).isFull());
     }
 
     @Test
-    public void isFullTest3() {
+    void isFullTest3() {
         //Arrange
         QueueImprove queue = new QueueImprove(1);
         queue.enqueue(-2);
 
         //Act & Asserts
         Assertions.assertTrue(queue.isFull());
+        Assertions.assertEquals(1, queue.getCountElements());
     }
 
     @Test
-    public void isFullTest4() {
+    void isFullTest4() {
         //Arrange
         QueueImprove queue = new QueueImprove(5);
         queue.enqueue(-2);
 
         //Act & Asserts
         Assertions.assertFalse(queue.isFull());
+        Assertions.assertEquals(1, queue.getCountElements());
     }
 
     @Test
-    public void dequeueTest1() {
+    void dequeueTest1() {
         //Arrange
         QueueImprove queue = new QueueImprove(3);
         queue.enqueue(7); //head
@@ -90,10 +95,11 @@ class QueueImproveTest {
         //Asserts
         Assertions.assertEquals(7, dequeue);
         Assertions.assertFalse(queue.isFull());
+        Assertions.assertEquals(2, queue.getCountElements());
     }
 
     @Test
-    public void dequeueTest2() {
+    void dequeueTest2() {
         //Arrange
         QueueImprove queue = new QueueImprove(3);
         queue.enqueue(7);
@@ -109,10 +115,11 @@ class QueueImproveTest {
         //Asserts
         Assertions.assertEquals(9, dequeue);
         Assertions.assertTrue(queue.isEmpty());
+        Assertions.assertEquals(0, queue.getCountElements());
     }
 
     @Test
-    public void dequeueTest3() {
+    void dequeueTest3() {
         //Act & Asserts
         QueueImprove queue = new QueueImprove();
         QueueException queueException = Assertions.assertThrows(QueueException.class, queue::dequeue);
@@ -120,7 +127,7 @@ class QueueImproveTest {
     }
 
     @Test
-    public void enqueueAndDequeueTest1() {
+    void enqueueAndDequeueTest1() {
         //Arrange
         QueueImprove queue = new QueueImprove(2);
         queue.enqueue(21);
@@ -138,11 +145,12 @@ class QueueImproveTest {
         Assertions.assertEquals(57, dequeue);
         Assertions.assertFalse(queue.isFull());
         Assertions.assertFalse(queue.isEmpty());
+        Assertions.assertEquals(1, queue.getCountElements());
 
     }
 
     @Test
-    public void enqueueAndDequeueTest2() {
+    void enqueueAndDequeueTest2() {
         //Arrange
         QueueImprove queue = new QueueImprove(2);
         queue.enqueue(21);
@@ -161,5 +169,6 @@ class QueueImproveTest {
         Assertions.assertEquals(91, dequeue);
         Assertions.assertFalse(queue.isFull());
         Assertions.assertTrue(queue.isEmpty());
+        Assertions.assertEquals(0, queue.getCountElements());
     }
 }
