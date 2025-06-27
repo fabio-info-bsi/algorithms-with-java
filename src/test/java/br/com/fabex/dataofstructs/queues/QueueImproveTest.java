@@ -1,0 +1,165 @@
+package br.com.fabex.dataofstructs.queues;
+
+import br.com.fabex.dataofstructs.queues.exceptions.QueueException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+class QueueImproveTest {
+
+    @Test
+    public void isEmptyTest1() {
+        Assertions.assertTrue(new QueueImprove().isEmpty());
+    }
+
+    @Test
+    public void enqueueTest1() {
+        //Arrange
+        QueueImprove queue = new QueueImprove();
+
+        //Act
+        queue.enqueue(115);
+
+        //Asserts
+        Assertions.assertFalse(queue.isEmpty());
+        Assertions.assertFalse(queue.isFull());
+    }
+
+
+    @Test
+    public void enqueueTest2() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(3);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        //Act & Asserts
+        QueueException queueException = Assertions.assertThrows(QueueException.class, () -> queue.enqueue(4));
+        Assertions.assertEquals("Queue Overflow!", queueException.getMessage());
+    }
+
+    @Test
+    public void isFullTest1() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(2);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        //Act & Asserts
+        Assertions.assertTrue(queue.isFull());
+    }
+
+    @Test
+    public void isFullTest2() {
+        //Act & Asserts
+        Assertions.assertFalse(new QueueImprove(2).isFull());
+    }
+
+    @Test
+    public void isFullTest3() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(1);
+        queue.enqueue(-2);
+
+        //Act & Asserts
+        Assertions.assertTrue(queue.isFull());
+    }
+
+    @Test
+    public void isFullTest4() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(5);
+        queue.enqueue(-2);
+
+        //Act & Asserts
+        Assertions.assertFalse(queue.isFull());
+    }
+
+    @Test
+    public void dequeueTest1() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(3);
+        queue.enqueue(7); //head
+        queue.enqueue(8);
+        queue.enqueue(9);
+
+        //Act
+        int dequeue = queue.dequeue();
+
+
+        //Asserts
+        Assertions.assertEquals(7, dequeue);
+        Assertions.assertFalse(queue.isFull());
+    }
+
+    @Test
+    public void dequeueTest2() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(3);
+        queue.enqueue(7);
+        queue.enqueue(8);
+        queue.enqueue(9); //head
+        queue.dequeue();
+        queue.dequeue();
+
+        //Act
+        int dequeue = queue.dequeue();
+
+
+        //Asserts
+        Assertions.assertEquals(9, dequeue);
+        Assertions.assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void dequeueTest3() {
+        //Act & Asserts
+        QueueImprove queue = new QueueImprove();
+        QueueException queueException = Assertions.assertThrows(QueueException.class, queue::dequeue);
+        Assertions.assertEquals("Queue Underflow!", queueException.getMessage());
+    }
+
+    @Test
+    public void enqueueAndDequeueTest1() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(2);
+        queue.enqueue(21);
+        queue.enqueue(35);
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue(57);//head
+        queue.enqueue(91);
+
+
+        //Act
+        int dequeue = queue.dequeue();
+
+        //Asserts
+        Assertions.assertEquals(57, dequeue);
+        Assertions.assertFalse(queue.isFull());
+        Assertions.assertFalse(queue.isEmpty());
+
+    }
+
+    @Test
+    public void enqueueAndDequeueTest2() {
+        //Arrange
+        QueueImprove queue = new QueueImprove(2);
+        queue.enqueue(21);
+        queue.enqueue(35);
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue(57);
+        queue.enqueue(91);
+        queue.dequeue();
+
+
+        //Act
+        int dequeue = queue.dequeue();
+
+        //Asserts
+        Assertions.assertEquals(91, dequeue);
+        Assertions.assertFalse(queue.isFull());
+        Assertions.assertTrue(queue.isEmpty());
+    }
+}
