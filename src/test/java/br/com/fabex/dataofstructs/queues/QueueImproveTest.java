@@ -134,9 +134,12 @@ class QueueImproveTest {
         queue.enqueue(35);
         queue.dequeue();
         queue.dequeue();
+        queue.enqueue(33);//head
+        queue.enqueue(66);
+        queue.dequeue();
+        queue.dequeue();
         queue.enqueue(57);//head
         queue.enqueue(91);
-
 
         //Act
         int dequeue = queue.dequeue();
