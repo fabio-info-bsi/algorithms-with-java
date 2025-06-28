@@ -47,7 +47,7 @@ class DoublyLinkedListOrderedTest {
     void prependElementOrderedWhenLinkedListDoesHaveMoreOneElementTest() {
         //Arrange
         DoublyLinkedListOrdered<Integer> dll = new DoublyLinkedListOrdered<>();
-        List<Integer> sequencedElements = RANDOM.ints(15, -100, 100)
+        List<Integer> sequencedElements = RANDOM.ints(15, -1000, 1000)
                 .boxed().toList();
         List<Integer> orderedElements = sequencedElements.stream().sorted().toList();
         sequencedElements.forEach(i -> dll.prepend(new Element<>(i)));
