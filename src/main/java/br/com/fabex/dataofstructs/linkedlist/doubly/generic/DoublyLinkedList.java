@@ -9,12 +9,20 @@ public class DoublyLinkedList<T> {
     protected Element<T> head;
     protected int countElements;
 
+    public T search(T element) {
+        return search(new Element<>(element)).getKey();
+    }
+
     public Element<T> search(Element<T> element) {
         Element<T> found = head;
         while (found != null && found.getKey() != element.getKey()) {
             found = found.next;
         }
         return found;
+    }
+
+    public void prepend(T element) {
+        prepend(new Element<>(element));
     }
 
     public void prepend(Element<T> element) {
@@ -40,6 +48,10 @@ public class DoublyLinkedList<T> {
         }
         pointer.next = element;
         countElements++;
+    }
+
+    public void delete(T element) {
+        delete(new Element<>(element));
     }
 
     public void delete(Element<T> element) {

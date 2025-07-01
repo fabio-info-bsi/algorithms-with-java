@@ -23,6 +23,9 @@ class HashTableClosedAddressImplTest {
         htca.insert("Fabio");
 
 
+        //Act
+
+        //Asserts
     }
 
     @Test
