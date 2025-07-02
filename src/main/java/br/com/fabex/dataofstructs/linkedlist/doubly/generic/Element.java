@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class Element<T> {
     private T key;
-    Element<T> prev, next;
+    Element<T> prev;
+    Element<T> next;
 
     public Element(T key) {
         this.key = key;
@@ -14,7 +15,7 @@ public class Element<T> {
         return key;
     }
 
-    public void setKey(T key) {
+    void setKey(T key) {
         this.key = key;
     }
 

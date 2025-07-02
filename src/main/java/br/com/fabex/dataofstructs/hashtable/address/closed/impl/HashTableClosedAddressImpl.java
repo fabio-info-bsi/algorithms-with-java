@@ -7,6 +7,8 @@ import br.com.fabex.dataofstructs.hashtable.hashfunction.address.closed.HashFunc
 import br.com.fabex.dataofstructs.linkedlist.doubly.generic.DoublyLinkedList;
 import br.com.fabex.dataofstructs.linkedlist.doubly.generic.Element;
 
+import java.util.Optional;
+
 public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddress<T> {
 
     public HashTableClosedAddressImpl(HashFunctionClosedAddressMethodEnum methodEnum, int desiredSize) {
@@ -17,40 +19,52 @@ public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddres
 
     @Override
     public int capacity() {
-        return 0;
+        return table.length;
     }
 
     @Override
     public void insert(T element) {
-        System.out.println(element.hashCode());
-        //Element<T> nodeLinkedList = new Element<>(element);
-        int hashIndex = ((HashFunctionClosedAddress<T>) hashFunction).hash(element);
+        int hashIndex = getHashIndex(element);
+        Element<T> newElementLinkedList = new Element<>(element);
         if (null != table[hashIndex]) {
-            DoublyLinkedList<T> doublyLinkedList = getDoublyLinkedListByIndex(hashIndex);
-            T search = doublyLinkedList.search(element);
+            DoublyLinkedList<T> linkedList = getLinkedListByIndex(hashIndex);
+            Element<T> search = linkedList.search(newElementLinkedList);
             if (null != search) {
-                //crazy!
-                //search.setKey(element);
-                //doublyLinkedList.
-                //return;
+                linkedList.update(search, element);
+                return;
             }
-            doublyLinkedList.prepend(element);
+            linkedList.prepend(newElementLinkedList);
             COLLISIONS++;
         } else {
             table[hashIndex] = new DoublyLinkedList<T>();
-            getDoublyLinkedListByIndex(hashIndex).prepend(element);
+            getLinkedListByIndex(hashIndex).prepend(newElementLinkedList);
         }
         this.elements++;
     }
 
     @Override
     public void delete(T element) {
-
-        this.elements--;
+        int hashIndex = getHashIndex(element);
+        if (null != table[hashIndex]) {
+            DoublyLinkedList<T> linkedList = getLinkedListByIndex(hashIndex);
+            //Search and Delete element if exist
+            Optional.ofNullable(linkedList.search(new Element<>(element)))
+                    .ifPresent(linkedList::delete);
+            //Cleaning slot if LinkedList is empty
+            if (linkedList.isEmpty()) {
+                table[hashIndex] = null;
+            }
+            this.elements--;
+        }
     }
 
     @Override
     public T search(T element) {
+        int hashIndex = getHashIndex(element);
+        if (null != table[hashIndex]) {
+            Element<T> searched = getLinkedListByIndex(hashIndex).search(new Element<>(element));
+            return Optional.ofNullable(searched).orElse(new Element<>(null)).getKey();
+        }
         return null;
     }
 
@@ -59,7 +73,11 @@ public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddres
         return 0;
     }
 
-    private DoublyLinkedList<T> getDoublyLinkedListByIndex(int hashIndex) {
+    private DoublyLinkedList<T> getLinkedListByIndex(int hashIndex) {
         return (DoublyLinkedList<T>) table[hashIndex];
+    }
+
+    private int getHashIndex(T element) {
+        return ((HashFunctionClosedAddress<T>) hashFunction).hash(element);
     }
 }

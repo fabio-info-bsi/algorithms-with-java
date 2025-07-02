@@ -9,20 +9,12 @@ public class DoublyLinkedList<T> {
     protected Element<T> head;
     protected int countElements;
 
-    public T search(T element) {
-        return search(new Element<>(element)).getKey();
-    }
-
     public Element<T> search(Element<T> element) {
         Element<T> found = head;
-        while (found != null && found.getKey() != element.getKey()) {
+        while (found != null && !found.getKey().equals(element.getKey())) {
             found = found.next;
         }
         return found;
-    }
-
-    public void prepend(T element) {
-        prepend(new Element<>(element));
     }
 
     public void prepend(Element<T> element) {
@@ -37,6 +29,7 @@ public class DoublyLinkedList<T> {
 
     /**
      * Insert element after pointer.
+     *
      * @param pointer
      * @param element
      */
@@ -50,10 +43,6 @@ public class DoublyLinkedList<T> {
         countElements++;
     }
 
-    public void delete(T element) {
-        delete(new Element<>(element));
-    }
-
     public void delete(Element<T> element) {
         if (element.prev != null) {
             element.prev.next = element.next;
@@ -65,6 +54,11 @@ public class DoublyLinkedList<T> {
             element.next.prev = element.prev;
         }
         countElements--;
+    }
+
+    public Element<T> update(Element<T> element, T newKey) {
+        element.setKey(newKey);
+        return element;
     }
 
     public boolean isEmpty() {
