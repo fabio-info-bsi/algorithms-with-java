@@ -48,7 +48,7 @@ public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddres
         int hashIndex = getHashIndex(element);
         if (null != table[hashIndex]) {
             DoublyLinkedList<T> linkedList = getLinkedListByIndex(hashIndex);
-            //Search and Delete element if exist
+            //Search and Delete element in LinkedList if exist
             Optional.ofNullable(linkedList.search(new Element<>(element)))
                     .ifPresent(linkedList::delete);
             //Cleaning slot if LinkedList is empty
