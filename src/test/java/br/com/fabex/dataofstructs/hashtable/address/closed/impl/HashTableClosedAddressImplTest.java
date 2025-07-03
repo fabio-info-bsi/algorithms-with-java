@@ -40,7 +40,20 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void capacity() {
+    void capacityWhenNotExistElementsTest() {
+        //Act & Asserts
+        Assertions.assertEquals(10, new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10).capacity());
+    }
+
+    @Test
+    void capacityWhenExistElementsTest() {
+        //Arrange
+        HashTableClosedAddressImpl<Object> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
+        htca.insert(new CustomObjectTest(1L, "Carlos"));
+        htca.insert(new CustomObjectTest(2L, "Edgar"));
+
+        //Act & Asserts
+        Assertions.assertEquals(10, htca.capacity());
     }
 
     @Test
@@ -68,7 +81,7 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void insertWithHashFunctionDivisionWhenElementExistTest() {
+    void insertWithHashFunctionDivisionWhenExistElementTest() {
         //Arrange
         HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
         htca.insert(new CustomObjectTest(1L, "Marco"));
@@ -108,7 +121,7 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void deleteWithHashFunctionDivisionWhenNotExistElementsTest() {
+    void deleteWithHashFunctionDivisionWhenNotFoundElementsTest() {
         //Arrange
         HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
 
@@ -120,13 +133,12 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void deleteWithHashFunctionDivisionWhenExistElementAndExistsOneElementInLinkedListTest() {
+    void deleteWithHashFunctionDivisionWhenExistElementAndExistsOnlyOneElementInLinkedListTest() {
         //Arrange
         HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
         htca.insert(new CustomObjectTest(1L, "Fabio"));
         htca.insert(new CustomObjectTest(2L, "Junior"));
         htca.insert(new CustomObjectTest(3L, "Marco"));
-        //htca.insert(new CustomObjectTest(11L, "Edgar"));
 
         //Act
         htca.delete(new CustomObjectTest(1L));
@@ -136,7 +148,7 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void deleteWithHashFunctionDivisionWhenExistElementAndExistsMoreTheOneElementInLinkedListTest() {
+    void deleteWithHashFunctionDivisionWhenFoundElementAndExistsMoreTheOneElementInLinkedListTest() {
         //Arrange
         HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
         //Same Slot -> LinkedList
@@ -156,7 +168,7 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void searchWithHashFunctionDivisionWhenExistsElementSearchedTest() {
+    void searchWithHashFunctionDivisionWhenFoundElementTest() {
         //Arrange
         HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
         htca.insert(new CustomObjectTest(1L, "Fabio"));
@@ -173,7 +185,7 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void searchWithHashFunctionDivisionWhenNotExistsElementSearchedTest() {
+    void searchWithHashFunctionDivisionWhenNotFoundElementTest() {
         //Arrange
         HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
         htca.insert(new CustomObjectTest(1L, "Fabio"));
@@ -188,6 +200,57 @@ class HashTableClosedAddressImplTest {
     }
 
     @Test
-    void indexOf() {
+    void indexOfWithHashFunctionDivisionWhenIndexIsNotNullAndFoundElementAndExistsOnlyOneElementInLinkedListTest() {
+        //Arrange
+        HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
+        htca.insert(new CustomObjectTest(1L, "Fabio"));
+
+        //Act
+        int index = htca.indexOf(new CustomObjectTest(1L));
+
+        //Asserts
+        Assertions.assertEquals(1, index);
+    }
+
+    @Test
+    void indexOfWithHashFunctionDivisionWhenIndexIsNotNullAndFoundElementAndExistsMoreTheOneElementInLinkedList() {
+        //Arrange
+        HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
+        //Same Slot -> LinkedList
+        htca.insert(new CustomObjectTest(1L, "Fabio"));
+        htca.insert(new CustomObjectTest(11L, "Edgar"));
+
+        //Act
+        int index = htca.indexOf(new CustomObjectTest(1L));
+
+        //Asserts
+        Assertions.assertEquals(1, index);
+    }
+
+    @Test
+    void indexOfWithHashFunctionDivisionWhenIndexIsNotNullAndNotFoundElementInLinkedList() {
+        //Arrange
+        HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
+        //Same Slot -> LinkedList
+        htca.insert(new CustomObjectTest(1L, "Fabio"));
+        htca.insert(new CustomObjectTest(11L, "Edgar"));
+
+        //Act
+        int index = htca.indexOf(new CustomObjectTest(21L));
+
+        //Asserts
+        Assertions.assertEquals(-1, index);
+    }
+
+    @Test
+    void indexOfWithHashFunctionDivisionWhenNotExistsElementTest() {
+        //Arrange
+        HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
+
+        //Act
+        int index = htca.indexOf(new CustomObjectTest(1L));
+
+        //Asserts
+        Assertions.assertEquals(-1, index);
     }
 }
