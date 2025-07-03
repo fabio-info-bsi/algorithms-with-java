@@ -253,4 +253,17 @@ class HashTableClosedAddressImplTest {
         //Asserts
         Assertions.assertEquals(-1, index);
     }
+
+    @Test
+    void insertWithHashFunctionMultiplicationWhenExistCollisionTest() {
+        //Arrange
+        HashTableClosedAddressImpl<CustomObjectTest> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.MULTIPLICATION, 10);
+        //Same Slot
+        htca.insert(new CustomObjectTest(-95L, "Fabio"));
+        htca.insert(new CustomObjectTest(-88L, "Edgar"));
+
+        //Act & Asserts
+        Assertions.assertEquals(2, htca.size());
+        Assertions.assertEquals(1, htca.getCOLLISIONS());
+    }
 }
