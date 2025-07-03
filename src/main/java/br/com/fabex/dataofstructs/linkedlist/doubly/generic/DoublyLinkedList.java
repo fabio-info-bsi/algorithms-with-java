@@ -11,7 +11,7 @@ public class DoublyLinkedList<T> {
 
     public Element<T> search(Element<T> element) {
         Element<T> found = head;
-        while (found != null && found.getKey() != element.getKey()) {
+        while (found != null && !found.getKey().equals(element.getKey())) {
             found = found.next;
         }
         return found;
@@ -29,6 +29,7 @@ public class DoublyLinkedList<T> {
 
     /**
      * Insert element after pointer.
+     *
      * @param pointer
      * @param element
      */
@@ -53,6 +54,11 @@ public class DoublyLinkedList<T> {
             element.next.prev = element.prev;
         }
         countElements--;
+    }
+
+    public Element<T> update(Element<T> element, T newKey) {
+        element.setKey(newKey);
+        return element;
     }
 
     public boolean isEmpty() {

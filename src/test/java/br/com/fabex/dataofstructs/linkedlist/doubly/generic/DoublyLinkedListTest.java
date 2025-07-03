@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 class DoublyLinkedListTest {
 
     @Test
-    public void isEmptyTrueWithoutElementsTest() {
+    void isEmptyTrueWithoutElementsTest() {
         //Act & Asserts
         Assertions.assertTrue(new DoublyLinkedList<Integer>().isEmpty());
     }
 
     @Test
-    public void isEmptyFalseWhenPrependElementsTest() {
+    void isEmptyFalseWhenPrependElementsTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         Element<Integer> element = new Element<>(1);
@@ -23,7 +23,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void prependSuccessWhenAddingElementsTest() {
+    void prependSuccessWhenAddingElementsTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -41,7 +41,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void insertSuccessWhenAddingElementsTest() {
+    void insertSuccessWhenAddingElementsTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -65,7 +65,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void insertTest() {
+    void insertTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         Element<Integer> elementIntegerHead = new Element<>(-1);
@@ -83,7 +83,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void searchElementFoundTest() {
+    void searchElementFoundTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -105,7 +105,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void searchElementNotFoundWhenLinkedListIsEmptyTest() {
+    void searchElementNotFoundWhenLinkedListIsEmptyTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -118,7 +118,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void searchElementNotFoundWhenLinkedListIsNotEmptyTest() {
+    void searchElementNotFoundWhenLinkedListIsNotEmptyTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -137,7 +137,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void searchElementFoundWhenIsFirstHeadTest() {
+    void searchElementFoundWhenIsFirstHeadTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -158,7 +158,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void searchElementFoundWhenIsFirstTailTest() {
+    void searchElementFoundWhenIsFirstTailTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -177,7 +177,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void deleteElementWhenListIsEmptyTest() {
+    void deleteElementWhenListIsEmptyTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -186,7 +186,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void deleteElementWhenListIsEmptyAndSearchElementIsNullTest() {
+    void deleteElementWhenListIsEmptyAndSearchElementIsNullTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
 
@@ -195,7 +195,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void deleteElementWhenListIsEmptyAndESearchElementIsNotFoundTest() {
+    void deleteElementWhenListIsEmptyAndESearchElementIsNotFoundTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         dll.prepend(new Element<>(85));
@@ -206,7 +206,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void deleteElementFoundTest() {
+    void deleteElementFoundTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         dll.prepend(new Element<>(99));
@@ -224,7 +224,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void deleteElementFoundBySearchElementTest() {
+    void deleteElementFoundBySearchElementTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         dll.prepend(new Element<>(99));
@@ -242,7 +242,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void deleteWhenElementIsHeadTest() {
+    void deleteWhenElementIsHeadTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         dll.prepend(new Element<>(100));
@@ -262,7 +262,7 @@ class DoublyLinkedListTest {
     }
 
     @Test
-    public void deleteWhenElementIsTailTest() {
+    void deleteWhenElementIsTailTest() {
         //Arrange
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         Element<Integer> elementIntegerTail = new Element<>(101);
@@ -274,8 +274,54 @@ class DoublyLinkedListTest {
 
         //Asserts
         Element<Integer> searchOldTail = dll.search(elementIntegerTail);
-        Element<Integer> searchNewTail = dll.search(new Element<>(80));
         Assertions.assertNull(searchOldTail);
         Assertions.assertEquals(1, dll.getCountElements());
+    }
+
+    @Test
+    void updateWhenElementIsHeadTest() {
+        //Arrange
+        DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
+        Element<Integer> startElementIntegerHead = new Element<>(18);
+        dll.prepend(startElementIntegerHead);
+        Element<Integer> searchHead = new Element<>(18);
+        Element<Integer> searched = dll.search(searchHead);
+
+        //Act
+        int newKey = 15;
+        dll.update(searched, newKey);
+
+        //Asserts
+        Element<Integer> searchUpdatedHead = dll.search(new Element<>(newKey));
+        Assertions.assertEquals(startElementIntegerHead, dll.getHead());
+        Assertions.assertEquals(searchUpdatedHead, dll.getHead());
+        Assertions.assertEquals(newKey, searchUpdatedHead.getKey());
+        Assertions.assertEquals(newKey, dll.getHead().getKey());
+        Assertions.assertEquals(1, dll.getCountElements());
+    }
+
+    @Test
+    void updateWhenThereAreElementTest() {
+        //Arrange
+        DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
+        dll.prepend(new Element<>(87));
+        dll.prepend(new Element<>(97));
+        Element<Integer> elementIntegerInMiddle = new Element<>(77);
+        dll.prepend(elementIntegerInMiddle);
+        dll.prepend(new Element<>(17));
+        dll.prepend(new Element<>(15));
+        Element<Integer> searchTail = new Element<>(77);
+        Element<Integer> searched = dll.search(searchTail);
+
+        //Act
+        int newKey = 91;
+        dll.update(searched, newKey);
+
+        //Asserts
+        Element<Integer> searchUpdatedElementValue = dll.search(new Element<>(newKey));
+        Assertions.assertEquals(elementIntegerInMiddle, searchUpdatedElementValue);
+        Assertions.assertEquals(elementIntegerInMiddle.getKey(), searchUpdatedElementValue.getKey());
+        Assertions.assertEquals(newKey, searchUpdatedElementValue.getKey());
+        Assertions.assertEquals(5, dll.getCountElements());
     }
 }

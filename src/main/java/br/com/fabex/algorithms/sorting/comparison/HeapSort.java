@@ -114,6 +114,12 @@ public class HeapSort {
         new HeapSort(heap.length).sortImpl(heap);
     }
 
+    /**
+     * Remove element (heapExtractMax)
+     *
+     * @param heap
+     * @return
+     */
     public static int heapExtractMax(int[] heap) {
         HeapSort heapSort = new HeapSort(heap.length);
         heapSort.buildHeap(heap);
