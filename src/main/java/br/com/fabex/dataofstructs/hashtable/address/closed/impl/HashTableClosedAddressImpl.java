@@ -29,6 +29,7 @@ public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddres
         if (null != table[hashIndex]) {
             DoublyLinkedList<T> linkedList = getLinkedListByIndex(hashIndex);
             Element<T> search = linkedList.search(newElementLinkedList);
+            //if exist element, then update
             if (null != search) {
                 linkedList.update(search, element);
                 return;
@@ -70,7 +71,13 @@ public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddres
 
     @Override
     public int indexOf(T element) {
-        return 0;
+        int hashIndex = getHashIndex(element);
+        int foundIndex = -1;
+        if (null != table[hashIndex]) {
+            foundIndex = Optional.ofNullable(getLinkedListByIndex(hashIndex).search(new Element<>(element)))
+                    .isPresent() ? hashIndex : -1;
+        }
+        return foundIndex;
     }
 
     private DoublyLinkedList<T> getLinkedListByIndex(int hashIndex) {
