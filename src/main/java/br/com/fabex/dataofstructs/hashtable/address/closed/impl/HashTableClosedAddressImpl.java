@@ -80,7 +80,8 @@ public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddres
         return foundIndex;
     }
 
-    private DoublyLinkedList<T> getLinkedListByIndex(int hashIndex) {
+    @Override
+    protected DoublyLinkedList<T> getLinkedListByIndex(int hashIndex) {
         return (DoublyLinkedList<T>) table[hashIndex];
     }
 

@@ -62,9 +62,16 @@ class HashTableClosedAddressImplTest {
         HashTableClosedAddressImpl<String> htca = new HashTableClosedAddressImpl<>(HashFunctionClosedAddressMethodEnum.DIVISION, 10);
         htca.insert("Marco");
         htca.insert("Santana");
+        htca.insert("Junior");
+        htca.insert("Silva");
+        htca.insert("Carlos");
+        htca.insert("Franklin");
+        htca.insert("Edgar");
+
+        htca.showDisplay();
 
         //Act & Asserts
-        Assertions.assertEquals(2, htca.size());
+        Assertions.assertEquals(7, htca.size());
         Assertions.assertEquals(1, htca.getCOLLISIONS());
     }
 
