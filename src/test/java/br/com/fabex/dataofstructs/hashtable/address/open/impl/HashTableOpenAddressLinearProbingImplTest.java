@@ -10,7 +10,7 @@ import java.util.Objects;
 
 class HashTableOpenAddressLinearProbingImplTest {
 
-    static class CustomStorableTest extends AbstractHashTableOpenAddress.Deleted {
+    static class CustomStorableTest implements AbstractHashTableOpenAddress.Storable {
         Long id;
         String name;
 
@@ -120,7 +120,7 @@ class HashTableOpenAddressLinearProbingImplTest {
         Assertions.assertEquals("HashTable OverFlow!", exception.getMessage());
         Assertions.assertEquals(HastTableOverFlowException.class, exception.getClass());
         Assertions.assertTrue(htoalp.isFull());
-        Assertions.assertEquals(1, htoalp.size());
+        Assertions.assertEquals(1, htoalp.capacity());
     }
 
     @Test
@@ -406,5 +406,27 @@ class HashTableOpenAddressLinearProbingImplTest {
 
         //Asserts
         Assertions.assertEquals(0, index);
+    }
+
+    @Test
+    void reHashWhenReachesOfLimitSizeAndNotThrowHashTableOverFlowExceptionTesAndDoubleSize() {
+        //Arrange
+        HashTableOpenAddressLinearProbingImpl<CustomStorableTest> htoalp = new HashTableOpenAddressLinearProbingImpl<>(3, HashFunctionClosedAddressMethodEnum.DIVISION, true);
+        htoalp.insert(new CustomStorableTest(1L, "Edgar"));
+        htoalp.insert(new CustomStorableTest(51L, "Masuka"));
+        htoalp.insert(new CustomStorableTest(77L, "Anthony"));
+        CustomStorableTest newElement = new CustomStorableTest(2L, "Lucas");
+        int oldSize = htoalp.size();
+        htoalp.showDisplay();
+
+        //Act
+        htoalp.insert(newElement);
+        htoalp.showDisplay();
+
+        //Asserts
+        Assertions.assertFalse(htoalp.isFull());
+        Assertions.assertNotEquals(oldSize, htoalp.capacity());
+        Assertions.assertEquals(6, htoalp.capacity());
+        Assertions.assertEquals(3, htoalp.size());
     }
 }

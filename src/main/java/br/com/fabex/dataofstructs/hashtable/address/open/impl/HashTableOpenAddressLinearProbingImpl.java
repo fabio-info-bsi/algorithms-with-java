@@ -5,11 +5,26 @@ import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverFlowException
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.closed.HashFunctionClosedAddressMethodEnum;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.open.HashFunctionOpenAddress;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.open.impl.HashFunctionLinearProbing;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOpenAddress.Storable> extends AbstractHashTableOpenAddress<T> {
 
-    public HashTableOpenAddressLinearProbingImpl(int size, HashFunctionClosedAddressMethodEnum methodEnum) {
+    private static final Logger logger = LoggerFactory.getLogger(HashTableOpenAddressLinearProbingImpl.class);
+    private final HashFunctionClosedAddressMethodEnum methodEnum;
+    private final boolean reSize;
+
+    public HashTableOpenAddressLinearProbingImpl(int size,
+                                                 HashFunctionClosedAddressMethodEnum methodEnum) {
+        this(size, methodEnum, false);
+    }
+
+    public HashTableOpenAddressLinearProbingImpl(int size,
+                                                 HashFunctionClosedAddressMethodEnum methodEnum,
+                                                 boolean reSize) {
         super(size);
+        this.reSize = reSize;
+        this.methodEnum = methodEnum;
         this.hashFunction = new HashFunctionLinearProbing<>(size, methodEnum);
     }
 
@@ -36,14 +51,48 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
             COLLISIONS++;
             i++;
         } while (i != table.length);
-        throw new HastTableOverFlowException("HashTable OverFlow!");
+        if (this.reSize && (this.elements == size() /* || arrived threshold Or MaxLimit of memory */)) {
+            reHash();
+        } else {
+            throw new HastTableOverFlowException("HashTable OverFlow!");
+        }
+    }
+
+    private void reHash() {
+        logger.info("ReHashing ...");
+        //ReSize (Doubling capacity HashTable) - Use another calculate here to improve increase of the table
+        int newHashTableSize = this.tableSize * 2;
+        this.tableSize = newHashTableSize;
+        logger.info("new Capacity [{}]", newHashTableSize);
+
+        //Get Old HashTable
+        Storable[] oldHashTable = (Storable[]) this.table;
+
+        //Reallocate new HashTable capacity
+        this.table = new Storable[newHashTableSize];
+
+        //Resetting count elements & COLLISIONS
+        this.elements = 0;
+        this.COLLISIONS = 0;
+
+        //Change HashTable Function
+        this.hashFunction = new HashFunctionLinearProbing<>(newHashTableSize, methodEnum);
+
+        //Reallocating slots
+        for (Storable item : oldHashTable) {
+            if (item instanceof Deleted) {
+                continue;
+            }
+            insert((T) item);
+        }
+
     }
 
     @Override
     public void delete(T element) {
         int i = 0;
         int hashIndex = getHashIndex(element, i);
-        while (null != table[hashIndex] && i < table.length) { //is deleted
+        while (null != table[hashIndex] && i < table.length) {
             if (table[hashIndex].equals(element)) {
                 table[hashIndex] = elementDeleted;
                 elements--;

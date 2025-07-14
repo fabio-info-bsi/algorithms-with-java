@@ -14,7 +14,8 @@ public abstract class AbstractHashTableClosedAddress<T> extends AbstractHashTabl
         this.table = new DoublyLinkedList[size];
     }
 
-    protected abstract DoublyLinkedList<T> getLinkedListByIndex(int hashIndex);
+    protected abstract DoublyLinkedList<T> getLinkedListByIndex(int hashIndex
+    );
 
     public void showDisplay() {
         logger.info("HashTable:");

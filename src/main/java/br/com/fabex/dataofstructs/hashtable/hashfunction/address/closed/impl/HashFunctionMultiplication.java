@@ -22,7 +22,7 @@ public class HashFunctionMultiplication<T> implements HashFunctionClosedAddress<
     @Override
     public int hash(T element) {
         int key = element.hashCode();
-        double factionPart = (key * constantA) - Math.floor(key * constantA);
-        return (int) (tableSize * factionPart);
+        double fractionPart = (key * constantA) - Math.floor(key * constantA);
+        return (int) (tableSize * fractionPart);
     }
 }

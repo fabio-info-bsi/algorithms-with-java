@@ -11,7 +11,7 @@ public abstract class AbstractHashTableOpenAddress<T extends AbstractHashTableOp
     public static interface Storable {
     }
 
-    public static class Deleted implements Storable {
+    protected static class Deleted implements Storable {
         @Override
         public String toString() {
             return "Deleted{}";
