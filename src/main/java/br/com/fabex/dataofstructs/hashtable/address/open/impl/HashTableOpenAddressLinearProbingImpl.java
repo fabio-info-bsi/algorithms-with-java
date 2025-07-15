@@ -51,7 +51,7 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
             COLLISIONS++;
             i++;
         } while (i != table.length);
-        if (this.reSize && (this.elements == size() /* || arrived threshold Or MaxLimit of memory */)) {
+        if (this.reSize && (this.elements == size() /* || Arrived threshold Or MaxLimit of memory */)) {
             reHash();
         } else {
             throw new HastTableOverFlowException("HashTable OverFlow!");
@@ -60,6 +60,7 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
 
     private void reHash() {
         logger.info("ReHashing ...");
+
         //ReSize (Doubling capacity HashTable) - Use another calculate here to improve increase of the table
         int newHashTableSize = this.tableSize * 2;
         this.tableSize = newHashTableSize;
@@ -75,7 +76,7 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
         this.elements = 0;
         this.COLLISIONS = 0;
 
-        //Change HashTable Function
+        //Change HashTable Function with new Table Size
         this.hashFunction = new HashFunctionLinearProbing<>(newHashTableSize, methodEnum);
 
         //Reallocating slots
@@ -85,7 +86,6 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
             }
             insert((T) item);
         }
-
     }
 
     @Override
