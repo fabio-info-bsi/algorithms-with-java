@@ -1,6 +1,7 @@
 package br.com.fabex.dataofstructs.hashtable.address.open;
 
 import br.com.fabex.dataofstructs.hashtable.AbstractHashTable;
+import br.com.fabex.dataofstructs.hashtable.hashfunction.address.open.HashFunctionOpenAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,10 +32,14 @@ public abstract class AbstractHashTableOpenAddress<T extends AbstractHashTableOp
         this.table = new Storable[size];
     }
 
+    protected int getHashIndex(T element, int probe) {
+        return ((HashFunctionOpenAddress<T>) hashFunction).hash(element, probe);
+    }
+
     public void showDisplay() {
-        logger.info("HashTable:");
+        logger.debug("HashTable:");
         for (int i = 0; i < table.length; i++) {
-            logger.info("{} => {}", i, table[i]);
+            logger.debug("{} => {}", i, table[i]);
         }
     }
 }

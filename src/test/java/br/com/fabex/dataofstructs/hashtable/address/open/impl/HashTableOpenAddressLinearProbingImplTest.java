@@ -1,45 +1,12 @@
 package br.com.fabex.dataofstructs.hashtable.address.open.impl;
 
-import br.com.fabex.dataofstructs.hashtable.address.open.AbstractHashTableOpenAddress;
 import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverFlowException;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.closed.HashFunctionClosedAddressMethodEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
 class HashTableOpenAddressLinearProbingImplTest {
 
-    static class CustomStorableTest implements AbstractHashTableOpenAddress.Storable {
-        Long id;
-        String name;
-
-        public CustomStorableTest(Long id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        public CustomStorableTest(Long id) {
-            this.id = id;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(id);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (o == null || getClass() != o.getClass()) return false;
-            CustomStorableTest customObjectTest = (CustomStorableTest) o;
-            return Objects.equals(id, customObjectTest.id);
-        }
-
-        @Override
-        public String toString() {
-            return "{ id=" + id + ", name='" + name + '}';
-        }
-    }
 
     @Test
     void capacityWhenNotExistElementsTest() {
@@ -375,7 +342,7 @@ class HashTableOpenAddressLinearProbingImplTest {
     }
 
     @Test
-    void indexOfWithHashFunctionDivisionWhenHashFunctionIndexIsNullInFirstSlot() {
+    void indexOfWithHashFunctionDivisionWhenHashFunctionIndexIsNullInFirstSlotTest() {
         //Arrange
         HashTableOpenAddressLinearProbingImpl<CustomStorableTest> htoalp = new HashTableOpenAddressLinearProbingImpl<>(10, HashFunctionClosedAddressMethodEnum.DIVISION);
         htoalp.insert(new CustomStorableTest(1L, "JhowJhow"));
@@ -409,7 +376,7 @@ class HashTableOpenAddressLinearProbingImplTest {
     }
 
     @Test
-    void reHashWhenReachesOfLimitSizeAndNotThrowHashTableOverFlowExceptionTesAndDoubleSize() {
+    void reHashWhenReachesOfLimitSizeAndNotThrowHashTableOverFlowExceptionAndDoubleSizeTest() {
         //Arrange
         HashTableOpenAddressLinearProbingImpl<CustomStorableTest> htoalp = new HashTableOpenAddressLinearProbingImpl<>(3, HashFunctionClosedAddressMethodEnum.DIVISION, true);
         htoalp.insert(new CustomStorableTest(1L, "Edgar"));
@@ -424,9 +391,11 @@ class HashTableOpenAddressLinearProbingImplTest {
         htoalp.showDisplay();
 
         //Asserts
+        Assertions.assertNotNull(htoalp.search(newElement));
+        Assertions.assertNotEquals(-1, htoalp.indexOf(newElement));
         Assertions.assertFalse(htoalp.isFull());
         Assertions.assertNotEquals(oldSize, htoalp.capacity());
         Assertions.assertEquals(6, htoalp.capacity());
-        Assertions.assertEquals(3, htoalp.size());
+        Assertions.assertEquals(4, htoalp.size());
     }
 }

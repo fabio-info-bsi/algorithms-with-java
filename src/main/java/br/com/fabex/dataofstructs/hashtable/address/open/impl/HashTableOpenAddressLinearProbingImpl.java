@@ -3,7 +3,6 @@ package br.com.fabex.dataofstructs.hashtable.address.open.impl;
 import br.com.fabex.dataofstructs.hashtable.address.open.AbstractHashTableOpenAddress;
 import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverFlowException;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.closed.HashFunctionClosedAddressMethodEnum;
-import br.com.fabex.dataofstructs.hashtable.hashfunction.address.open.HashFunctionOpenAddress;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.open.impl.HashFunctionLinearProbing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,18 +52,22 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
         } while (i != table.length);
         if (this.reSize && (this.elements == size() /* || Arrived threshold Or MaxLimit of memory */)) {
             reHash();
+            // Insert new element after ReSize HashTable
+            insert(element);
         } else {
             throw new HastTableOverFlowException("HashTable OverFlow!");
         }
     }
 
     private void reHash() {
-        logger.info("ReHashing ...");
+        logger.debug("ReHashing start");
 
         //ReSize (Doubling capacity HashTable) - Use another calculate here to improve increase of the table
+        logger.debug("Calculating new capacity ({} x 2)", this.tableSize);
         int newHashTableSize = this.tableSize * 2;
+
         this.tableSize = newHashTableSize;
-        logger.info("new Capacity [{}]", newHashTableSize);
+        logger.debug("New capacity HashTable [{}]", newHashTableSize);
 
         //Get Old HashTable
         Storable[] oldHashTable = (Storable[]) this.table;
@@ -72,20 +75,19 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
         //Reallocate new HashTable capacity
         this.table = new Storable[newHashTableSize];
 
-        //Resetting count elements & COLLISIONS
+        logger.debug("Resetting count elements & COLLISIONS");
         this.elements = 0;
         this.COLLISIONS = 0;
 
         //Change HashTable Function with new Table Size
+        logger.debug("Updating HashTable Function with new Table Size");
         this.hashFunction = new HashFunctionLinearProbing<>(newHashTableSize, methodEnum);
 
         //Reallocating slots
         for (Storable item : oldHashTable) {
-            if (item instanceof Deleted) {
-                continue;
-            }
             insert((T) item);
         }
+        logger.debug("ReHashing finished");
     }
 
     @Override
@@ -128,9 +130,5 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
             i++;
         } while (i != table.length);
         return -1;
-    }
-
-    private int getHashIndex(T element, int probe) {
-        return ((HashFunctionOpenAddress<T>) hashFunction).hash(element, probe);
     }
 }

@@ -18,13 +18,13 @@ public abstract class AbstractHashTableClosedAddress<T> extends AbstractHashTabl
     );
 
     public void showDisplay() {
-        logger.info("HashTable:");
+        logger.debug("HashTable:");
         for (int i = 0; i < table.length; i++) {
             StringBuilder row = new StringBuilder(String.valueOf(i));
             if (null != table[i]) {
                 getLinkedListByIndex(i).toList().forEach(element -> row.append(" => ").append(element));
             }
-            logger.info("{}", row);
+            logger.debug("{}", row);
         }
     }
 }
