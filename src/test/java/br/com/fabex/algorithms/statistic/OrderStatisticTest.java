@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class OrderStatisticTest extends SortBaseTest {
+class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.select(int[], int, int, int)` method, must return i-th of the statistic order of the arrange.")
-    public void selectTest1() {
+    void selectTest1() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = RANDOM.nextInt(array.length) + 1;
@@ -25,7 +25,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.select(int[], int, int, int)` method, must return 1-th statistic order (first).")
-    public void selectTest2() {
+    void selectTest2() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = 1;
@@ -39,7 +39,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.select(int[], int, int, int)` method, must return k-th statistic order (last).")
-    public void selectTest3() {
+    void selectTest3() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = array.length;
@@ -53,7 +53,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.select(int[], int, int, int)` method, must return [arrange.size/2]-th statistic order (median).")
-    public void selectTest4() {
+    void selectTest4() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = array.length / 2;
@@ -67,7 +67,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.selectRandomized(int[], int, int, int)` method, must return i-th of the statistic order of the arrange.")
-    public void selectRandomizedTest1() {
+    void selectRandomizedTest1() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = RANDOM.nextInt(array.length) + 1;
@@ -81,7 +81,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.selectRandomized(int[], int, int, int)` method, must return 1-th statistic order (first).")
-    public void selectRandomizedTest2() {
+    void selectRandomizedTest2() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = 1;
@@ -95,7 +95,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.selectRandomized(int[], int, int, int)` method, must return k-th statistic order (last).")
-    public void selectRandomizedTest3() {
+    void selectRandomizedTest3() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = array.length;
@@ -109,7 +109,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.selectRandomized(int[], int, int, int)` method, must return [arrange.size/2]-th statistic order (median).")
-    public void selectRandomizedTest4() {
+    void selectRandomizedTest4() {
         //Arrange
         Arrays.sort(arrayCopy);
         int iThOrderStatistic = array.length / 2;
@@ -123,7 +123,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.max(int[], int)` method, must return largest element.")
-    public void maxTest1() {
+    void maxTest1() {
         //Arrange
         Arrays.sort(arrayCopy);
         int max = Arrays.stream(arrayCopy).max().orElse(-1);
@@ -138,7 +138,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer empty, when call `OrderStatistic.max(int[], int)` method, must throw a IllegalArgumentException.")
-    public void maxTest2() {
+    void maxTest2() {
         //Arrange
         array = new int[0];
 
@@ -148,7 +148,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer randomized, when call `OrderStatistic.min(int[], int)` method, must return smallest element.")
-    public void minTest1() {
+    void minTest1() {
         //Arrange
         Arrays.sort(arrayCopy);
         int min = Arrays.stream(arrayCopy).min().orElse(-1);
@@ -163,7 +163,7 @@ public class OrderStatisticTest extends SortBaseTest {
 
     @Test
     @DisplayName("Given a arrange of integer empty, when call `OrderStatistic.min(int[], int)` method, must throw a IllegalArgumentException.")
-    public void minTest2() {
+    void minTest2() {
         //Arrange
         array = new int[0];
 
