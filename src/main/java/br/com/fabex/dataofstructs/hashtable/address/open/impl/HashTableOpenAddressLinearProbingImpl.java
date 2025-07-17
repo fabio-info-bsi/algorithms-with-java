@@ -47,7 +47,7 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
                 table[hashIndex] = element;
                 return;
             }
-            COLLISIONS++;
+            collisions++;
             i++;
         } while (i != table.length);
         if (this.reSize && (this.elements == size() /*|| Arrived threshold || MaxLimit of memory */)) {
@@ -77,7 +77,7 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
 
         logger.debug("Resetting count elements & COLLISIONS");
         this.elements = 0;
-        this.COLLISIONS = 0;
+        this.collisions = 0;
 
         //Change HashTable Function with new Table Size
         logger.debug("Updating HashTable Function with new Table Size");

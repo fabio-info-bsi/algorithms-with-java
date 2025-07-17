@@ -35,7 +35,7 @@ public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddres
                 return;
             }
             linkedList.prepend(newElementLinkedList);
-            COLLISIONS++;
+            collisions++;
         } else {
             table[hashIndex] = new DoublyLinkedList<T>();
             getLinkedListByIndex(hashIndex).prepend(newElementLinkedList);

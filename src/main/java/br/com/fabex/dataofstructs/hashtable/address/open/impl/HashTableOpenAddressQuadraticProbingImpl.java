@@ -61,7 +61,7 @@ public class HashTableOpenAddressQuadraticProbingImpl<T extends AbstractHashTabl
                 table[hashIndex] = element;
                 return;
             }
-            COLLISIONS++;
+            collisions++;
             i++;
         } while (i != table.length);
 
@@ -99,7 +99,7 @@ public class HashTableOpenAddressQuadraticProbingImpl<T extends AbstractHashTabl
 
         logger.debug("Resetting count elements & COLLISIONS");
         this.elements = 0;
-        this.COLLISIONS = 0;
+        this.collisions = 0;
 
         //Change HashTable Function with new Table Size
         logger.debug("Updating HashTable Function with new Table Size");
@@ -120,7 +120,7 @@ public class HashTableOpenAddressQuadraticProbingImpl<T extends AbstractHashTabl
                     table[hashIndex] = item;
                     break;
                 }
-                COLLISIONS++;
+                collisions++;
                 i++;
             } while (i != this.tableSize);
 

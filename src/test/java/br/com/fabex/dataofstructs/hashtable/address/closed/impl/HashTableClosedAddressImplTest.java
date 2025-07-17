@@ -72,7 +72,7 @@ class HashTableClosedAddressImplTest {
 
         //Act & Asserts
         Assertions.assertEquals(7, htca.size());
-        Assertions.assertEquals(1, htca.getCOLLISIONS());
+        Assertions.assertEquals(1, htca.getCollisions());
     }
 
     @Test
@@ -84,7 +84,7 @@ class HashTableClosedAddressImplTest {
 
         //Act & Asserts
         Assertions.assertEquals(2, htca.size());
-        Assertions.assertEquals(0, htca.getCOLLISIONS());
+        Assertions.assertEquals(0, htca.getCollisions());
     }
 
     @Test
@@ -107,7 +107,7 @@ class HashTableClosedAddressImplTest {
         Assertions.assertNotEquals(newElement.name, updateElement.name);
         Assertions.assertNotEquals(newElement.name, search.name);
         Assertions.assertEquals(2, htca.size());
-        Assertions.assertEquals(0, htca.getCOLLISIONS());
+        Assertions.assertEquals(0, htca.getCollisions());
     }
 
     @Test
@@ -271,6 +271,6 @@ class HashTableClosedAddressImplTest {
 
         //Act & Asserts
         Assertions.assertEquals(2, htca.size());
-        Assertions.assertEquals(1, htca.getCOLLISIONS());
+        Assertions.assertEquals(1, htca.getCollisions());
     }
 }

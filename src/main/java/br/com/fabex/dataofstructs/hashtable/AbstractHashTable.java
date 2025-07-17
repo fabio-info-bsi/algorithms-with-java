@@ -5,7 +5,7 @@ import br.com.fabex.dataofstructs.hashtable.hashfunction.HashFunction;
 public abstract class AbstractHashTable<T> implements HashTable<T> {
     protected Object[] table;
     protected int elements = 0;
-    protected int COLLISIONS = 0;
+    protected int collisions = 0;
     protected HashFunction<T> hashFunction;
 
     protected void initiateInternalTable(int size) {
@@ -27,8 +27,7 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
         return elements;
     }
 
-    //???
-    public int getCOLLISIONS() {
-        return COLLISIONS;
+    public int getCollisions() {
+        return collisions;
     }
 }

@@ -53,7 +53,7 @@ class HashTableOpenAddressLinearProbingImplTest {
         htoalp.insert(new CustomStorableTest(21L, "Lucas"));
         //Act & Asserts
         htoalp.showDisplay();
-        Assertions.assertEquals(1, htoalp.getCOLLISIONS());
+        Assertions.assertEquals(1, htoalp.getCollisions());
         Assertions.assertEquals(2, htoalp.size());
     }
 
@@ -70,7 +70,7 @@ class HashTableOpenAddressLinearProbingImplTest {
         CustomStorableTest searched = htoalp.search(new CustomStorableTest(1L));
         Assertions.assertNotNull(searched);
         Assertions.assertEquals("Lucas", searched.name);
-        Assertions.assertEquals(0, htoalp.getCOLLISIONS());
+        Assertions.assertEquals(0, htoalp.getCollisions());
         Assertions.assertEquals(1, htoalp.size());
     }
 
@@ -111,7 +111,7 @@ class HashTableOpenAddressLinearProbingImplTest {
         Assertions.assertEquals("Franklin", searched.name);
         Assertions.assertEquals(2, htoalp.size());
         Assertions.assertEquals(1, htoalp.indexOf(elementDeleted));
-        Assertions.assertEquals(0, htoalp.getCOLLISIONS());
+        Assertions.assertEquals(0, htoalp.getCollisions());
     }
 
     @Test
@@ -136,7 +136,7 @@ class HashTableOpenAddressLinearProbingImplTest {
         Assertions.assertEquals("Franklin", searched.name);
         Assertions.assertEquals(3, htoalp.size());
         Assertions.assertEquals(1, htoalp.indexOf(elementDeleted));
-        Assertions.assertEquals(1, htoalp.getCOLLISIONS());
+        Assertions.assertEquals(1, htoalp.getCollisions());
     }
 
     @Test
