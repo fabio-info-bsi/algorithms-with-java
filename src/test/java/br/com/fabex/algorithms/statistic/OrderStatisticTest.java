@@ -63,9 +63,6 @@ public class OrderStatisticTest extends SortBaseTest {
 
         //Assert
         Assertions.assertEquals(arrayCopy[iThOrderStatistic - 1], result);
-        System.out.println(iThOrderStatistic + " | " + result);
-        System.out.println(Arrays.toString(array));
-        System.out.println(Arrays.toString(arrayCopy));
     }
 
     @Test
