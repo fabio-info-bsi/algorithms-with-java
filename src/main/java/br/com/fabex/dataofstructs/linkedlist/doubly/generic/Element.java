@@ -3,8 +3,9 @@ package br.com.fabex.dataofstructs.linkedlist.doubly.generic;
 import java.util.Objects;
 
 public class Element<T> {
-    private final T key;
-    Element<T> prev, next;
+    private T key;
+    Element<T> prev;
+    Element<T> next;
 
     public Element(T key) {
         this.key = key;
@@ -12,6 +13,10 @@ public class Element<T> {
 
     public T getKey() {
         return key;
+    }
+
+    void setKey(T key) {
+        this.key = key;
     }
 
     public Element<T> getPrev() {
