@@ -18,6 +18,6 @@ public class HashFunctionLinearProbing<T> implements HashFunctionOpenAddress<T> 
 
     @Override
     public int hash(T element, int probe) {
-        return (hashFunction.hash(element) + probe) % tableSize;
+        return Math.abs((hashFunction.hash(element) + probe) % tableSize);
     }
 }

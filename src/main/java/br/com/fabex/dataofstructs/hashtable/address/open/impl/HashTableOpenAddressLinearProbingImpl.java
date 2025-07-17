@@ -1,7 +1,7 @@
 package br.com.fabex.dataofstructs.hashtable.address.open.impl;
 
 import br.com.fabex.dataofstructs.hashtable.address.open.AbstractHashTableOpenAddress;
-import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverFlowException;
+import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverflowException;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.closed.HashFunctionClosedAddressMethodEnum;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.open.impl.HashFunctionLinearProbing;
 import org.slf4j.Logger;
@@ -50,12 +50,12 @@ public class HashTableOpenAddressLinearProbingImpl<T extends AbstractHashTableOp
             COLLISIONS++;
             i++;
         } while (i != table.length);
-        if (this.reSize && (this.elements == size() /* || Arrived threshold Or MaxLimit of memory */)) {
+        if (this.reSize && (this.elements == size() /*|| Arrived threshold || MaxLimit of memory */)) {
             reHash();
-            // Insert new element after ReSize HashTable
+            //After resize HashTable insert new element
             insert(element);
         } else {
-            throw new HastTableOverFlowException("HashTable OverFlow!");
+            throw new HastTableOverflowException("HashTable OverFlow!");
         }
     }
 

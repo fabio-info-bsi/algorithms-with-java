@@ -22,6 +22,6 @@ public class HashFunctionQuadraticProbing<T> implements HashFunctionOpenAddress<
 
     @Override
     public int hash(T element, int probe) {
-        return (hashFunction.hash(element) + c1 * probe + c2 * probe * probe) % tableSize;
+        return Math.abs((hashFunction.hash(element) + c1 * probe + c2 * probe * probe) % tableSize);
     }
 }

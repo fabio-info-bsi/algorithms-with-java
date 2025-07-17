@@ -18,6 +18,6 @@ public class HashFunctionDoubleHashing<T> implements HashFunctionOpenAddress<T> 
 
     @Override
     public int hash(T element, int probe) {
-        return (hashFunction1.hash(element) + probe * hashFunction2.hash(element)) % tableSize;
+        return Math.abs((hashFunction1.hash(element) + probe * hashFunction2.hash(element)) % tableSize);
     }
 }

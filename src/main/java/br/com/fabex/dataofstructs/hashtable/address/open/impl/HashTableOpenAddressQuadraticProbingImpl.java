@@ -1,7 +1,8 @@
 package br.com.fabex.dataofstructs.hashtable.address.open.impl;
 
 import br.com.fabex.dataofstructs.hashtable.address.open.AbstractHashTableOpenAddress;
-import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverFlowException;
+import br.com.fabex.dataofstructs.hashtable.exception.ProbingFailedException;
+import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverflowException;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.closed.HashFunctionClosedAddressMethodEnum;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.open.impl.HashFunctionQuadraticProbing;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ public class HashTableOpenAddressQuadraticProbingImpl<T extends AbstractHashTabl
 
     public HashTableOpenAddressQuadraticProbingImpl(int size,
                                                     HashFunctionClosedAddressMethodEnum methodEnum) {
-        this(size, methodEnum, false);
+        this(size, methodEnum, true);
     }
 
     public HashTableOpenAddressQuadraticProbingImpl(int size,
@@ -63,14 +64,20 @@ public class HashTableOpenAddressQuadraticProbingImpl<T extends AbstractHashTabl
             COLLISIONS++;
             i++;
         } while (i != table.length);
-        // Insertion Fails!
-        if (this.reSize /*|| this.isFull() || Arrived threshold Or MaxLimit of memory */) {
+
+        //Insertion Fails: why? (Is full, Not found slot available, Threshold, Max Limit of Memory)
+        if (this.reSize /* && (your best suitable conditions - above ↑ )*/) {
             reHash();
-            // Insert new element after ReSize HashTable
+            //After resize HashTable insert new element
             insert(element);
         } else {
-            // Verify if HashTable isFull!
-            throw new HastTableOverFlowException("HashTable OverFlow!");
+            //If HashTable no resizable (this.reSize), verify if HashTable isFull then throw exception!
+            if (isFull()) {
+                throw new HastTableOverflowException("HashTable OverFlow!");
+            } else {
+                throw new ProbingFailedException("Failed to insert element: no available slot after quadratic probing.");
+
+            }
         }
     }
 
@@ -115,8 +122,12 @@ public class HashTableOpenAddressQuadraticProbingImpl<T extends AbstractHashTabl
                 }
                 COLLISIONS++;
                 i++;
-            } while (i != table.length);
-            logger.error("Element no relocate {}", item);
+            } while (i != this.tableSize);
+
+            //Never pass here because always size HashTable is doubling
+            if (i == this.tableSize) {
+                logger.error("Element no relocate {}", item);
+            }
         }
         logger.debug("ReHashing finished");
     }

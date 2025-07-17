@@ -1,6 +1,6 @@
 package br.com.fabex.dataofstructs.hashtable.address.open.impl;
 
-import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverFlowException;
+import br.com.fabex.dataofstructs.hashtable.exception.HastTableOverflowException;
 import br.com.fabex.dataofstructs.hashtable.hashfunction.address.closed.HashFunctionClosedAddressMethodEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -81,11 +81,11 @@ class HashTableOpenAddressLinearProbingImplTest {
         htoalp.insert(new CustomStorableTest(1L, "Edgar"));
         CustomStorableTest newElement = new CustomStorableTest(2L, "Lucas");
         //Act
-        HastTableOverFlowException exception = Assertions.assertThrows(HastTableOverFlowException.class,
+        HastTableOverflowException exception = Assertions.assertThrows(HastTableOverflowException.class,
                 () -> htoalp.insert(newElement));
         //Asserts
         Assertions.assertEquals("HashTable OverFlow!", exception.getMessage());
-        Assertions.assertEquals(HastTableOverFlowException.class, exception.getClass());
+        Assertions.assertEquals(HastTableOverflowException.class, exception.getClass());
         Assertions.assertTrue(htoalp.isFull());
         Assertions.assertEquals(1, htoalp.capacity());
     }
@@ -383,7 +383,7 @@ class HashTableOpenAddressLinearProbingImplTest {
         htoalp.insert(new CustomStorableTest(51L, "Masuka"));
         htoalp.insert(new CustomStorableTest(77L, "Anthony"));
         CustomStorableTest newElement = new CustomStorableTest(2L, "Lucas");
-        int oldSize = htoalp.size();
+        int oldSCapacity = htoalp.capacity();
         htoalp.showDisplay();
 
         //Act
@@ -394,7 +394,7 @@ class HashTableOpenAddressLinearProbingImplTest {
         Assertions.assertNotNull(htoalp.search(newElement));
         Assertions.assertNotEquals(-1, htoalp.indexOf(newElement));
         Assertions.assertFalse(htoalp.isFull());
-        Assertions.assertNotEquals(oldSize, htoalp.capacity());
+        Assertions.assertNotEquals(oldSCapacity, htoalp.capacity());
         Assertions.assertEquals(6, htoalp.capacity());
         Assertions.assertEquals(4, htoalp.size());
     }
