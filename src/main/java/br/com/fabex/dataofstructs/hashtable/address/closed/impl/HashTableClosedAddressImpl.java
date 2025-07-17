@@ -12,7 +12,6 @@ import java.util.Optional;
 public class HashTableClosedAddressImpl<T> extends AbstractHashTableClosedAddress<T> {
 
     public HashTableClosedAddressImpl(HashFunctionClosedAddressMethodEnum methodEnum, int desiredSize) {
-        //Inicialmente apenas com metodo de multiplicação
         this.hashFunction = HashFunctionClosedAddressFactory.createHashFunction(methodEnum, desiredSize);
         this.initiateInternalTable(desiredSize);
     }
