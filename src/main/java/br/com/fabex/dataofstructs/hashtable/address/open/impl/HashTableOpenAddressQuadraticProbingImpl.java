@@ -13,7 +13,7 @@ public class HashTableOpenAddressQuadraticProbingImpl<T extends AbstractHashTabl
     private static final Logger logger = LoggerFactory.getLogger(HashTableOpenAddressQuadraticProbingImpl.class);
     private final HashFunctionClosedAddressMethodEnum methodEnum;
     private final boolean reSize;
-    /* Constant HashFunction */
+    /* Constants for hash function quadratic */
     private final int c1;
     private final int c2;
 

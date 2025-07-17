@@ -75,7 +75,7 @@ class HashTableOpenAddressLinearProbingImplTest {
     }
 
     @Test
-    void insertWithHashFunctionDivisionWhenIsFulAndThrowHashTableOverFlowExceptionTes() {
+    void insertWithHashFunctionDivisionWhenIsFulAndThrowHashTableOverFlowExceptionTest() {
         //Arrange
         HashTableOpenAddressLinearProbingImpl<CustomStorableTest> htoalp = new HashTableOpenAddressLinearProbingImpl<>(1, HashFunctionClosedAddressMethodEnum.DIVISION);
         htoalp.insert(new CustomStorableTest(1L, "Edgar"));
