@@ -1,5 +1,8 @@
 package br.com.fabex.algorithms.sorting.linear;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 import java.util.function.UnaryOperator;
 
@@ -7,6 +10,8 @@ import java.util.function.UnaryOperator;
 import static br.com.fabex.util.ArrayUtils.printArray;
 
 public class LinearSorting {
+
+    private static final Logger logger = LoggerFactory.getLogger(LinearSorting.class);
 
     public static void insertAndSort(int[] array, int endIndex, int newElement) {
         for (int i = 0; i < endIndex; i++) {
@@ -241,7 +246,7 @@ public class LinearSorting {
         int[] array = new int[10];
         Arrays.fill(array, Integer.MAX_VALUE);
 
-        System.out.println("## Insert and Sort");
+        logger.debug("## Insert and Sort");
 
         insertAndSort(array, 1, 31);
         printArray(array);
