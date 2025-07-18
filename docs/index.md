@@ -16,6 +16,7 @@ Este documento serve como índice para a documentação detalhada de todos os al
 - [Listas Encadeadas](data-structures/linkedlist.md)
 - [Filas](data-structures/queues.md)
 - [Pilhas](data-structures/stacks.md)
+- [Tabelas Hash](data-structures/hashtables.md)
 
 ## Algoritmos para Problemas Específicos
 - [Palíndromo](algorithms/palindrome.md)

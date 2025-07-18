@@ -20,6 +20,7 @@ O projeto está organizado nas seguintes categorias principais:
 - Listas Encadeadas
 - Filas
 - Pilhas
+- Tabelas Hash (Endereçamento Aberto e Fechado)
 
 ### Algoritmos Específicos
 - Verificação de Palíndromo
