@@ -2,19 +2,6 @@ package br.com.fabex.dataofstructs.trees.bst;
 
 public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinarySearchTree<T> {
 
-    public BinarySearchTreeImpl() {
-        //        this.root = new Node<>((T) (Integer) 5);
-//        Node<T> two = new Node<>((T) (Integer) 3);
-//        two.setParent(this.root);
-//        this.root.setLeftChild(two);
-//
-//        Node<T> three = new Node<>((T) (Integer) 6);
-//        three.setParent(this.root);
-//        this.root.setRightChild(three);
-//
-//        //new Node<>((T) (Integer) 1, this.root, new Node<>((T) (Integer) 0), new Node<>((T) (Integer) 2));
-    }
-
     @Override
     public void inOrderTreeWalk(Node<T> node) {
         // TODO document why this method is empty
@@ -44,17 +31,32 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
 
     @Override
     public Node<T> treeMinimum(Node<T> node) {
-        return null;
+        while (null != node && null != node.getLeftChild()) {
+            node = node.getLeftChild();
+        }
+        return node;
     }
 
     @Override
     public Node<T> treeMaximum(Node<T> node) {
-        return null;
+        while (null != node && null != node.getRightChild()) {
+            node = node.getRightChild();
+        }
+        return node;
     }
 
     @Override
     public Node<T> treeSuccessor(Node<T> node) {
-        return null;
+        if (null != node.getRightChild()) {
+            return treeMinimum(node.getRightChild());
+        } else {
+            Node<T> aux = node.getParent();
+            while (null != aux && node == aux.getRightChild()) {
+                node = aux;
+                aux = aux.getParent();
+            }
+            return aux;
+        }
     }
 
     @Override
