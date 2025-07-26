@@ -61,7 +61,16 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
 
     @Override
     public Node<T> treePredecessor(Node<T> node) {
-        return null;
+        if (null != node.getLeftChild()) {
+            return treeMinimum(node.getLeftChild());
+        } else {
+            Node<T> aux = node.getParent();
+            while (null != aux && node == aux.getLeftChild()) {
+                node = aux;
+                aux = aux.getParent();
+            }
+            return aux;
+        }
     }
 
     @Override
@@ -70,18 +79,21 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
         Node<T> findParent = null;
         while (null != rootTmp) {
             findParent = rootTmp;
+            //Go to left child
             if (newNode.getKey().compareTo(rootTmp.getKey()) < 0) {
                 rootTmp = rootTmp.getLeftChild();
-            } else {
+            } else { //Go to right child
                 rootTmp = rootTmp.getRightChild();
             }
         }
+        //Set founded parent
         newNode.setParent(findParent);
+        //If node is root
         if (null == findParent) {
             this.root = newNode;
-        } else if (newNode.getKey().compareTo(findParent.getKey()) < 0) {
+        } else if (newNode.getKey().compareTo(findParent.getKey()) < 0) { //If newNode is left child of your parent
             findParent.setLeftChild(newNode);
-        } else {
+        } else { //If newNode is right child of your parent
             findParent.setRightChild(newNode);
         }
         this.countNodes++;
@@ -110,6 +122,15 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
             transplant(node, node.getLeftChild());
         } else {
             Node<T> aux = treeMinimum(node.getRightChild());
+            if (aux != node.getRightChild()) {
+                this.transplant(aux, aux.getRightChild());
+                aux.setRightChild(node.getRightChild());
+                aux.getRightChild().setParent(aux);
+            }
+            transplant(node, aux);
+            aux.setLeftChild(node.getLeftChild());
+            aux.getLeftChild().setParent(aux);
         }
+        this.countNodes--;
     }
 }
