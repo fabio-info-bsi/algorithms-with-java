@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BinarySearchTreeImplTest {
 
     @Test
-    void treeSearchTestWhenNodeIsRootAndTreeIsEmptyTest() {
+    void treeSearchWhenNodeIsRootAndTreeIsEmptyTest() {
         //Arrange
         BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
 
@@ -20,7 +20,7 @@ class BinarySearchTreeImplTest {
     }
 
     @Test
-    void treeSearchTestWhenNodeIsRootAndTreeIsNotEmptyTest() {
+    void treeSearchWhenNodeIsRootAndTreeIsNotEmptyTest() {
         //Arrange
         BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
         Node<Integer> root = new Node<>(5);
@@ -41,7 +41,7 @@ class BinarySearchTreeImplTest {
     }
 
     @Test
-    void treeSearchTestWhenChildIsLeftTest() {
+    void treeSearchWhenChildIsLeftTest() {
         //Arrange
         BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
         ibst.treeInsert(new Node<>(5));
@@ -60,7 +60,7 @@ class BinarySearchTreeImplTest {
     }
 
     @Test
-    void treeSearchTestWhenChildIsRightTest() {
+    void treeSearchWhenChildIsRightTest() {
         //Arrange
         BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
         ibst.treeInsert(new Node<>(5));
@@ -72,6 +72,77 @@ class BinarySearchTreeImplTest {
 
         //Act
         Node<Integer> searchedNode = ibst.treeSearch(ibst.root, 6);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(6, searchedNode.getKey());
+    }
+
+    @Test
+    void iterativeTreeSearchWhenNodeIsRootAndTreeIsEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, -1);
+
+        //Asserts
+        Assertions.assertNull(searchedNode);
+    }
+
+    @Test
+    void iterativeTreeSearchWhenNodeIsRootAndTreeIsNotEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        Node<Integer> root = new Node<>(5);
+        ibst.treeInsert(root);
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, 5);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(root.getKey(), searchedNode.getKey());
+        Assertions.assertEquals(5, searchedNode.getKey());
+    }
+
+    @Test
+    void iterativeTreeSearchWhenChildIsLeftTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, 1);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(1, searchedNode.getKey());
+    }
+
+    @Test
+    void iterativeTreeSearchWhenChildIsRightTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, 6);
 
         //Asserts
         Assertions.assertNotNull(searchedNode);
@@ -319,5 +390,65 @@ class BinarySearchTreeImplTest {
         Assertions.assertNull(ibst.treeSearch(ibst.root, 15));
         Assertions.assertEquals(new Node<>(6).getKey(), ibst.getRoot().getKey());
         Assertions.assertEquals(7, ibst.getCountNodes());
+    }
+
+    @Test
+    void inOrderTreeWalkTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+
+        //Act & Asserts
+        Assertions.assertDoesNotThrow(() -> ibst.inOrderTreeWalk(ibst.root));
+    }
+
+    @Test
+    void preOrderTreeWalkTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+
+        //Act & Asserts
+        Assertions.assertDoesNotThrow(() -> ibst.preOrderTreeWalk(ibst.root));
+    }
+
+    @Test
+    void posOrderTreeWalkTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+
+        //Act & Asserts
+        Assertions.assertDoesNotThrow(() -> ibst.posOrderTreeWalk(ibst.root));
     }
 }

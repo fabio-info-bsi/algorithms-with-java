@@ -16,6 +16,8 @@ public abstract class AbstractBinarySearchTree<T extends Comparable<T>> {
 
     public abstract void preOrderTreeWalk(Node<T> node);
 
+    public abstract void posOrderTreeWalk(Node<T> node);
+
     public abstract Node<T> treeSearch(Node<T> root, T key);
 
     public abstract Node<T> iterativeTreeSearch(Node<T> root, T key);
@@ -28,12 +30,7 @@ public abstract class AbstractBinarySearchTree<T extends Comparable<T>> {
 
     public abstract Node<T> treePredecessor(Node<T> node);
 
-    //    public abstract void treeInsert(Node<T> root, Node<T> node);
     public abstract void treeInsert(Node<T> node);
 
-//    public abstract void transplant(Node<T> root, Node<T> u, Node<T> v);
-//    public abstract void transplant(Node<T> u, Node<T> v);
-
-    //    public abstract void treeDelete(Node<T> root, Node<T> node);
     public abstract void treeDelete(Node<T> node);
 }

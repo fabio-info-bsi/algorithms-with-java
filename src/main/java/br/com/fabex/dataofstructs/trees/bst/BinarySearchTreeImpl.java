@@ -1,15 +1,37 @@
 package br.com.fabex.dataofstructs.trees.bst;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinarySearchTree<T> {
+
+    private static final Logger logger = LoggerFactory.getLogger(BinarySearchTreeImpl.class);
 
     @Override
     public void inOrderTreeWalk(Node<T> node) {
-        // TODO document why this method is empty
+        if (null != node) {
+            inOrderTreeWalk(node.getLeftChild());
+            logger.debug("{}", node.getKey());
+            inOrderTreeWalk(node.getRightChild());
+        }
     }
 
     @Override
     public void preOrderTreeWalk(Node<T> node) {
-        // TODO document why this method is empty
+        if (null != node) {
+            logger.debug("{}", node.getKey());
+            preOrderTreeWalk(node.getLeftChild());
+            preOrderTreeWalk(node.getRightChild());
+        }
+    }
+
+    @Override
+    public void posOrderTreeWalk(Node<T> node) {
+        if (null != node) {
+            posOrderTreeWalk(node.getLeftChild());
+            posOrderTreeWalk(node.getRightChild());
+            logger.debug("{}", node.getKey());
+        }
     }
 
     @Override
@@ -26,7 +48,14 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
 
     @Override
     public Node<T> iterativeTreeSearch(Node<T> root, T key) {
-        return null;
+        while (null != root && !key.equals(root.getKey())) {
+            if (key.compareTo(root.getKey()) < 0) {
+                root = root.getLeftChild();
+            } else {
+                root = root.getRightChild();
+            }
+        }
+        return root;
     }
 
     @Override
