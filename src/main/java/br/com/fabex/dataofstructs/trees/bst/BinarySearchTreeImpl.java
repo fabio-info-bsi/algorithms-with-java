@@ -91,7 +91,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
     @Override
     public Node<T> treePredecessor(Node<T> node) {
         if (null != node.getLeftChild()) {
-            return treeMinimum(node.getLeftChild());
+            return treeMaximum(node.getLeftChild());
         } else {
             Node<T> aux = node.getParent();
             while (null != aux && node == aux.getLeftChild()) {
