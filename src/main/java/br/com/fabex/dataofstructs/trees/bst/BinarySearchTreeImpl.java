@@ -135,7 +135,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
         } else if (rootNode == rootNode.getParent().getLeftChild()) { // Parent node of the rootNode set replaceNode to left child
             rootNode.getParent().setLeftChild(replaceNode);
         } else { // Parent node of the rootNode set replaceNode to right child
-            rootNode.getParent().getParent().setRightChild(replaceNode);
+            rootNode.getParent().setRightChild(replaceNode);
         }
         // Point to parent of the rootNode if replaceNode is not null ( subtree above of the rootNode)
         if (null != replaceNode) {
@@ -145,13 +145,14 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
 
     @Override
     public void treeDelete(Node<T> node) {
-        if (null == node.getLeftChild()) {
+        if (null == node.getLeftChild()) { //#1 case
             transplant(node, node.getRightChild());
-        } else if (null == node.getRightChild()) {
+        } else if (null == node.getRightChild()) { //#2 case
             transplant(node, node.getLeftChild());
-        } else {
-            Node<T> aux = treeMinimum(node.getRightChild());
-            if (aux != node.getRightChild()) {
+        } else { //#3 case
+            Node<T> aux = treeMinimum(node.getRightChild()); //Get minimum node in right subtree
+            //#4 case
+            if (aux != node.getRightChild()) { // If minimum node is right child of the deleted node
                 this.transplant(aux, aux.getRightChild());
                 aux.setRightChild(node.getRightChild());
                 aux.getRightChild().setParent(aux);
