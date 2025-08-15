@@ -1,0 +1,653 @@
+package br.com.fabex.dataofstructs.trees.bst;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+class BinarySearchTreeImplTest {
+
+    @Test
+    void treeSearchWhenNodeIsRootAndTreeIsEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+
+        //Act
+        Node<Integer> searchedNode = ibst.treeSearch(ibst.root, -1);
+
+        //Asserts
+        Assertions.assertNull(searchedNode);
+    }
+
+    @Test
+    void treeSearchWhenNodeIsRootAndTreeIsNotEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        Node<Integer> root = new Node<>(5);
+        ibst.treeInsert(root);
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.treeSearch(ibst.root, 5);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(root.getKey(), searchedNode.getKey());
+        Assertions.assertEquals(5, searchedNode.getKey());
+    }
+
+    @Test
+    void treeSearchWhenChildIsLeftTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.treeSearch(ibst.root, 1);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(1, searchedNode.getKey());
+    }
+
+    @Test
+    void treeSearchWhenChildIsRightTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.treeSearch(ibst.root, 6);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(6, searchedNode.getKey());
+    }
+
+    @Test
+    void iterativeTreeSearchWhenNodeIsRootAndTreeIsEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, -1);
+
+        //Asserts
+        Assertions.assertNull(searchedNode);
+    }
+
+    @Test
+    void iterativeTreeSearchWhenNodeIsRootAndTreeIsNotEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        Node<Integer> root = new Node<>(5);
+        ibst.treeInsert(root);
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, 5);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(root.getKey(), searchedNode.getKey());
+        Assertions.assertEquals(5, searchedNode.getKey());
+    }
+
+    @Test
+    void iterativeTreeSearchWhenChildIsLeftTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, 1);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(1, searchedNode.getKey());
+    }
+
+    @Test
+    void iterativeTreeSearchWhenChildIsRightTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedNode = ibst.iterativeTreeSearch(ibst.root, 6);
+
+        //Asserts
+        Assertions.assertNotNull(searchedNode);
+        Assertions.assertEquals(6, searchedNode.getKey());
+    }
+
+    @Test
+    void treeInsertWhenInsertOnlyOneNodeTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+
+        //Act
+        Node<Integer> root = new Node<>(1);
+        ibst.treeInsert(root);
+
+        //Asserts
+        Assertions.assertNotNull(ibst.getRoot());
+        Assertions.assertEquals(root.getKey(), ibst.getRoot().getKey());
+        Assertions.assertEquals(1, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeInsertWhenInsertMoreTheOneNodeTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        Node<Integer> root = new Node<>(5);
+
+        //Act
+        ibst.treeInsert(root);
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Asserts
+        Assertions.assertNotNull(ibst.getRoot());
+        Assertions.assertEquals(new Node<>(5).getKey(), ibst.getRoot().getKey());
+        Assertions.assertEquals(6, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeMinimumWhenTreeIsEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+
+        //Act
+        Node<Integer> searchedMinimum = ibst.treeMinimum(ibst.root);
+
+        //Asserts
+        Assertions.assertNull(searchedMinimum);
+        Assertions.assertEquals(0, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeMinimumWhenThereIsOneNodeTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+
+        //Act
+        Node<Integer> searchedMinimum = ibst.treeMinimum(ibst.root);
+
+        //Asserts
+        Assertions.assertNotNull(searchedMinimum);
+        Assertions.assertEquals(new Node<>(5).getKey(), searchedMinimum.getKey());
+        Assertions.assertEquals(1, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeMinimumWhenThereIsMoreTheOneNodeTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        Node<Integer> root = new Node<>(5);
+        ibst.treeInsert(root);
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedMinimum = ibst.treeMinimum(ibst.root);
+
+        //Asserts
+        Assertions.assertNotNull(searchedMinimum);
+        Assertions.assertEquals(new Node<>(1).getKey(), searchedMinimum.getKey());
+    }
+
+    @Test
+    void treeMaximumWhenTreeIsEmptyTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+
+        //Act
+        Node<Integer> searchedMaximum = ibst.treeMaximum(ibst.root);
+
+        //Asserts
+        Assertions.assertNull(searchedMaximum);
+        Assertions.assertEquals(0, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeMaximumWhenThereIsOneNodeTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(5));
+
+        //Act
+        Node<Integer> searchedMaximum = ibst.treeMaximum(ibst.root);
+
+        //Asserts
+        Assertions.assertNotNull(searchedMaximum);
+        Assertions.assertEquals(new Node<>(5).getKey(), searchedMaximum.getKey());
+        Assertions.assertEquals(1, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeMaximumWhenThereIsMoreTheOneNodeTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        Node<Integer> root = new Node<>(5);
+        ibst.treeInsert(root);
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(1));
+        ibst.treeInsert(new Node<>(2));
+
+        //Act
+        Node<Integer> searchedMaximum = ibst.treeMaximum(ibst.root);
+
+        //Asserts
+        Assertions.assertNotNull(searchedMaximum);
+        Assertions.assertEquals(new Node<>(6).getKey(), searchedMaximum.getKey());
+    }
+
+    @Test
+    void treeSuccessorWhenNodeIsRootTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 15);
+
+        //Act
+        Node<Integer> nodePredecessor = ibst.treeSuccessor(nodeSearched);
+
+        //Asserts
+        Assertions.assertNotNull(nodeSearched);
+        Assertions.assertEquals(new Node<>(15).getKey(), nodeSearched.getKey());
+        Assertions.assertNull(nodePredecessor);
+    }
+
+    @Test
+    void treeSuccessorWhenNodeDontHaveLeftChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 13);
+
+        //Act
+        Node<Integer> nodePredecessor = ibst.treeSuccessor(nodeSearched);
+
+        //Asserts
+        Assertions.assertNotNull(nodeSearched);
+        Assertions.assertEquals(new Node<>(13).getKey(), nodeSearched.getKey());
+        Assertions.assertNotNull(nodePredecessor);
+        Assertions.assertEquals(new Node<>(15).getKey(), nodePredecessor.getKey());
+    }
+
+    @Test
+    void treeSuccessorWhenNodeHaveRightChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 15);
+
+        //Act
+        Node<Integer> nodePredecessor = ibst.treeSuccessor(nodeSearched);
+
+        //Asserts
+        Assertions.assertNotNull(nodeSearched);
+        Assertions.assertEquals(new Node<>(15).getKey(), nodeSearched.getKey());
+        Assertions.assertNotNull(nodePredecessor);
+        Assertions.assertEquals(new Node<>(17).getKey(), nodePredecessor.getKey());
+    }
+
+    @Test
+    void treePredecessorWhenNodeIsRootTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 15);
+
+        //Act
+        Node<Integer> nodePredecessor = ibst.treePredecessor(nodeSearched);
+
+        //Asserts
+        Assertions.assertNotNull(nodeSearched);
+        Assertions.assertEquals(new Node<>(15).getKey(), nodeSearched.getKey());
+        Assertions.assertNull(nodePredecessor);
+    }
+
+    @Test
+    void treePredecessorWhenNodeDontHaveLeftChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 6);
+
+        //Act
+        Node<Integer> nodePredecessor = ibst.treePredecessor(nodeSearched);
+
+        //Asserts
+        Assertions.assertNotNull(nodeSearched);
+        Assertions.assertEquals(new Node<>(6).getKey(), nodeSearched.getKey());
+        Assertions.assertNotNull(nodePredecessor);
+        Assertions.assertEquals(new Node<>(4).getKey(), nodePredecessor.getKey());
+    }
+
+    @Test
+    void treePredecessorWhenNodeHaveRightChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 9);
+
+        //Act
+        Node<Integer> nodePredecessor = ibst.treePredecessor(nodeSearched);
+
+        //Asserts
+        Assertions.assertNotNull(nodeSearched);
+        Assertions.assertEquals(new Node<>(9).getKey(), nodeSearched.getKey());
+        Assertions.assertNotNull(nodePredecessor);
+        Assertions.assertEquals(new Node<>(7).getKey(), nodePredecessor.getKey());
+    }
+
+    @Test
+    void treeDeleteWhenNodeDeletedIsRootAndHaveRightChildAndHaveLeftChildAndNodeMinimumIsNotRightChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 15);
+
+        //Act
+        ibst.treeDelete(nodeSearched);
+
+        //Asserts
+        Assertions.assertNull(ibst.treeSearch(ibst.root, 15));
+        Assertions.assertEquals(new Node<>(17).getKey(), ibst.root.getKey());
+        Assertions.assertEquals(new Node<>(18).getKey(), ibst.root.getRightChild().getKey());
+        Assertions.assertEquals(new Node<>(6).getKey(), ibst.root.getLeftChild().getKey());
+        Assertions.assertEquals(10, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeDeleteWhenNodeDeletedIsRootAndHaveRightChildAndDontHaveLeftChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 15);
+
+        //Act
+        ibst.treeDelete(nodeSearched);
+
+        //Asserts
+        Assertions.assertNull(ibst.treeSearch(ibst.root, 15));
+        Assertions.assertEquals(new Node<>(18).getKey(), ibst.root.getKey());
+        Assertions.assertEquals(new Node<>(17).getKey(), ibst.root.getLeftChild().getKey());
+        Assertions.assertEquals(new Node<>(20).getKey(), ibst.root.getRightChild().getKey());
+        Assertions.assertEquals(3, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeDeleteWhenNodeDeletedIsRootAndHaveRightChildAndHaveLeftChildAndNodeMinimumIsRightChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 15);
+
+        //Act
+        ibst.treeDelete(nodeSearched);
+
+        //Asserts
+        Assertions.assertNull(ibst.treeSearch(ibst.root, 15));
+        Assertions.assertEquals(new Node<>(17).getKey(), ibst.root.getKey());
+        Assertions.assertEquals(new Node<>(20).getKey(), ibst.root.getRightChild().getKey());
+        Assertions.assertEquals(new Node<>(6).getKey(), ibst.root.getLeftChild().getKey());
+        Assertions.assertEquals(5, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeDeleteWhenNodeDeletedIsRootAndDontHaveRightChildAndHaveLeftChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 15);
+
+        //Act
+        ibst.treeDelete(nodeSearched);
+
+        //Asserts
+        Assertions.assertNull(ibst.treeSearch(ibst.root, 15));
+        Assertions.assertEquals(new Node<>(6).getKey(), ibst.getRoot().getKey());
+        Assertions.assertEquals(7, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeDeleteWhenNodeDeletedIsNotRootAndDontHaveRightChildAndHaveLeftChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 13);
+
+        //Act
+        ibst.treeDelete(nodeSearched);
+
+        //Asserts
+        Assertions.assertNull(ibst.treeSearch(ibst.root, 13));
+        Assertions.assertEquals(new Node<>(9).getKey(), ibst.treeSearch(ibst.root, 7).getRightChild().getKey());
+        Assertions.assertEquals(10, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeDeleteWhenNodeDeletedIsNotRootAndHaveRightChildAndDontHaveLeftChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 7);
+
+        //Act
+        ibst.treeDelete(nodeSearched);
+
+        //Asserts
+        Assertions.assertNull(ibst.treeSearch(ibst.root, 7));
+        Assertions.assertEquals(new Node<>(13).getKey(), ibst.treeSearch(ibst.root, 6).getRightChild().getKey());
+        Assertions.assertEquals(10, ibst.getCountNodes());
+    }
+
+    @Test
+    void treeDeleteWhenNodeDeletedIsNotRootAndHaveRightChildAndHaveLeftChildAndNodeMinimumIsNotRightChildTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+        Node<Integer> nodeSearched = ibst.treeSearch(ibst.root, 6);
+
+        //Act
+        ibst.treeDelete(nodeSearched);
+
+        //Asserts
+        Assertions.assertNull(ibst.treeSearch(ibst.root, 6));
+        Assertions.assertEquals(new Node<>(7).getKey(), ibst.root.getLeftChild().getKey());
+        Assertions.assertEquals(10, ibst.getCountNodes());
+    }
+
+    @Test
+    void inOrderTreeWalkTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+
+        //Act & Asserts
+        Assertions.assertDoesNotThrow(() -> ibst.inOrderTreeWalk(ibst.root));
+    }
+
+    @Test
+    void preOrderTreeWalkTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+
+        //Act & Asserts
+        Assertions.assertDoesNotThrow(() -> ibst.preOrderTreeWalk(ibst.root));
+    }
+
+    @Test
+    void posOrderTreeWalkTest() {
+        //Arrange
+        BinarySearchTreeImpl<Integer> ibst = new BinarySearchTreeImpl<>();
+        ibst.treeInsert(new Node<>(15));
+        ibst.treeInsert(new Node<>(6));
+        ibst.treeInsert(new Node<>(3));
+        ibst.treeInsert(new Node<>(2));
+        ibst.treeInsert(new Node<>(4));
+        ibst.treeInsert(new Node<>(7));
+        ibst.treeInsert(new Node<>(13));
+        ibst.treeInsert(new Node<>(9));
+        ibst.treeInsert(new Node<>(18));
+        ibst.treeInsert(new Node<>(17));
+        ibst.treeInsert(new Node<>(20));
+
+        //Act & Asserts
+        Assertions.assertDoesNotThrow(() -> ibst.posOrderTreeWalk(ibst.root));
+    }
+}
