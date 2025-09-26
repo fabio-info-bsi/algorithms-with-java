@@ -3,6 +3,9 @@ package br.com.fabex.dataofstructs.trees.rbt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackTree<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(RedBlackTreeImpl.class);
@@ -35,10 +38,37 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
     }
 
     @Override
+    public void breadthFirstTreeWalk(RedBlackNode<T> redBlackNode) {
+        if (NULL.equals(redBlackNode)) {
+            return;
+        }
+        Queue<RedBlackNode<T>> queue = new LinkedList<>();
+        queue.offer(this.root);
+
+        while (!queue.isEmpty()) {
+            RedBlackNode<T> currentNode = queue.poll();
+            logger.debug("{}", currentNode);
+
+            if (!NULL.equals(currentNode.leftChild)) {
+                queue.offer(currentNode.leftChild);
+            }
+
+            if (!NULL.equals(currentNode.rightChild)) {
+                queue.offer(currentNode.rightChild);
+            }
+        }
+    }
+
+    @Override
     public RedBlackNode<T> treeSearch(RedBlackNode<T> root, T key) {
-        if (null == root || key.equals(root.key)) {
+        if (null == root || NULL.equals(root)) {
+            return null;
+        }
+
+        if (key.equals(root.key)) {
             return root;
         }
+
         if (key.compareTo(root.key) < 0) {
             return treeSearch(root.leftChild, key);
         } else {
@@ -48,14 +78,15 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
     @Override
     public RedBlackNode<T> iterativeTreeSearch(RedBlackNode<T> root, T key) {
-        while (null != root && !key.equals(root.key)) {
-            if (key.compareTo(root.key) < 0) {
-                root = root.leftChild;
-            } else {
-                root = root.rightChild;
-            }
-        }
-        return root;
+        throw new UnsupportedOperationException("Not implemented");
+//        while (null != root && !key.equals(root.key)) {
+//            if (key.compareTo(root.key) < 0) {
+//                root = root.leftChild;
+//            } else {
+//                root = root.rightChild;
+//            }
+//        }
+//        return root;
     }
 
     @Override
@@ -147,8 +178,11 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
             deletedNode = redBlackNode.leftChild;
             transplant(redBlackNode, redBlackNode.leftChild);
         } else {
-            //aux = treeMinimum(redBlackNode.rightChild);
-            aux = treeMaximum(redBlackNode.leftChild);
+            /* Two strategies:
+                1 - Minimum of the right child (aux = treeMinimum(redBlackNode.rightChild))
+                2 - Maximum ot the left child (aux = treeMaximum(redBlackNode.leftChild))
+            */
+            aux = treeMinimum(redBlackNode.rightChild);
             deletedNodeColor = aux.color;
             deletedNode = aux.rightChild;
             if (!aux.equals(redBlackNode.rightChild)) {
@@ -271,6 +305,7 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
                 if (Color.BLACK.equals(aux.leftChild.color) && Color.BLACK.equals(aux.rightChild.color)) {
                     aux.color = Color.RED;
+                    redBlackNode = redBlackNode.parent;
                 } else {
                     if (Color.BLACK.equals(aux.rightChild.color)) {
                         aux.leftChild.color = Color.BLACK;

@@ -22,6 +22,8 @@ public abstract class AbstractRedBlackTree<T extends Comparable<T>> {
 
     public abstract void posOrderTreeWalk(RedBlackNode<T> redBlackNode);
 
+    public abstract void breadthFirstTreeWalk(RedBlackNode<T> redBlackNode);
+
     public abstract RedBlackNode<T> treeSearch(RedBlackNode<T> root, T key);
 
     public abstract RedBlackNode<T> iterativeTreeSearch(RedBlackNode<T> root, T key);

@@ -3,6 +3,9 @@ package br.com.fabex.dataofstructs.trees.bst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinarySearchTree<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(BinarySearchTreeImpl.class);
@@ -31,6 +34,27 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> extends AbstractBinar
             posOrderTreeWalk(binarySearchNode.getLeftChild());
             posOrderTreeWalk(binarySearchNode.getRightChild());
             logger.debug("{}", binarySearchNode.getKey());
+        }
+    }
+
+    public void breadthFirstTreeWalk(BinarySearchNode<T> binarySearchNode) {
+        if (null == binarySearchNode) {
+            return;
+        }
+        Queue<BinarySearchNode<T>> queue = new LinkedList<>();
+        queue.offer(this.root);
+
+        while (!queue.isEmpty()) {
+            BinarySearchNode<T> currentNode = queue.poll();
+            logger.debug("{}", currentNode);
+
+            if (null != currentNode.getLeftChild()) {
+                queue.offer(currentNode.getLeftChild());
+            }
+
+            if (null != currentNode.getRightChild()) {
+                queue.offer(currentNode.getRightChild());
+            }
         }
     }
 
