@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.Random;
+
 class RedBlackTreeImplTest {
     private static final Logger logger = LoggerFactory.getLogger(RedBlackTreeImplTest.class);
 
@@ -138,25 +141,65 @@ class RedBlackTreeImplTest {
         // Quando nó removido tem pai e está a direita, não é folha, é BLACK, tem irmão e seu irmão é RED e tem rotação para direita
     void treeDeleteDeletando3() {
         //Arrange
-        //10, 5, 15, 2, 7, 12, 17, 13
+        //60, 129, 253, 276, 109, 27, 180, 19
+
         RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
-        irbt.treeInsert(new RedBlackNode<>(10));
-        irbt.treeInsert(new RedBlackNode<>(5));
-        irbt.treeInsert(new RedBlackNode<>(15));
-        irbt.treeInsert(new RedBlackNode<>(2));
-        RedBlackNode<Integer> deletedRedBlackNode = new RedBlackNode<>(7);
-        irbt.treeInsert(deletedRedBlackNode);
-        irbt.treeInsert(new RedBlackNode<>(12));
-        irbt.treeInsert(new RedBlackNode<>(17));
-        irbt.treeInsert(new RedBlackNode<>(13));
+        int[] array = new int[]{60, 129, 253, 276, 109, 27, 180, 19};
+
+        for (int i : array) {
+            irbt.treeInsert(new RedBlackNode<>(i));
+        }
+
+        //109
+        int index = 4;
+        RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, array[index]);
 
         irbt.breadthFirstTreeWalk(irbt.root);
         irbt.treeDelete(deletedRedBlackNode);
         logger.debug("after remove node {}", deletedRedBlackNode);
 
+        irbt.breadthFirstTreeWalk(irbt.root);
+    }
+
+    @Test
+        // Quando nó removido tem pai e está a direita, não é folha, é BLACK, tem irmão e seu irmão é RED e tem rotação para direita
+    void treeDeleteDeletando4() {
+//        //For find cases random
+//        Random random = new Random();
+//        for (int i = 0; i < 20; i++) {
+//
+//            int[] array = Arrays.stream(random.ints(8, 1, 300).toArray()).distinct().toArray();
+//
+//            RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+//            for (int j = 0; j < array.length; j++) {
+//                irbt.treeInsert(new RedBlackNode<>(array[j]));
+//            }
+//            int indexRandom = random.nextInt(array.length);
+//            RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, array[indexRandom]);
+//            System.out.println(" = = = = = =");
+//            System.out.println(Arrays.toString(array));
+//            System.out.println("=> "+ deletedRedBlackNode);
+//            irbt.treeDelete(deletedRedBlackNode);
+//        }
+
+        //Arrange
+        //254, 30, 61, 271, 2, 52, 163, 207
+        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+        int[] array = new int[]{254, 30, 61, 271, 2, 52, 163, 207};
+
+        for (int i : array) {
+            irbt.treeInsert(new RedBlackNode<>(i));
+        }
+
+        //254
+        int index = 0;
+        RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, array[index]);
 
         irbt.breadthFirstTreeWalk(irbt.root);
-        //irbt.inOrderTreeWalk(irbt.root);
+        irbt.treeDelete(deletedRedBlackNode);
+        logger.debug("after remove node {}", deletedRedBlackNode);
+
+        irbt.breadthFirstTreeWalk(irbt.root);
     }
 
     @Test
