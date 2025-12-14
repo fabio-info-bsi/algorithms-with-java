@@ -322,6 +322,184 @@ class RedBlackTreeImplTest {
     }
 
     @Test
+    @DisplayName("Should find minimum node in tree")
+    void shouldFindMinimumNode() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+
+        //Act
+        RedBlackNode<Integer> minimum = irbt.treeMinimum(irbt.root);
+
+        //Assert
+        Assertions.assertNotNull(minimum);
+        Assertions.assertEquals(3, minimum.key);
+    }
+
+    @Test
+    @DisplayName("Should return null when finding minimum in empty tree")
+    void shouldReturnNullForMinimumInEmptyTree() {
+        //Act
+        RedBlackNode<Integer> minimum = irbt.treeMinimum(irbt.root);
+
+        //Assert
+        Assertions.assertNull(minimum);
+    }
+
+    @Test
+    @DisplayName("Should find maximum node in tree")
+    void shouldFindMaximumNode() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+
+        //Act
+        RedBlackNode<Integer> maximum = irbt.treeMaximum(irbt.root);
+
+        //Assert
+        Assertions.assertNotNull(maximum);
+        Assertions.assertEquals(20, maximum.key);
+    }
+
+    @Test
+    @DisplayName("Should return null when finding maximum in empty tree")
+    void shouldReturnNullForMaximumInEmptyTree() {
+        //Act
+        RedBlackNode<Integer> maximum = irbt.treeMaximum(irbt.root);
+
+        //Assert
+        Assertions.assertNull(maximum);
+    }
+
+    @Test
+    @DisplayName("Should find successor of node with right child")
+    void shouldFindSuccessorWithRightChild_() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+        RedBlackNode<Integer> node = irbt.treeSearch(irbt.root, 7);
+
+        //Act
+        RedBlackNode<Integer> successor = irbt.treeSuccessor(node);
+
+        //Assert
+        Assertions.assertNotNull(successor);
+        Assertions.assertEquals(15, successor.key);
+    }
+
+    @Test
+    @DisplayName("Should find successor of node with right child")
+    void shouldFindSuccessorWithRightChild_2() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+        RedBlackNode<Integer> node = irbt.treeSearch(irbt.root, 15);
+
+        //Act
+        RedBlackNode<Integer> successor = irbt.treeSuccessor(node);
+
+        //Assert
+        Assertions.assertNotNull(successor);
+        Assertions.assertEquals(17, successor.key);
+    }
+
+    @Test
+    @DisplayName("Should find successor of node without right child")
+    void shouldFindSuccessorWithoutRightChild() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        RedBlackNode<Integer> node = irbt.treeSearch(irbt.root, 7);
+
+        //Act
+        RedBlackNode<Integer> successor = irbt.treeSuccessor(node);
+
+        //Assert
+        Assertions.assertNotNull(successor);
+        Assertions.assertEquals(15, successor.key);
+    }
+
+    @Test
+    @DisplayName("Should find predecessor of node with left child")
+    void shouldFindPredecessorWithLeftChild() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(10));
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(5));
+        irbt.treeInsert(new RedBlackNode<>(30));
+        irbt.treeInsert(new RedBlackNode<>(7));
+
+        //Act
+        RedBlackNode<Integer> node = irbt.treeSearch(irbt.root, 30);
+        RedBlackNode<Integer> predecessor = irbt.treePredecessor(node);
+
+        //Assert
+        Assertions.assertNotNull(predecessor);
+        Assertions.assertEquals(15, predecessor.key);
+    }
+
+    @Test
+    @DisplayName("Should find predecessor of node with left child")
+    void shouldFindPredecessorWithLeftChild_2() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(10));
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(5));
+        irbt.treeInsert(new RedBlackNode<>(30));
+        irbt.treeInsert(new RedBlackNode<>(7));
+
+        //Act
+        RedBlackNode<Integer> node = irbt.treeSearch(irbt.root, 10);
+        RedBlackNode<Integer> predecessor = irbt.treePredecessor(node);
+
+        //Assert
+        Assertions.assertNotNull(predecessor);
+        Assertions.assertEquals(7, predecessor.key);
+    }
+
+    @Test
+    @DisplayName("Should find predecessor of node without left child")
+    void shouldFindPredecessorWithoutLeftChild() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        RedBlackNode<Integer> node = irbt.treeSearch(irbt.root, 3);
+
+        //Act
+        RedBlackNode<Integer> predecessor = irbt.treePredecessor(node);
+
+        //Assert
+        Assertions.assertNotNull(predecessor);
+        Assertions.assertEquals(15, predecessor.key);
+    }
+
+    @Test
     @DisplayName("Should return null when searching for non-existing node")
     void shouldReturnNullForNonExistingNode() {
         //Arrange
@@ -537,7 +715,7 @@ class RedBlackTreeImplTest {
 //            Integer deletedKey = list.get(indexRandom);
 //            RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, deletedKey);
 //            irbt.treeDelete(deletedRedBlackNode);
-//
+//            RedBlackNode<Integer> predecessor = irbt.treePredecessor(irbt.root);
 //            //removing node
 //            list = list.stream().filter(item -> !item.equals(deletedKey)).toList();
 //
@@ -547,7 +725,7 @@ class RedBlackTreeImplTest {
 //            int[] inOrderArray = inOrderTest.stream().mapToInt(Integer::intValue).toArray();
 //            int[] originArray = list.stream().sorted().mapToInt(Integer::intValue).toArray();
 //            boolean isOrdered = Arrays.equals(originArray, inOrderArray);
-//            Assertions.assertTrue(isOrdered);
+////            Assertions.assertTrue(isOrdered);
 //        }
 //    }
 }

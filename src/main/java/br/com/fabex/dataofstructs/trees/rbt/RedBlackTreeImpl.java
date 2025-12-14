@@ -12,7 +12,7 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
     @Override
     public void inOrderTreeWalk(RedBlackNode<T> redBlackNode) {
-        if (!NULL.equals(redBlackNode)) {
+        if (null != redBlackNode && !NULL.equals(redBlackNode)) {
             inOrderTreeWalk(redBlackNode.leftChild);
             logger.debug("{}", redBlackNode.key);
             inOrderTreeWalk(redBlackNode.rightChild);
@@ -21,7 +21,7 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
     @Override
     public void preOrderTreeWalk(RedBlackNode<T> redBlackNode) {
-        if (!NULL.equals(redBlackNode)) {
+        if (null != redBlackNode && !NULL.equals(redBlackNode)) {
             logger.debug("{}", redBlackNode.key);
             preOrderTreeWalk(redBlackNode.leftChild);
             preOrderTreeWalk(redBlackNode.rightChild);
@@ -30,7 +30,7 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
     @Override
     public void posOrderTreeWalk(RedBlackNode<T> redBlackNode) {
-        if (!NULL.equals(redBlackNode)) {
+        if (null != redBlackNode && !NULL.equals(redBlackNode)) {
             posOrderTreeWalk(redBlackNode.leftChild);
             posOrderTreeWalk(redBlackNode.rightChild);
             logger.debug("{}", redBlackNode.key);
@@ -39,7 +39,7 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
     @Override
     public void breadthFirstTreeWalk(RedBlackNode<T> redBlackNode) {
-        if (NULL.equals(redBlackNode)) {
+        if (null == redBlackNode || NULL.equals(redBlackNode)) {
             return;
         }
         Queue<RedBlackNode<T>> queue = new LinkedList<>();
@@ -93,7 +93,7 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
     @Override
     public RedBlackNode<T> treeMaximum(RedBlackNode<T> redBlackNode) {
         while ((null != redBlackNode && !NULL.equals(redBlackNode))
-                && (null != redBlackNode.rightChild && !NULL.equals(redBlackNode.rightChild))) {
+                && (!NULL.equals(redBlackNode.rightChild))) {
             redBlackNode = redBlackNode.rightChild;
         }
         return redBlackNode;
@@ -101,11 +101,11 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
     @Override
     public RedBlackNode<T> treeSuccessor(RedBlackNode<T> redBlackNode) {
-        if (null != redBlackNode.rightChild) {
+        if (!NULL.equals(redBlackNode.rightChild)) {
             return treeMinimum(redBlackNode.rightChild);
         } else {
             RedBlackNode<T> aux = redBlackNode.parent;
-            while (null != aux && redBlackNode == aux.rightChild) {
+            while (redBlackNode == aux.rightChild && !NULL.equals(aux.parent)) {
                 redBlackNode = aux;
                 aux = aux.parent;
             }
@@ -115,11 +115,11 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
 
     @Override
     public RedBlackNode<T> treePredecessor(RedBlackNode<T> redBlackNode) {
-        if (null != redBlackNode.leftChild) {
+        if (!NULL.equals(redBlackNode.leftChild)) {
             return treeMaximum(redBlackNode.leftChild);
         } else {
             RedBlackNode<T> aux = redBlackNode.parent;
-            while (null != aux && redBlackNode == aux.leftChild) {
+            while (redBlackNode == aux.leftChild && !NULL.equals(aux.parent)) {
                 redBlackNode = aux;
                 aux = aux.parent;
             }
