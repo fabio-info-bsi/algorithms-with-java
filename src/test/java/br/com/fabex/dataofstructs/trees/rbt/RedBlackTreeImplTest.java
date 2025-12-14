@@ -118,7 +118,6 @@ class RedBlackTreeImplTest {
 
         //Act
         irbt.treeDelete(deletedRedBlackNode);
-        irbt.breadthFirstTreeWalk(irbt.root);
 
         //Asserts
         Assertions.assertNull(irbt.treeSearch(irbt.root, 3));
@@ -143,7 +142,6 @@ class RedBlackTreeImplTest {
 
         //Act
         irbt.treeDelete(deletedRedBlackNode);
-        irbt.breadthFirstTreeWalk(irbt.root);
 
         //Asserts
         Assertions.assertNull(irbt.treeSearch(irbt.root, 3));
@@ -168,7 +166,6 @@ class RedBlackTreeImplTest {
         irbt.treeInsert(new RedBlackNode<>(9));
 
         //Act
-        irbt.breadthFirstTreeWalk(irbt.root);
         irbt.treeDelete(deletedRedBlackNode);
 
         //Asserts
@@ -176,7 +173,6 @@ class RedBlackTreeImplTest {
         RedBlackNode<Integer> searched = irbt.treeSearch(irbt.root, 9);
         Assertions.assertEquals(8, searched.leftChild.key);
         Assertions.assertEquals(10, searched.rightChild.key);
-
     }
 
     @Test
@@ -226,6 +222,75 @@ class RedBlackTreeImplTest {
         //Asserts
         Assertions.assertNotNull(searched);
         Assertions.assertEquals(2, searched.key);
+    }
+
+    @Test
+    @DisplayName("Should perform in-order tree walk on empty tree")
+    void shouldPerformInOrderTreeWalkOnEmptyTree() {
+        //Act & Assert - Should not throw exception
+        irbt.inOrderTreeWalk(irbt.root);
+    }
+
+    @Test
+    @DisplayName("Should perform in-order tree walk on tree with nodes")
+    void shouldPerformInOrderTreeWalkOnTreeWithNodes() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+
+        //Act & Assert - Should not throw exception
+        irbt.inOrderTreeWalk(irbt.root);
+    }
+
+    @Test
+    @DisplayName("Should perform pre-order tree walk on empty tree")
+    void shouldPerformPreOrderTreeWalkOnEmptyTree() {
+        //Act & Assert - Should not throw exception
+        irbt.preOrderTreeWalk(irbt.root);
+    }
+
+    @Test
+    @DisplayName("Should perform pre-order tree walk on tree with nodes")
+    void shouldPerformPreOrderTreeWalkOnTreeWithNodes() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+
+        //Act & Assert - Should not throw exception
+        irbt.preOrderTreeWalk(irbt.root);
+    }
+
+    @Test
+    @DisplayName("Should perform post-order tree walk on empty tree")
+    void shouldPerformPostOrderTreeWalkOnEmptyTree() {
+        //Act & Assert - Should not throw exception
+        irbt.posOrderTreeWalk(irbt.root);
+    }
+
+    @Test
+    @DisplayName("Should perform post-order tree walk on tree with nodes")
+    void shouldPerformPostOrderTreeWalkOnTreeWithNodes() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+
+        //Act & Assert - Should not throw exception
+        irbt.posOrderTreeWalk(irbt.root);
     }
 
     @Test
@@ -419,4 +484,42 @@ class RedBlackTreeImplTest {
         Assertions.assertEquals(271, searched.rightChild.key);
         Assertions.assertEquals(Color.BLACK, searched.rightChild.color);
     }
+
+//    @Test
+//    @DisplayName("Should perform random deletion tests to validate tree integrity and ordering")
+//    void testRandomDeletionCases() {
+//        //For find cases random
+//        Random random = new Random();
+//        for (int i = 0; i < 20; i++) {
+//
+//            List<Integer> list = Arrays
+//                    .stream(random.ints(8_000_000,
+//                                    -1_000_000_000,
+//                                    1_000_000_000)
+//                            .toArray())
+//                    .distinct()
+//                    .boxed()
+//                    .toList();
+//
+//            RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+//            for (var item : list) {
+//                irbt.treeInsert(new RedBlackNode<>(item));
+//            }
+//            int indexRandom = random.nextInt(list.size());
+//            Integer deletedKey = list.get(indexRandom);
+//            RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, deletedKey);
+//            irbt.treeDelete(deletedRedBlackNode);
+//
+//            //removing node
+//            list = list.stream().filter(item -> !item.equals(deletedKey)).toList();
+//
+//            ArrayList<Integer> inOrderTest = new ArrayList<>();
+//            //irbt.inOrderTreeWalkForTest(irbt.root, inOrderTest);
+//
+//            int[] inOrderArray = inOrderTest.stream().mapToInt(Integer::intValue).toArray();
+//            int[] originArray = list.stream().sorted().mapToInt(Integer::intValue).toArray();
+//            boolean isOrdered = Arrays.equals(originArray, inOrderArray);
+//            Assertions.assertTrue(isOrdered);
+//        }
+//    }
 }
