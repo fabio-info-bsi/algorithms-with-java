@@ -79,14 +79,6 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
     @Override
     public RedBlackNode<T> iterativeTreeSearch(RedBlackNode<T> root, T key) {
         throw new UnsupportedOperationException("Not implemented");
-//        while (null != root && !key.equals(root.key)) {
-//            if (key.compareTo(root.key) < 0) {
-//                root = root.leftChild;
-//            } else {
-//                root = root.rightChild;
-//            }
-//        }
-//        return root;
     }
 
     @Override
@@ -179,7 +171,7 @@ public class RedBlackTreeImpl<T extends Comparable<T>> extends AbstractRedBlackT
             transplant(redBlackNode, redBlackNode.leftChild);
         } else {
             /* Two strategies:
-                1 - Minimum of the right child (aux = treeMinimum(redBlackNode.rightChild))
+                1 - Minimum of the right child (aux = treeMinimum(redBlackNode.rightChild)) ✅
                 2 - Maximum ot the left child (aux = treeMaximum(redBlackNode.leftChild))
             */
             aux = treeMinimum(redBlackNode.rightChild);
