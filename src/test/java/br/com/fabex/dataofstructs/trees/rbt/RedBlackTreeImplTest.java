@@ -1,6 +1,7 @@
 package br.com.fabex.dataofstructs.trees.rbt;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -13,11 +14,17 @@ import java.util.Random;
 
 class RedBlackTreeImplTest {
 
+    private RedBlackTreeImpl<Integer> irbt;
+
+    @BeforeEach
+    void setUp() {
+        irbt = new RedBlackTreeImpl<>();
+    }
+
     @Test
     @DisplayName("Should delete root node when it has no left child")
     void shouldDeleteRootNodeWithoutLeftChild() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         RedBlackNode<Integer> deletedRedBlackNode = new RedBlackNode<>(15);
         irbt.treeInsert(deletedRedBlackNode);
         irbt.treeInsert(new RedBlackNode<>(17));
@@ -35,7 +42,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should delete root node when it has no right child")
     void shouldDeleteRootNodeWithoutRightChild() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         RedBlackNode<Integer> deletedRedBlackNode = new RedBlackNode<>(15);
         irbt.treeInsert(deletedRedBlackNode);
         irbt.treeInsert(new RedBlackNode<>(6));
@@ -53,7 +59,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should delete non-root node when it has no left child")
     void shouldDeleteNonRootNodeWithoutLeftChild() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         irbt.treeInsert(new RedBlackNode<>(15));
         irbt.treeInsert(new RedBlackNode<>(6));
         irbt.treeInsert(new RedBlackNode<>(3));
@@ -81,7 +86,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should delete non-root node when it has no right child")
     void shouldDeleteNonRootNodeWithoutRightChild() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         irbt.treeInsert(new RedBlackNode<>(15));
         irbt.treeInsert(new RedBlackNode<>(6));
         irbt.treeInsert(new RedBlackNode<>(3));
@@ -105,7 +109,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should delete non-root node with both children when minimum successor is right child")
     void shouldDeleteNonRootNodeWithBothChildrenMinimumIsRightChild() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         irbt.treeInsert(new RedBlackNode<>(15));
         irbt.treeInsert(new RedBlackNode<>(6));
         RedBlackNode<Integer> deletedRedBlackNode = new RedBlackNode<>(3);
@@ -129,7 +132,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should delete non-root node with both children when minimum successor is not right child")
     void shouldDeleteNonRootNodeWithBothChildrenMinimumIsNotRightChild() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         irbt.treeInsert(new RedBlackNode<>(20));
         RedBlackNode<Integer> deletedRedBlackNode = new RedBlackNode<>(8);
         irbt.treeInsert(deletedRedBlackNode);
@@ -155,7 +157,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should delete black non-root node and perform recolorization to maintain tree properties")
     void shouldDeleteBlackNonRootNodeAndPerformRecolorization() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         irbt.treeInsert(new RedBlackNode<>(20));
         irbt.treeInsert(new RedBlackNode<>(8));
         irbt.treeInsert(new RedBlackNode<>(25));
@@ -182,7 +183,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should delete black leaf node on left with red sibling requiring left rotation and recolorization")
     void shouldDeleteBlackLeafNodeOnLeftWithRedSiblingAndRecolorization() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         irbt.treeInsert(new RedBlackNode<>(20));
         irbt.treeInsert(new RedBlackNode<>(8));
         irbt.treeInsert(new RedBlackNode<>(25));
@@ -214,7 +214,6 @@ class RedBlackTreeImplTest {
     @DisplayName("Should find node when it exists in the tree")
     void shouldFindExistingNode() {
         //Arrange
-        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
         irbt.treeInsert(new RedBlackNode<>(15));
         irbt.treeInsert(new RedBlackNode<>(6));
         irbt.treeInsert(new RedBlackNode<>(3));
