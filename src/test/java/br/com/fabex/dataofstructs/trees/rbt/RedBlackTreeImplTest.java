@@ -6,8 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 class RedBlackTreeImplTest {
-    private static final Logger logger = LoggerFactory.getLogger(RedBlackTreeImplTest.class);
 
     @Test
     @DisplayName("Should delete root node when it has no left child")
@@ -273,5 +277,147 @@ class RedBlackTreeImplTest {
 
         //Asserts
         Assertions.assertNull(searched);
+    }
+
+    @Test
+    @DisplayName("Should insert multiple nodes into red-black tree maintaining balance properties and color constraints")
+    void shouldInsertNodesIntoRedBlackTree() {
+        //Arrange
+        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+
+        //Act
+        irbt.treeInsert(new RedBlackNode<>(10));
+        irbt.treeInsert(new RedBlackNode<>(20));
+        irbt.treeInsert(new RedBlackNode<>(30));
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(25));
+        irbt.treeInsert(new RedBlackNode<>(70));
+        irbt.treeInsert(new RedBlackNode<>(75));
+
+        //Asserts
+        RedBlackNode<Integer> searched = irbt.treeSearch(irbt.root, 70);
+        Assertions.assertNotNull(searched);
+        Assertions.assertEquals(30, searched.parent.key);
+        Assertions.assertEquals(25, searched.parent.leftChild.key);
+        Assertions.assertEquals(irbt.NULL, searched.leftChild);
+        Assertions.assertEquals(75, searched.rightChild.key);
+    }
+
+    @Test
+    @DisplayName("Should delete nodes from red-black tree while maintaining balance properties and structural integrity")
+    void shouldDeleteNodesFromRedBlackTree() {
+        //Arrange
+        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(2));
+        irbt.treeInsert(new RedBlackNode<>(4));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        RedBlackNode<Integer> deletedRedBlackNode = new RedBlackNode<>(13);
+        irbt.treeInsert(deletedRedBlackNode);
+        irbt.treeInsert(new RedBlackNode<>(9));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+
+        //Act
+        irbt.treeDelete(deletedRedBlackNode);
+
+        //Asserts
+        Assertions.assertNull(irbt.treeSearch(irbt.root, 13));
+        RedBlackNode<Integer> searched = irbt.treeSearch(irbt.root, 15);
+        Assertions.assertEquals(irbt.root, searched);
+        Assertions.assertEquals(6, searched.leftChild.key);
+        Assertions.assertEquals(18, searched.rightChild.key);
+
+    }
+
+    @Test
+    @DisplayName("Should delete black leaf node on right side with red sibling requiring right rotation to maintain balance")
+    void shouldDeleteBlackLeafNodeOnRightWithRedSibling() {
+        //Arrange
+        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+        irbt.treeInsert(new RedBlackNode<>(30));
+        RedBlackNode<Integer> deletedRedBlackNode = new RedBlackNode<>(31);
+        irbt.treeInsert(deletedRedBlackNode);
+        irbt.treeInsert(new RedBlackNode<>(22));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(15));
+
+        //Act
+        irbt.treeDelete(deletedRedBlackNode);
+
+        Assertions.assertNull(irbt.treeSearch(irbt.root, 31));
+        RedBlackNode<Integer> searched = irbt.treeSearch(irbt.root, 18);
+        Assertions.assertNotNull(searched);
+        Assertions.assertEquals(irbt.root, searched);
+
+        Assertions.assertEquals(17, searched.leftChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.leftChild.color);
+        Assertions.assertEquals(30, searched.rightChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.rightChild.color);
+    }
+
+    @Test
+    @DisplayName("Should delete black non-leaf node on right side with red sibling requiring right rotation and rebalancing")
+    void shouldDeleteBlackNonLeafNodeOnRightWithRedSibling() {
+        //Arrange
+        int[] array = new int[]{60, 129, 253, 276, 109, 27, 180, 19};
+        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+
+        for (int i : array) {
+            irbt.treeInsert(new RedBlackNode<>(i));
+        }
+
+        //Act
+        int index = 4; // [4] -> 109
+        RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, array[index]);
+        irbt.treeDelete(deletedRedBlackNode);
+
+        //Asserts
+        Assertions.assertNull(irbt.treeSearch(irbt.root, array[index]));
+        RedBlackNode<Integer> searched = irbt.treeSearch(irbt.root, 27);
+        Assertions.assertNotNull(searched);
+        Assertions.assertEquals(129, searched.parent.key);
+        Assertions.assertEquals(Color.RED, searched.color);
+        Assertions.assertEquals(253, searched.parent.rightChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.parent.rightChild.color);
+        Assertions.assertEquals(19, searched.leftChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.leftChild.color);
+        Assertions.assertEquals(60, searched.rightChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.rightChild.color);
+    }
+
+    @Test
+    @DisplayName("Should delete root node while maintaining all red-black tree properties and selecting appropriate successor")
+    void shouldDeleteRootNodeMaintainingProperties() {
+        //Arrange
+        RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
+        int[] array = new int[]{254, 30, 61, 271, 2, 52, 163, 207};
+
+        for (int i : array) {
+            irbt.treeInsert(new RedBlackNode<>(i));
+        }
+
+        //Act
+        int index = 0; // [0] -> 254
+        RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, array[index]);
+        irbt.treeDelete(deletedRedBlackNode);
+
+        //Asserts
+        Assertions.assertNull(irbt.treeSearch(irbt.root, array[index]));
+        RedBlackNode<Integer> searched = irbt.treeSearch(irbt.root, 207);
+        Assertions.assertNotNull(searched);
+        Assertions.assertEquals(61, searched.parent.key);
+        Assertions.assertEquals(Color.RED, searched.color);
+        Assertions.assertEquals(30, searched.parent.leftChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.parent.leftChild.color);
+        Assertions.assertEquals(163, searched.leftChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.leftChild.color);
+        Assertions.assertEquals(271, searched.rightChild.key);
+        Assertions.assertEquals(Color.BLACK, searched.rightChild.color);
     }
 }
