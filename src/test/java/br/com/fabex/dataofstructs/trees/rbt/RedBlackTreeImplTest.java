@@ -228,6 +228,7 @@ class RedBlackTreeImplTest {
     @DisplayName("Should perform in-order tree walk on empty tree")
     void shouldPerformInOrderTreeWalkOnEmptyTree() {
         //Act & Assert - Should not throw exception
+        irbt.inOrderTreeWalk(null);
         irbt.inOrderTreeWalk(irbt.root);
     }
 
@@ -251,6 +252,7 @@ class RedBlackTreeImplTest {
     @DisplayName("Should perform pre-order tree walk on empty tree")
     void shouldPerformPreOrderTreeWalkOnEmptyTree() {
         //Act & Assert - Should not throw exception
+        irbt.preOrderTreeWalk(null);
         irbt.preOrderTreeWalk(irbt.root);
     }
 
@@ -274,6 +276,7 @@ class RedBlackTreeImplTest {
     @DisplayName("Should perform post-order tree walk on empty tree")
     void shouldPerformPostOrderTreeWalkOnEmptyTree() {
         //Act & Assert - Should not throw exception
+        irbt.posOrderTreeWalk(null);
         irbt.posOrderTreeWalk(irbt.root);
     }
 
@@ -291,6 +294,31 @@ class RedBlackTreeImplTest {
 
         //Act & Assert - Should not throw exception
         irbt.posOrderTreeWalk(irbt.root);
+    }
+
+    @Test
+    @DisplayName("Should perform breadth-first tree walk on empty tree")
+    void shouldPerformBreadthFirstTreeWalkOnEmptyTree() {
+        //Act & Assert - Should not throw exception
+        irbt.breadthFirstTreeWalk(null);
+        irbt.breadthFirstTreeWalk(irbt.NULL);
+        irbt.breadthFirstTreeWalk(irbt.root);
+    }
+
+    @Test
+    @DisplayName("Should perform breadth-first tree walk on tree with nodes")
+    void shouldPerformBreadthFirstTreeWalkOnTreeWithNodes() {
+        //Arrange
+        irbt.treeInsert(new RedBlackNode<>(15));
+        irbt.treeInsert(new RedBlackNode<>(6));
+        irbt.treeInsert(new RedBlackNode<>(18));
+        irbt.treeInsert(new RedBlackNode<>(3));
+        irbt.treeInsert(new RedBlackNode<>(7));
+        irbt.treeInsert(new RedBlackNode<>(17));
+        irbt.treeInsert(new RedBlackNode<>(20));
+
+        //Act & Assert - Should not throw exception
+        irbt.breadthFirstTreeWalk(irbt.root);
     }
 
     @Test
