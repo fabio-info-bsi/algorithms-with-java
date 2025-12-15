@@ -17,6 +17,9 @@ Este documento serve como índice para a documentação detalhada de todos os al
 - [Filas](data-structures/queues.md)
 - [Pilhas](data-structures/stacks.md)
 - [Tabelas Hash](data-structures/hashtables.md)
+- **Árvores**
+  - [Árvore Binária de Busca](data-structures/trees/binary-search-tree.md)
+  - [Árvore Rubro-Negra](data-structures/trees/red-black-tree.md)
 
 ## Algoritmos para Problemas Específicos
 - [Palíndromo](algorithms/palindrome.md)
