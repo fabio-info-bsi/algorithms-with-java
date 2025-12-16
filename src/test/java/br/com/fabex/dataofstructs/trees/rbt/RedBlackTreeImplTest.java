@@ -4,13 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 class RedBlackTreeImplTest {
 
@@ -383,7 +376,7 @@ class RedBlackTreeImplTest {
 
     @Test
     @DisplayName("Should find successor of node with right child")
-    void shouldFindSuccessorWithRightChild_() {
+    void shouldFindSuccessorWithRightChild() {
         //Arrange
         irbt.treeInsert(new RedBlackNode<>(15));
         irbt.treeInsert(new RedBlackNode<>(6));
@@ -404,7 +397,7 @@ class RedBlackTreeImplTest {
 
     @Test
     @DisplayName("Should find successor of node with right child")
-    void shouldFindSuccessorWithRightChild_2() {
+    void shouldFindSuccessorWithRightChild2() {
         //Arrange
         irbt.treeInsert(new RedBlackNode<>(15));
         irbt.treeInsert(new RedBlackNode<>(6));
@@ -463,7 +456,7 @@ class RedBlackTreeImplTest {
 
     @Test
     @DisplayName("Should find predecessor of node with left child")
-    void shouldFindPredecessorWithLeftChild_2() {
+    void shouldFindPredecessorWithLeftChild2() {
         //Arrange
         irbt.treeInsert(new RedBlackNode<>(10));
         irbt.treeInsert(new RedBlackNode<>(15));
@@ -690,42 +683,4 @@ class RedBlackTreeImplTest {
         Assertions.assertEquals(271, searched.rightChild.key);
         Assertions.assertEquals(Color.BLACK, searched.rightChild.color);
     }
-
-//    @Test
-//    @DisplayName("Should perform random deletion tests to validate tree integrity and ordering")
-//    void testRandomDeletionCases() {
-//        //For find cases random
-//        Random random = new Random();
-//        for (int i = 0; i < 20; i++) {
-//
-//            List<Integer> list = Arrays
-//                    .stream(random.ints(8_000_000,
-//                                    -1_000_000_000,
-//                                    1_000_000_000)
-//                            .toArray())
-//                    .distinct()
-//                    .boxed()
-//                    .toList();
-//
-//            RedBlackTreeImpl<Integer> irbt = new RedBlackTreeImpl<>();
-//            for (var item : list) {
-//                irbt.treeInsert(new RedBlackNode<>(item));
-//            }
-//            int indexRandom = random.nextInt(list.size());
-//            Integer deletedKey = list.get(indexRandom);
-//            RedBlackNode<Integer> deletedRedBlackNode = irbt.treeSearch(irbt.root, deletedKey);
-//            irbt.treeDelete(deletedRedBlackNode);
-//            RedBlackNode<Integer> predecessor = irbt.treePredecessor(irbt.root);
-//            //removing node
-//            list = list.stream().filter(item -> !item.equals(deletedKey)).toList();
-//
-//            ArrayList<Integer> inOrderTest = new ArrayList<>();
-//            //irbt.inOrderTreeWalkForTest(irbt.root, inOrderTest);
-//
-//            int[] inOrderArray = inOrderTest.stream().mapToInt(Integer::intValue).toArray();
-//            int[] originArray = list.stream().sorted().mapToInt(Integer::intValue).toArray();
-//            boolean isOrdered = Arrays.equals(originArray, inOrderArray);
-////            Assertions.assertTrue(isOrdered);
-//        }
-//    }
 }
