@@ -1,16 +1,16 @@
 package br.com.fabex.dataofstructs.trees.bst;
 
-public class Node<T extends Comparable<T>> {
+public class BinarySearchNode<T extends Comparable<T>> {
     private T key;
-    private Node<T> parent;
-    private Node<T> leftChild;
-    private Node<T> rightChild;
+    private BinarySearchNode<T> parent;
+    private BinarySearchNode<T> leftChild;
+    private BinarySearchNode<T> rightChild;
 
-    public Node(T key) {
+    public BinarySearchNode(T key) {
         this.key = key;
     }
 
-    public Node(T key, Node<T> parent, Node<T> leftChild, Node<T> rightChild) {
+    public BinarySearchNode(T key, BinarySearchNode<T> parent, BinarySearchNode<T> leftChild, BinarySearchNode<T> rightChild) {
         this.key = key;
         this.parent = parent;
         this.leftChild = leftChild;
@@ -25,27 +25,27 @@ public class Node<T extends Comparable<T>> {
         this.key = key;
     }
 
-    public Node<T> getParent() {
+    public BinarySearchNode<T> getParent() {
         return parent;
     }
 
-    void setParent(Node<T> parent) {
+    void setParent(BinarySearchNode<T> parent) {
         this.parent = parent;
     }
 
-    public Node<T> getLeftChild() {
+    public BinarySearchNode<T> getLeftChild() {
         return leftChild;
     }
 
-    void setLeftChild(Node<T> leftChild) {
+    void setLeftChild(BinarySearchNode<T> leftChild) {
         this.leftChild = leftChild;
     }
 
-    public Node<T> getRightChild() {
+    public BinarySearchNode<T> getRightChild() {
         return rightChild;
     }
 
-    void setRightChild(Node<T> rightChild) {
+    void setRightChild(BinarySearchNode<T> rightChild) {
         this.rightChild = rightChild;
     }
 

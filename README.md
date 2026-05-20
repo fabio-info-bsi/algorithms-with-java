@@ -21,6 +21,9 @@ O projeto está organizado nas seguintes categorias principais:
 - Filas
 - Pilhas
 - Tabelas Hash (Endereçamento Aberto e Fechado)
+- **Árvores**
+  - Árvore Binária de Busca (BST)
+  - Árvore Rubro-Negra (Red-Black Tree)
 
 ### Algoritmos Específicos
 - Verificação de Palíndromo
@@ -36,6 +39,9 @@ A documentação completa do projeto está disponível na pasta `/docs`, organiz
   - [MergeSort](/docs/sorting/mergesort.md)
   - [QuickSort](/docs/sorting/quicksort.md)
   - [Ordenação Linear](/docs/sorting/linear-sorting.md)
+- Estruturas de Dados
+  - [Árvore Binária de Busca](/docs/data-structures/trees/binary-search-tree.md)
+  - [Árvore Rubro-Negra](/docs/data-structures/trees/red-black-tree.md)
 
 ## Características do Projeto
 
