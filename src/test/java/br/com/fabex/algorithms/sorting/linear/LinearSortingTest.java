@@ -11,7 +11,7 @@ import java.util.Random;
 class LinearSortingTest {
 
     private static final int SIZE = 100;
-    private final Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     protected Integer[] array, arrayCopy;
 
