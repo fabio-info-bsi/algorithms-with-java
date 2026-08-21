@@ -1,6 +1,6 @@
 package br.com.fabex.algorithms.sorting.linear.nocomparison;
 
-import br.com.fabex.algorithms.sorting.linear.LinearSorting;
+import br.com.fabex.algorithms.sorting.linear.LinearSortingInt;
 import br.com.fabex.algorithms.statistic.OrderStatistic;
 import br.com.fabex.dataofstructs.linkedlist.single.generic.Element;
 import br.com.fabex.dataofstructs.linkedlist.single.generic.SingleLinkedListOrdered;
@@ -68,7 +68,7 @@ public class BucketSort {
     private static void insertAndSort(int[] array, int newElement) {
         array[array[array.length - 1]] = newElement;
         array[array.length - 1]++;
-        LinearSorting.insertionSort(array, array[array.length - 1]);
+        LinearSortingInt.insertionSort(array, array[array.length - 1]);
     }
 
     public static int[] sortPositiveNumbers(int[] array) {

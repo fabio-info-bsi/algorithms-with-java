@@ -1,7 +1,7 @@
 package br.com.fabex.algorithms.statistic;
 
 import br.com.fabex.algorithms.sorting.comparison.QuickSort;
-import br.com.fabex.algorithms.sorting.linear.LinearSorting;
+import br.com.fabex.algorithms.sorting.linear.LinearSortingInt;
 import br.com.fabex.util.ArrayUtils;
 
 public class OrderStatistic {
@@ -27,7 +27,7 @@ public class OrderStatistic {
 
         for (int i = startIndex, indexGroup = 0; i <= startIndex + numberOfGroup - 1; i++, indexGroup += 5) {
             //Sorting each group
-            LinearSorting.insertionSort(array, indexGroup, (indexGroup + 5 - 1)); // (Work!)
+            LinearSortingInt.insertionSort(array, indexGroup, (indexGroup + 5 - 1)); // (Work!)
             //LinearSorting.selectionSort(array, indexGroup, (indexGroup + 5 - 1)); // (Maybe it works too)
         }
 

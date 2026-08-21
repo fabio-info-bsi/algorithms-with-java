@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-public class MergeSortTest extends SortBaseTest {
+class MergeSortTest extends SortBaseTest {
 
     @Test
-    public void sortTest() {
+    void sortTest() {
         //Arrange
         Arrays.sort(arrayCopy);
 
@@ -21,7 +21,7 @@ public class MergeSortTest extends SortBaseTest {
     }
 
     @Test
-    public void sortTest2() {
+    void sortTest2() {
         //Arrange
         Arrays.sort(arrayCopy, 5, 15);
 

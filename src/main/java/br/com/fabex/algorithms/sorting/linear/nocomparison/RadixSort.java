@@ -1,12 +1,17 @@
 package br.com.fabex.algorithms.sorting.linear.nocomparison;
 
-import br.com.fabex.algorithms.sorting.linear.LinearSorting;
+import br.com.fabex.algorithms.sorting.linear.LinearSortingInt;
 import br.com.fabex.algorithms.statistic.OrderStatistic;
 import br.com.fabex.util.ArrayUtils;
 
+import java.util.function.IntUnaryOperator;
 import java.util.function.UnaryOperator;
 
 public class RadixSort {
+
+    private RadixSort() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static void sort(int[] array) {
         int highestDigitNumber = getHighestDigitNumber(array);
@@ -32,8 +37,8 @@ public class RadixSort {
     public static void sortByImplInsertSort(int[] array, int totalNumberOfDigit) {
         for (int i = 1; i <= totalNumberOfDigit; i++) {
             int digit = i;
-            UnaryOperator<Integer> operator = (num) -> getDigit(num, digit);
-            LinearSorting.insertionSort(array, array.length, operator);
+            IntUnaryOperator operator = num -> getDigit(num, digit);
+            LinearSortingInt.insertionSort(array, array.length, operator);
         }
     }
 
@@ -45,8 +50,8 @@ public class RadixSort {
     public static void sortByImplBubbleSort(int[] array, int totalNumberOfDigit) {
         for (int i = 1; i <= totalNumberOfDigit; i++) {
             int digit = i;
-            UnaryOperator<Integer> operator = (num) -> getDigit(num, digit);
-            LinearSorting.bubbleSort(array, operator);
+            IntUnaryOperator operator = num -> getDigit(num, digit);
+            LinearSortingInt.bubbleSort(array, operator);
         }
     }
 
@@ -67,7 +72,8 @@ public class RadixSort {
     }
 
     public static int getDigit(int number, int digit) {
-        int i = 1, remainder = 0;
+        int i = 1;
+        int remainder = 0;
         while (i <= digit) {
             remainder = number % 10;
             number /= 10;
