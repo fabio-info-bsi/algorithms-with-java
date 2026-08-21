@@ -1,39 +1,18 @@
 package br.com.fabex.algorithms.sorting.linear;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.Arrays;
-import java.util.function.UnaryOperator;
-
-
-import static br.com.fabex.util.ArrayUtils.printArray;
-
 public class LinearSorting {
 
-    private static final Logger logger = LoggerFactory.getLogger(LinearSorting.class);
-
-    public static void insertAndSort(int[] array, int endIndex, int newElement) {
-        for (int i = 0; i < endIndex; i++) {
-            if (array[i] > newElement) {
-                int temp = array[i];
-                for (int j = i + 1; j < endIndex; j++) {
-                    int nextItem = array[j];
-                    array[j] = temp;
-                    temp = nextItem;
-                }
-                array[i] = newElement;
-                return;
-            }
-        }
+    private LinearSorting() {
+        throw new IllegalStateException("Utility class");
     }
 
     /**
      * This algorithm is stable.
      *
      * @param array
+     * @param <T>
      */
-    public static void insertionSort(int[] array) {
+    public static <T extends Comparable<T>> void insertionSort(T[] array) {
         insertionSort(array, 0, array.length);
     }
 
@@ -42,8 +21,9 @@ public class LinearSorting {
      *
      * @param array
      * @param endIndex
+     * @param <T>
      */
-    public static void insertionSort(int[] array, int endIndex) {
+    public static <T extends Comparable<T>> void insertionSort(T[] array, int endIndex) {
         insertionSort(array, 0, endIndex);
     }
 
@@ -53,12 +33,13 @@ public class LinearSorting {
      * @param array
      * @param startIndex
      * @param endIndex
+     * @param <T>
      */
-    public static void insertionSort(int[] array, int startIndex, int endIndex) {
+    public static <T extends Comparable<T>> void insertionSort(T[] array, int startIndex, int endIndex) {
         for (int i = startIndex; i < endIndex; i++) {
-            int key = array[i];
+            T key = array[i];
             int j = i - 1;
-            while (j >= startIndex && array[j] > key) {
+            while (j >= startIndex && array[j].compareTo(key) > 0) {
                 array[j + 1] = array[j];
                 j = j - 1;
             }
@@ -67,31 +48,12 @@ public class LinearSorting {
     }
 
     /**
-     * This algorithm is stable.
-     *
-     * @param array
-     * @param endIndex
-     * @param operator
-     */
-    public static void insertionSort(int[] array, int endIndex, UnaryOperator<Integer> operator) {
-        for (int i = 1; i < endIndex; i++) {
-            int key = operator.apply(array[i]);
-            int value = array[i];
-            int j = i - 1;
-            while (j >= 0 && operator.apply(array[j]) > key) {
-                array[j + 1] = array[j];
-                j = j - 1;
-            }
-            array[j + 1] = value;
-        }
-    }
-
-    /**
      * This algorithm isn't stable.
      *
      * @param array
+     * @param <T>
      */
-    public static void selectionSort(int[] array) {
+    public static <T extends Comparable<T>> void selectionSort(T[] array) {
         selectionSort(array, array.length);
     }
 
@@ -100,8 +62,9 @@ public class LinearSorting {
      *
      * @param array
      * @param endIndex
+     * @param <T>
      */
-    public static void selectionSort(int[] array, int endIndex) {
+    public static <T extends Comparable<T>> void selectionSort(T[] array, int endIndex) {
         selectionSort(array, 0, endIndex);
     }
 
@@ -111,17 +74,18 @@ public class LinearSorting {
      * @param array
      * @param startIndex
      * @param endIndex
+     * @param <T>
      */
-    public static void selectionSort(int[] array, int startIndex, int endIndex) {
+    public static <T extends Comparable<T>> void selectionSort(T[] array, int startIndex, int endIndex) {
         for (int i = startIndex; i < endIndex; i++) {
             int minIndex = i;
             for (int j = i + 1; j < endIndex; j++) {
-                if (array[j] < array[minIndex]) {
+                if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
             }
             if (minIndex != i) { // if need to exchange!
-                int temp = array[i];
+                T temp = array[i];
                 array[i] = array[minIndex];
                 array[minIndex] = temp;
             }
@@ -132,53 +96,13 @@ public class LinearSorting {
      * This algorithm isn't stable.
      *
      * @param array
-     * @param endIndex
-     * @param operator
+     * @param <T>
      */
-    public static void selectionSort(int[] array, int endIndex, UnaryOperator<Integer> operator) {
-        for (int i = 0; i < endIndex; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < endIndex; j++) {
-                if (operator.apply(array[j]) < operator.apply(array[minIndex])) {
-                    minIndex = j;
-                }
-            }
-            if (minIndex != i) { // if need to exchange!
-                int temp = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = temp;
-            }
-        }
-    }
-
-    /**
-     * This algorithm isn't stable.
-     *
-     * @param array
-     */
-    public static void bubbleSortNotStable(int[] array) {
+    public static <T extends Comparable<T>> void bubbleSortNotStable(T[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = i; j < array.length; j++) {
-                if (array[i] > array[j]) {
-                    int temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
-                }
-            }
-        }
-    }
-
-    /**
-     * This algorithm isn't stable.
-     *
-     * @param array
-     * @param operator
-     */
-    public static void bubbleSortNotStable(int[] array, UnaryOperator<Integer> operator) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = i; j < array.length; j++) {
-                if (operator.apply(array[i]) > operator.apply(array[j])) {
-                    int temp = array[i];
+                if (array[i].compareTo(array[j]) > 0) {
+                    T temp = array[i];
                     array[i] = array[j];
                     array[j] = temp;
                 }
@@ -190,8 +114,9 @@ public class LinearSorting {
      * This algorithm is stable.
      *
      * @param array
+     * @param <T>
      */
-    public static void bubbleSort(int[] array) {
+    public static <T extends Comparable<T>> void bubbleSort(T[] array) {
         bubbleSort(array, 0, array.length);
     }
 
@@ -200,8 +125,9 @@ public class LinearSorting {
      *
      * @param array
      * @param endIndex
+     * @param <T>
      */
-    public static void bubbleSort(int[] array, int endIndex) {
+    public static <T extends Comparable<T>> void bubbleSort(T[] array, int endIndex) {
         bubbleSort(array, 0, endIndex);
     }
 
@@ -211,56 +137,17 @@ public class LinearSorting {
      * @param array
      * @param startIndex
      * @param endIndex
+     * @param <T>
      */
-    public static void bubbleSort(int[] array, int startIndex, int endIndex) {
+    public static <T extends Comparable<T>> void bubbleSort(T[] array, int startIndex, int endIndex) {
         for (int i = startIndex; i < endIndex - 1; i++) {
             for (int j = startIndex; j < startIndex - (i - endIndex) - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    int temp = array[j];
+                if (array[j].compareTo(array[j + 1]) > 0) {
+                    T temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
                 }
             }
         }
-    }
-
-    /**
-     * This algorithm is stable.
-     *
-     * @param array
-     * @param operator
-     */
-    public static void bubbleSort(int[] array, UnaryOperator<Integer> operator) {
-        int n = array.length;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
-                if (operator.apply(array[j]) > operator.apply(array[j + 1])) {
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-    }
-
-    public static void main(String[] args) {
-        /* Initialize Array */
-        int[] array = new int[10];
-        Arrays.fill(array, Integer.MAX_VALUE);
-
-        logger.debug("## Insert and Sort");
-
-        insertAndSort(array, 1, 31);
-        printArray(array);
-        insertAndSort(array, 2, 26);
-        printArray(array);
-        insertAndSort(array, 3, 36);
-        printArray(array);
-        insertAndSort(array, 4, 38);
-        printArray(array);
-        insertAndSort(array, 5, 12);
-        printArray(array);
-        insertionSort(array, 1);
-        printArray(array);
-        insertionSort(array, 2);
-        printArray(array);
     }
 }
